@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import androidx.recyclerview.widget.RecyclerView
 import tdtu.movieapp.app.R
-import tdtu.movieapp.app.ui.ViewModel.Category
+import tdtu.movieapp.app.ui.Model.Category
 
 class CategoryAdapter(val listCategory: List<Category>): RecyclerView.Adapter<CategoryViewHolder>(){
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoryViewHolder {

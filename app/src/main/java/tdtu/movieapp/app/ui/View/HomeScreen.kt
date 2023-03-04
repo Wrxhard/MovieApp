@@ -1,6 +1,5 @@
 package tdtu.movieapp.app.ui.View
 
-import tdtu.movieapp.app.ui.ViewModel.FilmViewModel
 import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,33 +7,37 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import retrofit2.Response
 import tdtu.movieapp.app.R
+import tdtu.movieapp.app.data.remote.MovieList
 import tdtu.movieapp.app.databinding.HomescreenBinding
 import tdtu.movieapp.app.ui.Adapter.CategoryAdapter
 import tdtu.movieapp.app.ui.Adapter.ParentAdapter
-import tdtu.movieapp.app.ui.ViewModel.*
-import tdtu.movieapp.app.ui.ViewModel.ChildModel
+import tdtu.movieapp.app.ui.Model.Category
+import tdtu.movieapp.app.ui.Model.ListFilmModel
+import tdtu.movieapp.app.ui.Model.*
+import tdtu.movieapp.app.ui.ViewModel.HomeScreenViewModel
+import tdtu.movieapp.app.ui.ViewModel.SectionModel
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [Fragment1.newInstance] factory method to
- * create an instance of this fragment.
- */
 class HomeScreen : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
-    private lateinit var filmViewModel: FilmViewModel
     private var _binding: HomescreenBinding? = null
+    private lateinit var viewModel:HomeScreenViewModel
+    private lateinit var responeData: LiveData<Response<MovieList>>
     private val binding: HomescreenBinding
         get() = _binding!!
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,45 +52,38 @@ class HomeScreen : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        val categoryList= mutableListOf<Category>()
-        val favoriteList= mutableListOf<ChildModel>()
-        val recentlyWatchList= mutableListOf<ChildModel>()
-        val parentList= mutableListOf<ParentModel>()
-        val recentlyWatchList2= mutableListOf<ChildModel>()
-        categoryList.add(Category("ACTION"))
-        categoryList.add(Category("DRAMA"))
-        categoryList.add(Category("GAMESHOW"))
-        categoryList.add(Category("ROMANCE"))
-        categoryList.add(Category("COMEDY"))
-        favoriteList.add(ChildModel(R.drawable.movieholder,"Thor: Love and thunder"))
-        favoriteList.add(ChildModel(R.drawable.movieholder,"Thor: Love and thunder"))
-        favoriteList.add(ChildModel(R.drawable.movieholder,"Thor: Love and thunder"))
-        favoriteList.add(ChildModel(R.drawable.movieholder,"Thor: Love and thunder"))
-        recentlyWatchList.add(ChildModel(R.drawable.movieholder,"Thor: Love and thunder"))
-        recentlyWatchList.add(ChildModel(R.drawable.movieholder,"Thor: Love and thunder"))
-        recentlyWatchList.add(ChildModel(R.drawable.movieholder,"Thor: Love and thunder"))
-        recentlyWatchList.add(ChildModel(R.drawable.movieholder,"Thor: Love and thunder"))
-        recentlyWatchList2.add(ChildModel(R.drawable.movieholder,"Thor: Love and thunder"))
-        recentlyWatchList2.add(ChildModel(R.drawable.movieholder,"Thor: Love and thunder"))
-        recentlyWatchList2.add(ChildModel(R.drawable.movieholder,"Thor: Love and thunder"))
-        recentlyWatchList2.add(ChildModel(R.drawable.movieholder,"Thor: Love and thunder"))
-        parentList.add(ParentModel("Lastest movie",favoriteList))
-        parentList.add(ParentModel("Favourite movie",recentlyWatchList))
-        parentList.add(ParentModel("Most rated",recentlyWatchList2))
-
+    ): View {
+        //Bind view
         _binding=DataBindingUtil.inflate(inflater,R.layout.homescreen,container,false)
-        binding.FilmSection.layoutManager=LinearLayoutManager(requireContext(),LinearLayoutManager.VERTICAL,false)
-        binding.categoryList.layoutManager=LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
-        val parentAdapter=ParentAdapter(parentList,{
-            findNavController().navigate(R.id.action_homescreen_to_frag32)
-        })
-        val categoryAdapter=CategoryAdapter(categoryList)
-        binding.categoryList.adapter=categoryAdapter
-        binding.FilmSection.adapter=parentAdapter
-        categoryAdapter.notifyDataSetChanged()
-        parentAdapter.notifyDataSetChanged()
+        //Bind ViewModel
+        viewModel= ViewModelProvider(this)[HomeScreenViewModel::class.java]
+        responeData=viewModel.getTrending()
+        responeData.observe(viewLifecycleOwner) {
+            val movieList = it.body()?.results?.listIterator()
+
+            if (movieList != null) {
+                val categoryList= mutableListOf<Category>()
+                val trending= mutableListOf<ListFilmModel>()
+                val parentList= mutableListOf<SectionModel>()
+                while (movieList.hasNext()) {
+                    val movieItem = movieList.next()
+                    trending.add(ListFilmModel("/original${movieItem.poster_path}",movieItem.title))
+
+                }
+                //set up recycle view
+                parentList.add(SectionModel("Treding",trending))
+                binding.FilmSection.layoutManager=LinearLayoutManager(requireContext(),LinearLayoutManager.VERTICAL,false)
+                binding.categoryList.layoutManager=LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
+                val parentAdapter=ParentAdapter(parentList) {
+                    findNavController().navigate(R.id.action_homescreen_to_frag32)
+                }
+                val categoryAdapter=CategoryAdapter(categoryList)
+                binding.categoryList.adapter=categoryAdapter
+                categoryAdapter.notifyDataSetChanged()
+                binding.FilmSection.adapter=parentAdapter
+                parentAdapter.notifyDataSetChanged()
+            }
+        }
 
         return binding.root
     }
