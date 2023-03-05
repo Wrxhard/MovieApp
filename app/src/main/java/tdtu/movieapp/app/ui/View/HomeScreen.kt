@@ -2,25 +2,24 @@ package tdtu.movieapp.app.ui.View
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import retrofit2.Response
 import tdtu.movieapp.app.R
-import tdtu.movieapp.app.data.remote.MovieList
+import tdtu.movieapp.app.data.model.Treding.TredingMovieList
+import tdtu.movieapp.app.data.remote.service.network.RemoteDataRepo
 import tdtu.movieapp.app.databinding.HomescreenBinding
 import tdtu.movieapp.app.ui.Adapter.CategoryAdapter
 import tdtu.movieapp.app.ui.Adapter.ParentAdapter
 import tdtu.movieapp.app.ui.Model.Category
-import tdtu.movieapp.app.ui.Model.ListFilmModel
 import tdtu.movieapp.app.ui.Model.*
-import tdtu.movieapp.app.ui.ViewModel.HomeScreenViewModel
 import tdtu.movieapp.app.ui.ViewModel.SectionModel
 
 // TODO: Rename parameter arguments, choose names that match
@@ -33,8 +32,8 @@ class HomeScreen : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
     private var _binding: HomescreenBinding? = null
-    private lateinit var viewModel:HomeScreenViewModel
-    private lateinit var responeData: LiveData<Response<MovieList>>
+    private lateinit var responeData: LiveData<Response<TredingMovieList>>
+    private lateinit var remoteDataRepo: RemoteDataRepo
     private val binding: HomescreenBinding
         get() = _binding!!
 
@@ -56,22 +55,16 @@ class HomeScreen : Fragment() {
         //Bind view
         _binding=DataBindingUtil.inflate(inflater,R.layout.homescreen,container,false)
         //Bind ViewModel
-        viewModel= ViewModelProvider(this)[HomeScreenViewModel::class.java]
-        responeData=viewModel.getTrending()
+        remoteDataRepo= RemoteDataRepo()
+        responeData=remoteDataRepo.getTrending(1)
         responeData.observe(viewLifecycleOwner) {
-            val movieList = it.body()?.results?.listIterator()
-
+            val movieList = it.body()?.tredingMovies
             if (movieList != null) {
                 val categoryList= mutableListOf<Category>()
-                val trending= mutableListOf<ListFilmModel>()
                 val parentList= mutableListOf<SectionModel>()
-                while (movieList.hasNext()) {
-                    val movieItem = movieList.next()
-                    trending.add(ListFilmModel("/original${movieItem.poster_path}",movieItem.title))
-
-                }
+                Log.i("MV","${movieList}")
                 //set up recycle view
-                parentList.add(SectionModel("Treding",trending))
+                parentList.add(SectionModel("Treding",movieList))
                 binding.FilmSection.layoutManager=LinearLayoutManager(requireContext(),LinearLayoutManager.VERTICAL,false)
                 binding.categoryList.layoutManager=LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
                 val parentAdapter=ParentAdapter(parentList) {

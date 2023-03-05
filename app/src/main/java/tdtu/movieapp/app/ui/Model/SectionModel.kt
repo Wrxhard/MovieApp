@@ -1,7 +1,7 @@
 package tdtu.movieapp.app.ui.ViewModel
 
-import tdtu.movieapp.app.ui.Model.ListFilmModel
+import tdtu.movieapp.app.data.model.Treding.TredingMovie
 
-class SectionModel(tille:String, var childlist: List<ListFilmModel>) {
+class SectionModel(tille:String, var childlist: List<TredingMovie>?) {
     var title=tille
 }

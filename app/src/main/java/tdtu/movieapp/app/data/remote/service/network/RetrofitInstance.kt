@@ -1,4 +1,4 @@
-package tdtu.movieapp.app.utils.network
+package tdtu.movieapp.app.data.remote.service.network
 
 import com.google.gson.GsonBuilder
 import retrofit2.Retrofit

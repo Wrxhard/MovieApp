@@ -1,11 +1,11 @@
-package tdtu.movieapp.app.data.local
+package tdtu.movieapp.app.data.model.DownloadFilms
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "films_table")
-data class Film(
+@Entity(tableName = "download_films_table")
+data class DownloadFilm(
     @PrimaryKey(autoGenerate = true)
     var id: Int,
     @ColumnInfo(name="films_name")
