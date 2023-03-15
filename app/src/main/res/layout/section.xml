@@ -36,6 +36,7 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <androidx.recyclerview.widget.RecyclerView
+        android:overScrollMode="never"
         android:id="@+id/MovieList"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

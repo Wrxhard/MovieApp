@@ -51,9 +51,12 @@ class HomeScreen : Fragment() {
                 {
                     is MainActivityViewModel.Event.Success ->
                     {
+                        val detail=mutableListOf<String>()
+                        detail.add("Action")
+                        detail.add("Adventure")
                         parentList.add(SectionModel("Trending",event.result))
                         val parentAdapter = ParentAdapter(parentList) {
-                            val action=HomeScreenDirections.actionHomescreenToFrag32(it.poster_path)
+                            val action=HomeScreenDirections.actionHomescreenToFrag32(it.poster_path,detail.toTypedArray(),it.title)
                             findNavController().navigate(action)
                         }
                         binding.FilmSection.adapter = parentAdapter
@@ -68,7 +71,12 @@ class HomeScreen : Fragment() {
         }
         binding.categoryList.layoutManager=LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
         val categoryList = mutableListOf<Category>()
-        val categoryAdapter= categoryList.let { CategoryAdapter(it) }
+        categoryList.add(Category("Action"))
+        categoryList.add(Category("Action"))
+        categoryList.add(Category("Action"))
+        categoryList.add(Category("Adventure"))
+        categoryList.add(Category("Gameshow"))
+        val categoryAdapter= CategoryAdapter(categoryList)
         binding.categoryList.adapter=categoryAdapter
         categoryAdapter.notifyDataSetChanged()
 

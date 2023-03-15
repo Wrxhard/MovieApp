@@ -9,6 +9,7 @@
     android:background="#212121"
     tools:context=".ui.View.HomeScreen">
     <androidx.core.widget.NestedScrollView
+        android:overScrollMode="never"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_20sdp"

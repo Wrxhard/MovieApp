@@ -6,6 +6,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.View.Frag3">
+    <androidx.core.widget.NestedScrollView
+        android:overScrollMode="never"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -25,7 +29,7 @@
             android:id="@+id/backtomain"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_18sdp"
+            android:layout_marginStart="@dimen/_20sdp"
             android:layout_marginTop="@dimen/_28sdp"
             android:background="?android:selectableItemBackgroundBorderless"
             android:src="@drawable/ic_baseline_arrow_back_ios_24"
@@ -48,7 +52,7 @@
             tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
         <androidx.cardview.widget.CardView
             android:id="@+id/score"
-            android:layout_marginStart="@dimen/_18sdp"
+            android:layout_marginStart="@dimen/_17sdp"
             android:layout_marginTop="@dimen/_16sdp"
             android:backgroundTint="#F9CD33"
             app:layout_constraintTop_toBottomOf="@id/imageView"
@@ -57,7 +61,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
             <TextView
-                android:layout_width="@dimen/_90sdp"
+                android:layout_width="@dimen/_86sdp"
                 android:layout_height="@dimen/_30sdp"
                 android:textAlignment="center"
                 android:gravity="center"
@@ -70,7 +74,7 @@
         </androidx.cardview.widget.CardView>
         <ImageView
             android:id="@+id/star"
-            android:layout_marginTop="@dimen/_22sdp"
+            android:layout_marginTop="@dimen/_20sdp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:contentDescription="@string/star"
@@ -82,7 +86,7 @@
         <TextView
             android:id="@+id/ViewerScore"
             app:layout_constraintTop_toBottomOf="@id/imageView"
-            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_18sdp"
             android:layout_marginStart="@dimen/_6sdp"
             app:layout_constraintStart_toEndOf="@id/star"
             android:textAlignment="center"
@@ -93,9 +97,10 @@
             android:layout_height="wrap_content">
         </TextView>
         <TextView
+            android:id="@+id/numberVoted"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_4sdp"
+            android:layout_marginStart="@dimen/_6sdp"
             android:layout_marginTop="@dimen/_4sdp"
             android:text="(110k reviews)"
             android:textColor="@color/white"
@@ -104,7 +109,49 @@
             app:layout_constraintStart_toEndOf="@id/ViewerScore">
 
         </TextView>
+        <TextView
+            android:id="@+id/detailTitle"
+            android:paddingLeft="@dimen/_18sdp"
+            android:paddingRight="@dimen/_18sdp"
+            android:layout_marginTop="@dimen/_12sdp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/score"
+            android:text="Black Panther: Wakanda Forever"
+            android:lineHeight="@dimen/_30ssp"
+            android:textSize="@dimen/_24ssp"
+            android:textColor="@color/white"
+            android:textAlignment="textStart"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"/>
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_marginTop="@dimen/_12sdp"
+            android:overScrollMode="never"
+            android:nestedScrollingEnabled="false"
+            android:layout_marginStart="@dimen/_17sdp"
+            android:id="@+id/MovieCategory"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/detailTitle"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:layout_editor_absoluteX="0dp"></androidx.recyclerview.widget.RecyclerView>
+        <TextView
+            android:paddingLeft="@dimen/_18sdp"
+            android:paddingRight="@dimen/_18sdp"
+            android:id="@+id/detaildesc"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/_80sdp"
+            android:textColor="@color/white"
+            android:text="Thor's retirement is interrupted by a galactic killer known as Gorr the God Butcher, who seeks the extinction of the gods. "
+            android:textSize="@dimen/_20ssp"
+            android:lineHeight="@dimen/_28ssp"
+            app:layout_constraintTop_toBottomOf="@id/MovieCategory"
+            app:layout_constraintStart_toStartOf="parent"
+            ></TextView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
 </FrameLayout>
 </layout>
