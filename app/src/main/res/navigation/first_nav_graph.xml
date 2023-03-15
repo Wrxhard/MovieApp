@@ -3,20 +3,30 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/first_nav_graph"
+    android:label="@string/film_poster"
     app:startDestination="@id/homescreen">
 
     <fragment
         android:id="@+id/homescreen"
         android:name="tdtu.movieapp.app.ui.View.HomeScreen"
         android:label="homescreen"
-        tools:layout="@layout/homescreen" >
+        tools:layout="@layout/homescreen">
         <action
             android:id="@+id/action_homescreen_to_frag32"
-            app:destination="@id/frag32" />
+            app:destination="@id/detailscreen" />
     </fragment>
     <fragment
-        android:id="@+id/frag32"
-        android:name="tdtu.movieapp.app.ui.View.Frag3"
+        android:id="@+id/detailscreen"
+        android:name="tdtu.movieapp.app.ui.View.DetailScreen"
         android:label="fragment_frag3"
-        tools:layout="@layout/fragment_frag3" />
+        tools:layout="@layout/detailscreen" >
+        <argument
+            android:name="Poster"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_detailscreen_to_homescreen"
+            app:destination="@id/homescreen"
+            app:popUpTo="@id/homescreen"
+            app:popUpToInclusive="true" />
+    </fragment>
 </navigation>
