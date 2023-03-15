@@ -79,7 +79,7 @@
             android:id="@+id/Category"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_26sdp"
+            android:layout_marginTop="@dimen/_18sdp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toTopOf="@id/FilmSection"
             app:layout_constraintStart_toStartOf="parent"
@@ -127,6 +127,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.recyclerview.widget.RecyclerView
+            android:paddingBottom="@dimen/_80sdp"
             android:id="@+id/FilmSection"
             android:layout_width="match_parent"
             android:overScrollMode="never"

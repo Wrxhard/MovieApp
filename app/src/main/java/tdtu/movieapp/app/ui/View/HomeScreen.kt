@@ -55,6 +55,7 @@ class HomeScreen : Fragment() {
                         detail.add("Action")
                         detail.add("Adventure")
                         parentList.add(SectionModel("Trending",event.result))
+                        parentList.add(SectionModel("Favourite",event.result))
                         val parentAdapter = ParentAdapter(parentList) {
                             val action=HomeScreenDirections.actionHomescreenToFrag32(it.poster_path,detail.toTypedArray(),it.title)
                             findNavController().navigate(action)

@@ -1,4 +1,4 @@
-package tdtu.movieapp.app.data.model
+package tdtu.movieapp.app.data.model.Database
 
 import android.content.Context
 import androidx.room.Database
