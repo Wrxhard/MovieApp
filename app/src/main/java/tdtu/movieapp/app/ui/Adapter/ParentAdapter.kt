@@ -8,10 +8,10 @@ import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import tdtu.movieapp.app.R
-import tdtu.movieapp.app.ui.Model.ListFilmModel
+import tdtu.movieapp.app.data.model.Treding.TredingMovie
 import tdtu.movieapp.app.ui.ViewModel.SectionModel
 
-class ParentAdapter(val listSection:List<SectionModel>, val onClick:(ListFilmModel)->Unit):RecyclerView.Adapter<ParentMyViewHolder>() {
+class ParentAdapter(val listSection:List<SectionModel>, val onClick:(TredingMovie)->Unit):RecyclerView.Adapter<ParentMyViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ParentMyViewHolder {
         val layoutInflater=LayoutInflater.from(parent.context)
         val listItem=layoutInflater.inflate(R.layout.section,parent,false)
@@ -29,7 +29,7 @@ class ParentAdapter(val listSection:List<SectionModel>, val onClick:(ListFilmMod
 }
 class ParentMyViewHolder(val view:View):RecyclerView.ViewHolder(view){
     @SuppressLint("NotifyDataSetChanged")
-    fun bind(Section:SectionModel, onClick: (ListFilmModel) -> Unit){
+    fun bind(Section:SectionModel, onClick: (TredingMovie) -> Unit){
         val title=view.findViewById<TextView>(R.id.Title)
         title.text=Section.title
         val section=view.findViewById<RecyclerView>(R.id.MovieList)

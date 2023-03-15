@@ -2,7 +2,6 @@ package tdtu.movieapp.app.ui.View
 
 import android.os.Build
 import android.os.Bundle
-import android.view.View
 import android.view.Window
 import android.view.WindowManager
 import androidx.annotation.RequiresApi
@@ -17,43 +16,29 @@ import androidx.navigation.NavGraph
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import dagger.hilt.android.AndroidEntryPoint
 import tdtu.movieapp.app.R
 import tdtu.movieapp.app.databinding.ActivityMainBinding
-import tdtu.movieapp.app.ui.Model.ListFilmModel
 import tdtu.movieapp.app.ui.ViewModel.MainActivityViewModel
 
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
-    private lateinit var viewModel:MainActivityViewModel
+    private  lateinit var mViewModel: MainActivityViewModel
     @RequiresApi(Build.VERSION_CODES.R)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         hideSystembar()
         binding= DataBindingUtil.setContentView(this,R.layout.activity_main)
-        viewModel= ViewModelProvider(this)[MainActivityViewModel::class.java]
+        mViewModel=ViewModelProvider(this)[MainActivityViewModel::class.java]
         val navHostFragment=supportFragmentManager.findFragmentById(R.id.Screen) as NavHostFragment?
         val navController=navHostFragment?.navController
         if (navController != null) {
             binding.bottomNav.selectedItemId=R.id.first_nav_graph
             setupBottomNav(navController,  binding.bottomNav)
         }
-        viewModel.getTrending(1).observe(this) {
-            val movieList = it.body()?.tredingMovies?.listIterator()
-            if (movieList != null) {
-                val trending = mutableListOf<ListFilmModel>()
-                while (movieList.hasNext()) {
-                    val movieItem = movieList.next()
-                    trending.add(
-                        ListFilmModel(
-                            "/original${movieItem.poster_path}",
-                            movieItem.title
-                        )
-                    )
-                }
-                viewModel.setListTrending(trending)
-            }
-        }
+        mViewModel.getTrending(1)
     }
     @RequiresApi(Build.VERSION_CODES.R)
     fun hideSystembar(){

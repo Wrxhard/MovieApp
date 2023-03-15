@@ -3,6 +3,7 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id 'androidx.navigation.safeargs'
     id 'kotlin-kapt'
+    id("com.google.dagger.hilt.android")
 }
 
 android {
@@ -39,6 +40,9 @@ android {
     }
     dataBinding{
         enabled=true
+    }
+    kapt {
+        correctErrorTypes = true
     }
 }
 

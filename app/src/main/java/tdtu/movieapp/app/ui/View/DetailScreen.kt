@@ -28,7 +28,7 @@ class DetailScreen : Fragment() {
         // Inflate the layout for this fragment
         val value=args.poster
         _binding= DataBindingUtil.inflate(inflater,R.layout.detailscreen,container,false)
-        val picUrl ="https://image.tmdb.org/t/p${value}"
+        val picUrl ="https://image.tmdb.org/t/p/original${value}"
         Glide.with(this)
             .load(picUrl)
             .placeholder(R.drawable.placeholder)
