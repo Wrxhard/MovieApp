@@ -6,6 +6,7 @@ import android.view.Window
 import android.view.WindowManager
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
@@ -26,24 +27,36 @@ import tdtu.movieapp.app.ui.ViewModel.MainActivityViewModel
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private  lateinit var mViewModel: MainActivityViewModel
+
     @RequiresApi(Build.VERSION_CODES.R)
     override fun onCreate(savedInstanceState: Bundle?) {
+        val splashScreen = installSplashScreen()
+
         super.onCreate(savedInstanceState)
-        hideSystembar()
+        requestWindowFeature(Window.FEATURE_NO_TITLE)
+        //bindingview
         binding= DataBindingUtil.setContentView(this,R.layout.activity_main)
+        //bind viewmodel
         mViewModel=ViewModelProvider(this)[MainActivityViewModel::class.java]
+        splashScreen.setKeepOnScreenCondition {
+            mViewModel.loading.value
+        }
+        //hide systembar
+        hideSystembar()
+        //Find and set Navigation controller
         val navHostFragment=supportFragmentManager.findFragmentById(R.id.Screen) as NavHostFragment?
         val navController=navHostFragment?.navController
         if (navController != null) {
             binding.bottomNav.selectedItemId=R.id.first_nav_graph
+            //setup bottom nav
             setupBottomNav(navController,  binding.bottomNav)
         }
+        //Process call api
         mViewModel.getTrending(1)
     }
+    //hide systembar
     @RequiresApi(Build.VERSION_CODES.R)
     fun hideSystembar(){
-        requestWindowFeature(Window.FEATURE_NO_TITLE)
-
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
             window.attributes.layoutInDisplayCutoutMode = WindowManager
                 .LayoutParams
@@ -70,7 +83,6 @@ class MainActivity : AppCompatActivity() {
                         item->
                     NavigationUI.onNavDestinationSelected(item, navController)
                     true
-
                 }
                 setOnItemReselectedListener {
                     val selectedItemNavGraph=navController.graph.findNode(it.itemId) as NavGraph

@@ -7,10 +7,15 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.ImageButton
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import tdtu.movieapp.app.R
 import tdtu.movieapp.app.databinding.DetailscreenBinding
@@ -22,7 +27,9 @@ class DetailScreen : Fragment() {
     private var _binding: DetailscreenBinding? = null
     private val binding: DetailscreenBinding
         get() = _binding!!
+    //get data from main screen
     val args: DetailScreenArgs by navArgs()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -32,27 +39,44 @@ class DetailScreen : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        val value=args.poster
+        // bind view
         _binding= DataBindingUtil.inflate(inflater,R.layout.detailscreen,container,false)
+        //set poster and title
+        setPosterAndTitle(binding.imageView,binding.detailTitle)
+        //set back btn behavior
+        setBackBtn(binding.backtomain)
+        //set up catefory of film
+        setupDetailCategory(binding.MovieCategory)
+        return binding.root
+    }
+    private fun setPosterAndTitle(poster:ImageView,title:TextView)
+    {
+        title.text=args.title
+        val value=args.poster
         val picUrl ="https://image.tmdb.org/t/p/original${value}"
         Glide.with(this)
             .load(picUrl)
             .placeholder(R.drawable.placeholder)
             .fitCenter()
-            .into(binding.imageView)
-        binding.backtomain.setOnClickListener {
+            .into(poster)
+
+    }
+    private fun setBackBtn(backBtn: ImageButton)
+    {
+        backBtn.setOnClickListener {
             findNavController().popBackStack()
         }
-        binding.detailTitle.text=args.title
+    }
+    @SuppressLint("NotifyDataSetChanged")
+    private fun setupDetailCategory(detailcategory:RecyclerView)
+    {
         val categoryList = mutableListOf<Category>()
         args.detailCategory.forEach{
             categoryList.add(Category(it))
         }
         val DetailCategoryAdapter= DetailCategoryAdapter(categoryList)
-        binding.MovieCategory.layoutManager= LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL,false)
-        binding.MovieCategory.adapter=DetailCategoryAdapter
+        detailcategory.layoutManager= LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL,false)
+        detailcategory.adapter=DetailCategoryAdapter
         DetailCategoryAdapter.notifyDataSetChanged()
-        return binding.root
     }
 }

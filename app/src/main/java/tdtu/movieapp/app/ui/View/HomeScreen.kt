@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import kotlinx.coroutines.flow.collectLatest
 import tdtu.movieapp.app.R
 import tdtu.movieapp.app.databinding.HomescreenBinding
@@ -41,10 +42,18 @@ class HomeScreen : Fragment() {
         //Bind view
         _binding=DataBindingUtil.inflate(inflater,R.layout.homescreen,container,false)
         //Bind ViewModel
-        mViewModel=activity?.let { ViewModelProvider(it).get(MainActivityViewModel::class.java) }!!
+        mViewModel=activity?.let { ViewModelProvider(it)[MainActivityViewModel::class.java] }!!
         //Set up Section
-        val parentList = mutableListOf<SectionModel>()
-        binding.FilmSection.layoutManager=LinearLayoutManager(requireContext(),LinearLayoutManager.VERTICAL,false)
+        setupSection(binding.FilmSection)
+        //Set up category
+        setupCategory(binding.categoryList)
+        return binding.root
+    }
+    @SuppressLint("NotifyDataSetChanged")
+    private fun setupSection(filmSection:RecyclerView)
+    {
+        val sectionlist = mutableListOf<SectionModel>()
+        filmSection.layoutManager=LinearLayoutManager(requireContext(),LinearLayoutManager.VERTICAL,false)
         lifecycleScope.launchWhenStarted {
             mViewModel.treding.collectLatest{event ->
                 when(event)
@@ -54,13 +63,12 @@ class HomeScreen : Fragment() {
                         val detail=mutableListOf<String>()
                         detail.add("Action")
                         detail.add("Adventure")
-                        parentList.add(SectionModel("Trending",event.result))
-                        parentList.add(SectionModel("Favourite",event.result))
-                        val parentAdapter = ParentAdapter(parentList) {
+                        sectionlist.add(SectionModel("Trending",event.result))
+                        val parentAdapter = ParentAdapter(sectionlist) {
                             val action=HomeScreenDirections.actionHomescreenToFrag32(it.poster_path,detail.toTypedArray(),it.title)
                             findNavController().navigate(action)
                         }
-                        binding.FilmSection.adapter = parentAdapter
+                        filmSection.adapter = parentAdapter
                         parentAdapter.notifyDataSetChanged()
                     }
                     is MainActivityViewModel.Event.Failure ->
@@ -70,7 +78,12 @@ class HomeScreen : Fragment() {
                 }
             }
         }
-        binding.categoryList.layoutManager=LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
+
+    }
+    @SuppressLint("NotifyDataSetChanged")
+    private fun setupCategory(category: RecyclerView)
+    {
+        category.layoutManager=LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
         val categoryList = mutableListOf<Category>()
         categoryList.add(Category("Action"))
         categoryList.add(Category("Action"))
@@ -78,9 +91,8 @@ class HomeScreen : Fragment() {
         categoryList.add(Category("Adventure"))
         categoryList.add(Category("Gameshow"))
         val categoryAdapter= CategoryAdapter(categoryList)
-        binding.categoryList.adapter=categoryAdapter
+        category.adapter=categoryAdapter
         categoryAdapter.notifyDataSetChanged()
 
-        return binding.root
     }
 }
