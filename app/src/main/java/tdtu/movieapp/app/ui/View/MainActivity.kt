@@ -52,7 +52,7 @@ class MainActivity : AppCompatActivity() {
             setupBottomNav(navController,  binding.bottomNav)
         }
         //Process call api
-        mViewModel.getTrending(1)
+        mViewModel.getTrending(20)
     }
     //hide systembar
     @RequiresApi(Build.VERSION_CODES.R)

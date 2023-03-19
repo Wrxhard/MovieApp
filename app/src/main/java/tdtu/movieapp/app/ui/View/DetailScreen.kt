@@ -2,12 +2,10 @@ package tdtu.movieapp.app.ui.View
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
@@ -19,7 +17,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import tdtu.movieapp.app.R
 import tdtu.movieapp.app.databinding.DetailscreenBinding
-import tdtu.movieapp.app.ui.Adapter.CategoryAdapter
 import tdtu.movieapp.app.ui.Adapter.DetailCategoryAdapter
 import tdtu.movieapp.app.ui.Model.Category
 
@@ -38,21 +35,22 @@ class DetailScreen : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // bind view
         _binding= DataBindingUtil.inflate(inflater,R.layout.detailscreen,container,false)
         //set poster and title
-        setPosterAndTitle(binding.imageView,binding.detailTitle)
+        setPosterTitleOverview(binding.imageView,binding.detailTitle,binding.detaildesc)
         //set back btn behavior
         setBackBtn(binding.backtomain)
         //set up catefory of film
         setupDetailCategory(binding.MovieCategory)
         return binding.root
     }
-    private fun setPosterAndTitle(poster:ImageView,title:TextView)
+    private fun setPosterTitleOverview(poster:ImageView,title:TextView,overview:TextView)
     {
         title.text=args.title
         val value=args.poster
+        overview.text=args.overview
         val picUrl ="https://image.tmdb.org/t/p/original${value}"
         Glide.with(this)
             .load(picUrl)

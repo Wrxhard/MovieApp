@@ -36,7 +36,8 @@
             android:textSize="@dimen/_40sdp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+            tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck"
+            android:contentDescription="detail_back_btn" />
 
         <ImageButton
             android:id="@+id/favourite"
@@ -49,7 +50,8 @@
             android:textSize="@dimen/_40sdp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+            tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck"
+            android:contentDescription="bookmark_btn" />
         <androidx.cardview.widget.CardView
             android:id="@+id/score"
             android:layout_marginStart="@dimen/_17sdp"
@@ -124,6 +126,7 @@
             android:textAlignment="textStart"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"/>
+
         <androidx.recyclerview.widget.RecyclerView
             android:layout_marginTop="@dimen/_12sdp"
             android:overScrollMode="never"
@@ -134,22 +137,22 @@
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@+id/detailTitle"
             app:layout_constraintStart_toStartOf="parent"
-            tools:layout_editor_absoluteX="0dp"></androidx.recyclerview.widget.RecyclerView>
+            tools:layout_editor_absoluteX="0dp" />
+
         <TextView
             android:paddingLeft="@dimen/_18sdp"
             android:paddingRight="@dimen/_18sdp"
             android:id="@+id/detaildesc"
-            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_14sdp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingBottom="@dimen/_80sdp"
             android:textColor="@color/white"
-            android:text="Thor's retirement is interrupted by a galactic killer known as Gorr the God Butcher, who seeks the extinction of the gods. "
+            android:text=""
             android:textSize="@dimen/_20ssp"
             android:lineHeight="@dimen/_28ssp"
             app:layout_constraintTop_toBottomOf="@id/MovieCategory"
-            app:layout_constraintStart_toStartOf="parent"
-            ></TextView>
+            app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>

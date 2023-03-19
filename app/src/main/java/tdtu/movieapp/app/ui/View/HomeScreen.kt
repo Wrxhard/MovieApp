@@ -63,9 +63,9 @@ class HomeScreen : Fragment() {
                         val detail=mutableListOf<String>()
                         detail.add("Action")
                         detail.add("Adventure")
-                        sectionlist.add(SectionModel("Trending",event.result))
+                        sectionlist.add(SectionModel("Popular",event.result))
                         val parentAdapter = ParentAdapter(sectionlist) {
-                            val action=HomeScreenDirections.actionHomescreenToFrag32(it.poster_path,detail.toTypedArray(),it.title)
+                            val action=HomeScreenDirections.actionHomescreenToFrag32(it.poster_path,detail.toTypedArray(),it.title,it.overview)
                             findNavController().navigate(action)
                         }
                         filmSection.adapter = parentAdapter

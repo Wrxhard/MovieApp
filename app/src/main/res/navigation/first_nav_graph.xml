@@ -34,5 +34,8 @@
         <argument
             android:name="title"
             app:argType="string" />
+        <argument
+            android:name="overview"
+            app:argType="string" />
     </fragment>
 </navigation>

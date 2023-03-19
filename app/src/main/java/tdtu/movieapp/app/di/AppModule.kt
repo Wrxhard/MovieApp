@@ -15,7 +15,7 @@ import tdtu.movieapp.app.data.remote.service.network.TmdbService
 import tdtu.movieapp.app.utils.DispatcherProvider
 import javax.inject.Singleton
 
-val BASE_URL="https://api.themoviedb.org/"
+val BASE_URL="http://192.168.21.220:80/"
 
 @Module
 @InstallIn(SingletonComponent::class)

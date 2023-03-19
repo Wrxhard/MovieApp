@@ -4,7 +4,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import tdtu.movieapp.app.data.MainRepository
@@ -32,15 +31,15 @@ class MainActivityViewModel @Inject constructor(
     val loading=_loading.asStateFlow()
 
     //Perform call api and get trending list with page number
-    fun getTrending(page:Int){
+    fun getTrending(quantity:Int){
         viewModelScope.launch(dispatcher.io){
-            val res=respository.getPopularMovie("0fa22dd55121fefae802e6954568d282",page)
+            val res=respository.getPopularMovie(quantity)
             _trending.value= Event.Loading
             when(res){
                 is Resource.Success ->  {
                     if (res.data!=null)
                     {
-                        _trending.value = Event.Success(res.data.tredingMovies)
+                        _trending.value = Event.Success(res.data)
                         _loading.value=false
                     }
                     else{

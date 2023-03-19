@@ -5,6 +5,6 @@ import retrofit2.http.Query
 import tdtu.movieapp.app.data.model.Treding.TredingMovieList
 
 interface TmdbService {
-    @GET("/3/movie/popular")
-    suspend fun getPopularMovie(@Query("api_key") api_key:String,@Query("page") page:Int):Response<TredingMovieList>
+    @GET("/movies")
+    suspend fun getPopularMovie(@Query("quantity") quantity:Int):Response<TredingMovieList>
 }

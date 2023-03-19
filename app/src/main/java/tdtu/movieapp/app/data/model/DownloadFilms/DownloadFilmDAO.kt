@@ -1,6 +1,5 @@
 package tdtu.movieapp.app.data.model.DownloadFilms
 
-import androidx.lifecycle.LiveData
 import androidx.room.*
 
 @Dao
