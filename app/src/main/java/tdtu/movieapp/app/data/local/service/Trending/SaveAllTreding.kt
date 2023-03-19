@@ -1,7 +1,7 @@
 package tdtu.movieapp.app.data.local.service.Trending
 
-import tdtu.movieapp.app.data.model.Treding.TredingMovie
+import tdtu.movieapp.app.data.model.Treding.Movie
 
 class SaveAllTreding(private val tredingFilmsRepo: TredingFilmsRepo) {
-    suspend fun excute():List<TredingMovie>? = tredingFilmsRepo.saveTredingMovie()
+    suspend fun excute(): List<Movie> = tredingFilmsRepo.saveMovies()
 }

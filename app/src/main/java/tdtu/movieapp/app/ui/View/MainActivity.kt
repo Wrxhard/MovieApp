@@ -22,7 +22,6 @@ import tdtu.movieapp.app.R
 import tdtu.movieapp.app.databinding.ActivityMainBinding
 import tdtu.movieapp.app.ui.ViewModel.MainActivityViewModel
 
-
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -52,7 +51,7 @@ class MainActivity : AppCompatActivity() {
             setupBottomNav(navController,  binding.bottomNav)
         }
         //Process call api
-        mViewModel.getTrending(20)
+        mViewModel.getMovies(20)
     }
     //hide systembar
     @RequiresApi(Build.VERSION_CODES.R)

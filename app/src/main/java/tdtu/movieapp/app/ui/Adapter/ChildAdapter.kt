@@ -8,9 +8,9 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import tdtu.movieapp.app.R
-import tdtu.movieapp.app.data.model.Treding.TredingMovie
+import tdtu.movieapp.app.data.model.Treding.Movie
 
-class ChildAdapter(val listFilm: List<TredingMovie>, val onClick:(TredingMovie)->Unit): RecyclerView.Adapter<ChildMyViewHolder>(){
+class ChildAdapter(val listFilm: List<Movie>, val onClick:(Movie)->Unit): RecyclerView.Adapter<ChildMyViewHolder>(){
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ChildMyViewHolder {
         val layoutInflater= LayoutInflater.from(parent.context)
         val listFilm=layoutInflater.inflate(R.layout.card,parent,false)
@@ -27,7 +27,7 @@ class ChildAdapter(val listFilm: List<TredingMovie>, val onClick:(TredingMovie)-
     }
 }
 class ChildMyViewHolder(val view: View): RecyclerView.ViewHolder(view){
-    fun bind(Film: TredingMovie, onClick: (TredingMovie) -> Unit)
+    fun bind(Film: Movie, onClick: (Movie) -> Unit)
     {
         val picUrl ="https://image.tmdb.org/t/p/original${Film.poster_path}"
         val myFilmPicture=view.findViewById<ImageView>(R.id.imageView)

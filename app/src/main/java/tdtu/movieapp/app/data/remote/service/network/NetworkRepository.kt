@@ -1,15 +1,15 @@
 package tdtu.movieapp.app.data.remote.service.network
 import tdtu.movieapp.app.data.MainRepository
-import tdtu.movieapp.app.data.model.Treding.TredingMovieList
+import tdtu.movieapp.app.data.model.Treding.Movies
 import tdtu.movieapp.app.utils.Resource
 import javax.inject.Inject
 
 class NetworkRepository @Inject constructor(
-    private val api:TmdbService
+    private val api:NetworkService
 ):MainRepository {
-    override suspend fun getPopularMovie(quantity:Int): Resource<TredingMovieList> {
+    override suspend fun getMovies(quantity:Int): Resource<Movies> {
         return try {
-            val respone=api.getPopularMovie(quantity)
+            val respone=api.getMovies(quantity)
             val res=respone.body()
             if (respone.isSuccessful && res!=null)
             {

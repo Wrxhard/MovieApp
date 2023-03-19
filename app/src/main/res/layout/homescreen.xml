@@ -12,6 +12,7 @@
         android:overScrollMode="never"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_8sdp"
         android:layout_marginStart="@dimen/_20sdp"
         android:layout_marginEnd="@dimen/_20sdp">
 
@@ -25,7 +26,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_20sdp"
-            android:text="Welcome back"
+            android:text="@string/welcome_back"
             android:textColor="#9E9E9E"
             android:textSize="@dimen/_12ssp"
             app:layout_constraintStart_toStartOf="parent"
@@ -36,7 +37,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_4sdp"
-            android:text="Let's relax and watch a movie"
+            android:text="@string/let_s_relax_and_watch_a_movie"
             android:textColor="#FAFAFA"
             android:textSize="@dimen/_14ssp"
             app:layout_constraintStart_toStartOf="parent"
@@ -52,6 +53,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
+                android:contentDescription="@string/user_profile_picture"
                 android:id="@+id/ProfileImage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -89,7 +91,7 @@
                 android:id="@+id/categoryHeader"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Category"
+                android:text="@string/category"
                 android:textColor="@color/white"
                 android:textSize="@dimen/_16ssp"
                 android:textStyle="bold"
@@ -101,7 +103,7 @@
                 android:id="@+id/viewall1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="View all"
+                android:text="@string/view_all"
                 android:textColor="#FBB500"
                 android:textSize="@dimen/_10ssp"
                 android:textStyle="normal"

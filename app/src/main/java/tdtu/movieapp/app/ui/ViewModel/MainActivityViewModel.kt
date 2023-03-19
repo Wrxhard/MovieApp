@@ -7,7 +7,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import tdtu.movieapp.app.data.MainRepository
-import tdtu.movieapp.app.data.model.Treding.TredingMovie
+import tdtu.movieapp.app.data.model.Treding.Movie
 import tdtu.movieapp.app.utils.DispatcherProvider
 import tdtu.movieapp.app.utils.Resource
 import javax.inject.Inject
@@ -19,39 +19,39 @@ class MainActivityViewModel @Inject constructor(
 ): ViewModel(){
     //Check state of action
     sealed class Event {
-        class Success(val result: List<TredingMovie>): Event()
+        class Success(val result: List<Movie>): Event()
         class Failure(val error: String): Event()
         object Loading : Event()
         object Empty : Event()
     }
-    private val _trending = MutableStateFlow<Event>(Event.Empty)
-    // getter for trending movie list
-    val treding=_trending.asStateFlow()
+    private val _movies = MutableStateFlow<Event>(Event.Empty)
+    // getter for movies movie list
+    val movies=_movies.asStateFlow()
     private val _loading = MutableStateFlow<Boolean>(true)
     val loading=_loading.asStateFlow()
 
-    //Perform call api and get trending list with page number
-    fun getTrending(quantity:Int){
+    //Perform call api and get movies
+    fun getMovies(quantity:Int){
         viewModelScope.launch(dispatcher.io){
-            val res=respository.getPopularMovie(quantity)
-            _trending.value= Event.Loading
+            val res=respository.getMovies(quantity)
+            _movies.value= Event.Loading
             when(res){
                 is Resource.Success ->  {
                     if (res.data!=null)
                     {
-                        _trending.value = Event.Success(res.data)
+                        _movies.value = Event.Success(res.data)
                         _loading.value=false
                     }
                     else{
-                        val temp:List<TredingMovie> = emptyList()
-                        _trending.value=Event.Success(temp)
+                        val temp:List<Movie> = emptyList()
+                        _movies.value=Event.Success(temp)
                         _loading.value=false
                     }
 
                 }
                 is Resource.Error ->
                 {
-                    _trending.value = Event.Failure("Connect Failure")
+                    _movies.value = Event.Failure("Connect Failure")
                     _loading.value=false
                 }
             }

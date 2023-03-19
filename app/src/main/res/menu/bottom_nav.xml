@@ -2,20 +2,20 @@
 <menu
     xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:title="Home"
+        android:title="@string/home"
         android:id="@+id/first_nav_graph"
-        android:icon="@drawable/ic_baseline_local_movies_24" />
+        android:icon="@drawable/home_icon" />
     <item
-        android:title="Setting"
+        android:title="@string/search"
         android:id="@+id/second_nav_graph"
-        android:icon="@drawable/ic_outline_person_24" />
+        android:icon="@drawable/search_icon" />
     <item
-        android:title="item3"
+        android:title="@string/profile"
         android:id="@+id/item3"
-        android:icon="@drawable/ic_baseline_local_movies_24" />
+        android:icon="@drawable/person_icon" />
     <item
-        android:title="item4"
+        android:title="@string/exit"
         android:id="@+id/item4"
-        android:icon="@drawable/ic_outline_person_24" />
+        android:icon="@drawable/exit_icon" />
 
 </menu>

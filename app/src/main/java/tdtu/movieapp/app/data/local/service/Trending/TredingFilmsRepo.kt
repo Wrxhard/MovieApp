@@ -1,11 +1,11 @@
 package tdtu.movieapp.app.data.local.service.Trending
 
 
-import tdtu.movieapp.app.data.model.Treding.TredingMovie
+import tdtu.movieapp.app.data.model.Treding.Movie
 
 interface TredingFilmsRepo {
 
-    suspend fun getAllTreding():List<TredingMovie>
-    suspend fun saveTredingMovie():List<TredingMovie>
+    suspend fun getAllMovies():List<Movie>
+    suspend fun saveMovies():List<Movie>
 
 }

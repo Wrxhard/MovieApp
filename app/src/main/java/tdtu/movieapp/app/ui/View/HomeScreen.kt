@@ -55,7 +55,7 @@ class HomeScreen : Fragment() {
         val sectionlist = mutableListOf<SectionModel>()
         filmSection.layoutManager=LinearLayoutManager(requireContext(),LinearLayoutManager.VERTICAL,false)
         lifecycleScope.launchWhenStarted {
-            mViewModel.treding.collectLatest{event ->
+            mViewModel.movies.collectLatest{event ->
                 when(event)
                 {
                     is MainActivityViewModel.Event.Success ->
@@ -63,6 +63,8 @@ class HomeScreen : Fragment() {
                         val detail=mutableListOf<String>()
                         detail.add("Action")
                         detail.add("Adventure")
+                        sectionlist.add(SectionModel("Popular",event.result))
+                        sectionlist.add(SectionModel("Popular",event.result))
                         sectionlist.add(SectionModel("Popular",event.result))
                         val parentAdapter = ParentAdapter(sectionlist) {
                             val action=HomeScreenDirections.actionHomescreenToFrag32(it.poster_path,detail.toTypedArray(),it.title,it.overview)

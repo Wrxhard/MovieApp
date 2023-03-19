@@ -33,7 +33,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:itemIconTint="@color/white"
-            app:itemIconSize="@dimen/_24ssp"
+            app:itemIconSize="@dimen/_25ssp"
             app:itemTextColor="@color/white"
             app:itemTextAppearanceActive="@style/BottomNavigationView.Active"
             app:itemRippleColor="#FFFFFF"

@@ -5,4 +5,14 @@
     <string name="fragment_1">fragment 1</string>
     <string name="film_poster" />
     <string name="star">Star</string>
+    <string name="home">Home</string>
+    <string name="search">Search</string>
+    <string name="profile">Profile</string>
+    <string name="exit">Exit</string>
+    <string name="let_s_relax_and_watch_a_movie">Let\'s relax and watch a movie</string>
+    <string name="welcome_back">Welcome back</string>
+    <string name="user_profile">user profile</string>
+    <string name="user_profile_picture">user_profile_picture</string>
+    <string name="view_all">View all</string>
+    <string name="category">Category</string>
 </resources>

@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "f036e42ec934cd2a82b1ad713adfb0a5",
+    "identityHash": "2363a44ae19ea3261b63e745e1e8dd6a",
     "entities": [
       {
         "tableName": "download_films_table",
@@ -43,7 +43,7 @@
         "foreignKeys": []
       },
       {
-        "tableName": "trending_movies",
+        "tableName": "movies",
         "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` TEXT NOT NULL, `movie_poster` TEXT NOT NULL, `movie_title` TEXT NOT NULL, `movie_overview` TEXT NOT NULL, `movie_tagline` TEXT NOT NULL, `movie_director` TEXT NOT NULL, `movie_year` INTEGER NOT NULL, PRIMARY KEY(`id`))",
         "fields": [
           {
@@ -102,7 +102,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'f036e42ec934cd2a82b1ad713adfb0a5')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '2363a44ae19ea3261b63e745e1e8dd6a')"
     ]
   }
 }
