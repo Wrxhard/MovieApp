@@ -3,14 +3,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/first_nav_graph"
+    app:startDestination="@id/homescreen_nav_graph"
 
     >
 
     <include
-        app:graph="@navigation/first_nav_graph"
+        app:graph="@navigation/homescreen_nav_graph"
         />
     <include
-        app:graph="@navigation/second_nav_graph"
+        app:graph="@navigation/searchscreen_nav_graph"
+        />
+    <include
+        app:graph="@navigation/userprofile_nav_graph"
         />
 </navigation>

@@ -46,12 +46,12 @@ class MainActivity : AppCompatActivity() {
         val navHostFragment=supportFragmentManager.findFragmentById(R.id.Screen) as NavHostFragment?
         val navController=navHostFragment?.navController
         if (navController != null) {
-            binding.bottomNav.selectedItemId=R.id.first_nav_graph
+            binding.bottomNav.selectedItemId=R.id.homescreen_nav_graph
             //setup bottom nav
             setupBottomNav(navController,  binding.bottomNav)
         }
         //Process call api
-        mViewModel.getMovies(20)
+        mViewModel.getMovies(1)
     }
     //hide systembar
     @RequiresApi(Build.VERSION_CODES.R)

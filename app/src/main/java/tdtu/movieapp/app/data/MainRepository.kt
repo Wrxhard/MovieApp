@@ -5,5 +5,5 @@ import tdtu.movieapp.app.data.model.Treding.Movies
 import tdtu.movieapp.app.utils.Resource
 
 interface MainRepository {
-    suspend fun getMovies(@Query("quantity") quantity:Int): Resource<Movies>
+    suspend fun getMovies(@Query("page") page:Int): Resource<Movies>
 }

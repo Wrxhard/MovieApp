@@ -6,5 +6,5 @@ import tdtu.movieapp.app.data.model.Treding.Movies
 
 interface NetworkService {
     @GET("/movies")
-    suspend fun getMovies(@Query("quantity") quantity:Int):Response<Movies>
+    suspend fun getMovies(@Query("page") page:Int):Response<Movies>
 }

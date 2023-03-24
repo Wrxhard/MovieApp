@@ -2,7 +2,7 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/first_nav_graph"
+    android:id="@+id/homescreen_nav_graph"
     android:label="@string/film_poster"
     app:startDestination="@id/homescreen">
 
@@ -12,13 +12,13 @@
         android:label="homescreen"
         tools:layout="@layout/homescreen">
         <action
-            android:id="@+id/action_homescreen_to_frag32"
+            android:id="@+id/action_homescreen_to_detail_screen"
             app:destination="@id/detailscreen" />
     </fragment>
     <fragment
         android:id="@+id/detailscreen"
         android:name="tdtu.movieapp.app.ui.View.DetailScreen"
-        android:label="fragment_frag3"
+        android:label="detail_screen"
         tools:layout="@layout/detailscreen" >
         <argument
             android:name="Poster"

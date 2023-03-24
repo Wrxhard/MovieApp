@@ -7,9 +7,9 @@ import javax.inject.Inject
 class NetworkRepository @Inject constructor(
     private val api:NetworkService
 ):MainRepository {
-    override suspend fun getMovies(quantity:Int): Resource<Movies> {
+    override suspend fun getMovies(page:Int): Resource<Movies> {
         return try {
-            val respone=api.getMovies(quantity)
+            val respone=api.getMovies(page)
             val res=respone.body()
             if (respone.isSuccessful && res!=null)
             {

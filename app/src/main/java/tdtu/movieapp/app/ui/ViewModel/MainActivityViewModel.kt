@@ -31,9 +31,9 @@ class MainActivityViewModel @Inject constructor(
     val loading=_loading.asStateFlow()
 
     //Perform call api and get movies
-    fun getMovies(quantity:Int){
+    fun getMovies(page:Int){
         viewModelScope.launch(dispatcher.io){
-            val res=respository.getMovies(quantity)
+            val res=respository.getMovies(page)
             _movies.value= Event.Loading
             when(res){
                 is Resource.Success ->  {

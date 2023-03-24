@@ -5,11 +5,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import tdtu.movieapp.app.databinding.ProfilescreenBinding
+import tdtu.movieapp.app.databinding.SearchscreenBinding
 
-class Fragment2 : Fragment() {
-    private var _binding: ProfilescreenBinding? = null
-    private val binding: ProfilescreenBinding
+class SearchScreen : Fragment() {
+    private var _binding: SearchscreenBinding? = null
+    private val binding: SearchscreenBinding
         get() = _binding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -21,7 +21,7 @@ class Fragment2 : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
-         _binding= ProfilescreenBinding.inflate(inflater,container,false)
+         _binding= SearchscreenBinding.inflate(inflater,container,false)
         return binding.root
     }
 

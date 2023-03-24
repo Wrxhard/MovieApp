@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/searchscreen_nav_graph"
+    app:startDestination="@id/searchscreen">
+
+    <fragment
+        android:id="@+id/searchscreen"
+        android:name="tdtu.movieapp.app.ui.View.SearchScreen"
+        android:label="searchscreen"
+        tools:layout="@layout/searchscreen" />
+</navigation>
