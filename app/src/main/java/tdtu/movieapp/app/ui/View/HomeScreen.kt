@@ -12,6 +12,9 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import kotlinx.coroutines.async
+import kotlinx.coroutines.awaitAll
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.collectLatest
 import tdtu.movieapp.app.R
 import tdtu.movieapp.app.databinding.HomescreenBinding
@@ -55,31 +58,60 @@ class HomeScreen : Fragment() {
         val sectionlist = mutableListOf<SectionModel>()
         filmSection.layoutManager=LinearLayoutManager(requireContext(),LinearLayoutManager.VERTICAL,false)
         lifecycleScope.launchWhenStarted {
-            mViewModel.movies.collectLatest{event ->
-                when(event)
-                {
-                    is MainActivityViewModel.Event.Success ->
+            val jobs= listOf(
+                async {
+                    mViewModel.movies.collectLatest{ event ->
+                    when(event)
                     {
-                        val detail=mutableListOf<String>()
-                        detail.add("Action")
-                        detail.add("Adventure")
-                        sectionlist.add(SectionModel("Popular",event.result))
-                        sectionlist.add(SectionModel("Popular",event.result))
-                        sectionlist.add(SectionModel("Popular",event.result))
-                        val parentAdapter = ParentAdapter(sectionlist) {
-                            val action=HomeScreenDirections.actionHomescreenToDetailScreen(it.poster_path,detail.toTypedArray(),it.title,it.overview)
-                            findNavController().navigate(action)
+                        is MainActivityViewModel.Event.Success ->
+                        {
+                            val detail=mutableListOf<String>()
+                            detail.add("Action")
+                            detail.add("Adventure")
+                            sectionlist.add(SectionModel("Popular",event.result))
+                            val parentAdapter = ParentAdapter(sectionlist) {
+                                val action=HomeScreenDirections.actionHomescreenToDetailScreen(it.poster_path,detail.toTypedArray(),it.title,it.overview)
+                                findNavController().navigate(action)
+                            }
+                            filmSection.adapter = parentAdapter
+                            parentAdapter.notifyDataSetChanged()
                         }
-                        filmSection.adapter = parentAdapter
-                        parentAdapter.notifyDataSetChanged()
+                        is MainActivityViewModel.Event.Failure ->
+                        {
+                        }
+                        else -> Unit
                     }
-                    is MainActivityViewModel.Event.Failure ->
+                }},
+                async {
+                    mViewModel.movies2.collectLatest{ event ->
+                    when(event)
                     {
+                        is MainActivityViewModel.Event.Success ->
+                        {
+                            val detail=mutableListOf<String>()
+                            detail.add("Action")
+                            detail.add("Adventure")
+                            /*Because two function run and also update the list at the same time so the order of item
+                              may not be correct so we need to delay it */
+                            delay(10)
+                            sectionlist.add(SectionModel("Trending",event.result))
+                            val parentAdapter = ParentAdapter(sectionlist) {
+                                val action=HomeScreenDirections.actionHomescreenToDetailScreen(it.poster_path,detail.toTypedArray(),it.title,it.overview)
+                                findNavController().navigate(action)
+                            }
+                            filmSection.adapter = parentAdapter
+                            parentAdapter.notifyDataSetChanged()
+                        }
+                        is MainActivityViewModel.Event.Failure ->
+                        {
+                        }
+                        else -> Unit
                     }
-                    else -> Unit
-                }
-            }
+                }}
+            )
+            jobs.awaitAll()
         }
+
 
     }
     @SuppressLint("NotifyDataSetChanged")

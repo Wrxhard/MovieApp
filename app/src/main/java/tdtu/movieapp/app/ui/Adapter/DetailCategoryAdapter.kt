@@ -8,7 +8,14 @@ import androidx.recyclerview.widget.RecyclerView
 import tdtu.movieapp.app.R
 import tdtu.movieapp.app.ui.Model.Category
 
-class DetailCategoryAdapter(val listCategory: List<Category>): RecyclerView.Adapter<DetailCategoryViewHolder>() {
+class DetailCategoryAdapter(val listCategory: List<Category>): RecyclerView.Adapter<DetailCategoryAdapter.DetailCategoryViewHolder>() {
+    inner class  DetailCategoryViewHolder(val view: View):RecyclerView.ViewHolder(view){
+        fun bind(Category:Category)
+        {
+            val myCategoryBtn=view.findViewById<Button>(R.id.CategoryBtn)
+            myCategoryBtn.text=Category.title
+        }
+    }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DetailCategoryViewHolder {
         val layoutInflater=LayoutInflater.from(parent.context)
         val listCategory=layoutInflater.inflate(R.layout.category,parent,false)
@@ -22,12 +29,5 @@ class DetailCategoryAdapter(val listCategory: List<Category>): RecyclerView.Adap
 
     override fun getItemCount(): Int {
         return listCategory.size
-    }
-}
-class  DetailCategoryViewHolder(val view: View):RecyclerView.ViewHolder(view){
-    fun bind(Category:Category)
-    {
-        val myCategoryBtn=view.findViewById<Button>(R.id.CategoryBtn)
-        myCategoryBtn.text=Category.title
     }
 }

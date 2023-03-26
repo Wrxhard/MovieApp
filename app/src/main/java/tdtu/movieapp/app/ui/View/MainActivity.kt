@@ -12,12 +12,15 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.NavGraph
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.async
+import kotlinx.coroutines.awaitAll
 import tdtu.movieapp.app.R
 import tdtu.movieapp.app.databinding.ActivityMainBinding
 import tdtu.movieapp.app.ui.ViewModel.MainActivityViewModel
@@ -51,7 +54,17 @@ class MainActivity : AppCompatActivity() {
             setupBottomNav(navController,  binding.bottomNav)
         }
         //Process call api
-        mViewModel.getMovies(1)
+        lifecycleScope.launchWhenStarted {
+            val jobs= listOf(
+                async {
+                    mViewModel.getPopular(1)
+                },
+                async {
+                    mViewModel.getTrending(2)
+                },
+            )
+            jobs.awaitAll()
+        }
     }
     //hide systembar
     @RequiresApi(Build.VERSION_CODES.R)
@@ -93,7 +106,6 @@ class MainActivity : AppCompatActivity() {
 
             }
         }
-
     }
 
 }

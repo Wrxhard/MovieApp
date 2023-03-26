@@ -1,6 +1,6 @@
 package tdtu.movieapp.app.data.remote.service.network
 import tdtu.movieapp.app.data.MainRepository
-import tdtu.movieapp.app.data.model.Treding.Movies
+import tdtu.movieapp.app.data.model.Movies.Movies
 import tdtu.movieapp.app.utils.Resource
 import javax.inject.Inject
 
