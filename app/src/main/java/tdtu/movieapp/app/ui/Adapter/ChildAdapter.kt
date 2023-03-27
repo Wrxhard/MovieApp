@@ -37,6 +37,7 @@ class ChildAdapter(val listFilm: List<Movie>, val onClick:(Movie)->Unit): Recycl
     override fun onBindViewHolder(holder: ChildMyViewHolder, position: Int) {
         val film=listFilm[position]
         holder.bind(film,onClick)
+
     }
 
     override fun getItemCount(): Int {

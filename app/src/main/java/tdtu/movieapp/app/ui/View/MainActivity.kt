@@ -18,12 +18,15 @@ import androidx.navigation.NavGraph
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
 import tdtu.movieapp.app.R
 import tdtu.movieapp.app.databinding.ActivityMainBinding
 import tdtu.movieapp.app.ui.ViewModel.MainActivityViewModel
+import kotlin.system.exitProcess
+
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -93,19 +96,57 @@ class MainActivity : AppCompatActivity() {
                 NavigationUI.setupWithNavController(this,navController)
                 setOnItemSelectedListener {
                         item->
+                    if (item.itemId == R.id.exitapp)
+                    {
+                        MaterialAlertDialogBuilder(context,R.style.AlertDialogTheme)
+                            .setTitle("Confirm")
+                            .setMessage("Are you sure you want to exit?")
+                            .setNegativeButton("No") { dialog, which ->
+                                dialog.dismiss()
+                            }
+                            .setPositiveButton("Yes") { dialog, which ->
+                                finishAndRemoveTask()
+                                exitProcess(0)
+                            }
+                            .show()
+                    }
                     NavigationUI.onNavDestinationSelected(item, navController)
                     true
                 }
                 setOnItemReselectedListener {
-                    val selectedItemNavGraph=navController.graph.findNode(it.itemId) as NavGraph
-                    selectedItemNavGraph.let {
-                            menuGraph->
-                        navController.popBackStack(menuGraph.startDestinationId,false)
+                    if (it.itemId == R.id.exitapp)
+                    {
+                        /*AlertDialog.Builder(this@MainActivity,R.style.AlertDialogTheme)
+                            .setTitle("Warning")
+                            .setMessage("You sure you want to exist?")
+                            .setPositiveButton("Yes") { _, _ ->
+                                finishAffinity()
+                                exitProcess(0)
+                            }
+                            .setNegativeButton("No") { dialog, _ -> dialog.dismiss()}
+                            .show()*/
+                        MaterialAlertDialogBuilder(context,R.style.AlertDialogTheme)
+                            .setTitle("Confirm")
+                            .setMessage("Are you sure you want to exist?")
+                            .setNegativeButton("No") { dialog, which ->
+                                dialog.dismiss()
+                            }
+                            .setPositiveButton("Yes") { dialog, which ->
+                                finishAndRemoveTask()
+                                exitProcess(0)
+                            }
+                            .show()
+                    }
+                    else{
+                        val selectedItemNavGraph=navController.graph.findNode(it.itemId) as NavGraph
+                        selectedItemNavGraph.let {
+                                menuGraph->
+                            navController.popBackStack(menuGraph.startDestinationId,false)
+                        }
                     }
                 }
 
             }
         }
     }
-
 }

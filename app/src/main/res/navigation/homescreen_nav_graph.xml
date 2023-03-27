@@ -14,6 +14,13 @@
         <action
             android:id="@+id/action_homescreen_to_detail_screen"
             app:destination="@id/detailscreen" />
+        <action
+            android:id="@+id/action_homescreen_to_search_screen"
+            app:destination="@id/searchscreen_nav_graph">
+            <argument
+                android:name="search_txt"
+                app:argType="string" />
+        </action>
     </fragment>
     <fragment
         android:id="@+id/detailscreen"

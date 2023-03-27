@@ -50,6 +50,21 @@ class HomeScreen : Fragment() {
         setupSection(binding.FilmSection)
         //Set up category
         setupCategory(binding.categoryList)
+        /*binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
+            override fun onQueryTextSubmit(txt: String?): Boolean {
+                if (txt!=null)
+                {
+                    val action=HomeScreenDirections.actionHomescreenToSearchScreen(txt)
+                    findNavController().navigate(action)
+                }
+                return false
+            }
+
+            override fun onQueryTextChange(txt: String?): Boolean {
+                return false
+            }
+
+        })*/
         return binding.root
     }
     @SuppressLint("NotifyDataSetChanged")

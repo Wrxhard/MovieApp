@@ -9,5 +9,10 @@
         android:id="@+id/searchscreen"
         android:name="tdtu.movieapp.app.ui.View.SearchScreen"
         android:label="searchscreen"
-        tools:layout="@layout/searchscreen" />
+        tools:layout="@layout/searchscreen" >
+        <argument
+            android:name="search_txt"
+            app:nullable="true"
+            app:argType="string" />
+    </fragment>
 </navigation>
