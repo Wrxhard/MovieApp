@@ -32,7 +32,7 @@
 ```
   git clone https://github.com/Wrxhard/MovieApp.git
 ```
-- Change the base URL to the IP address of the current device (laptop or PC) in the AppModule.kt file located in app/src/main/java/tdtu/movieapp/app/di
+- Change the base URL to the IP address your device in the AppModule.kt file located in app/src/main/java/tdtu/movieapp/app/di :
   
 ```
   const val BASE_URL="http://your_device_ip_address:80/" (Laptop)
