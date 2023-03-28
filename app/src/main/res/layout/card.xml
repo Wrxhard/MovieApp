@@ -31,6 +31,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:maxLines="2"
+        android:ellipsize="end"
         android:lineHeight="@dimen/_12ssp"
         android:layout_marginTop="@dimen/_8sdp"
         android:textSize="@dimen/_10ssp"

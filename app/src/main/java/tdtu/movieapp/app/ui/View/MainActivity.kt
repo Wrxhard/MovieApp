@@ -31,7 +31,7 @@ import kotlin.system.exitProcess
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
-    private  lateinit var mViewModel: MainActivityViewModel
+    private lateinit var mViewModel: MainActivityViewModel
 
     @RequiresApi(Build.VERSION_CODES.R)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -47,7 +47,7 @@ class MainActivity : AppCompatActivity() {
             mViewModel.loading.value
         }
         //hide systembar
-        hideSystembar()
+        hideSystem()
         //Find and set Navigation controller
         val navHostFragment=supportFragmentManager.findFragmentById(R.id.Screen) as NavHostFragment?
         val navController=navHostFragment?.navController
@@ -71,7 +71,7 @@ class MainActivity : AppCompatActivity() {
     }
     //hide systembar
     @RequiresApi(Build.VERSION_CODES.R)
-    fun hideSystembar(){
+    private fun hideSystem(){
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
             window.attributes.layoutInDisplayCutoutMode = WindowManager
                 .LayoutParams
@@ -87,7 +87,7 @@ class MainActivity : AppCompatActivity() {
 
     }
     //Set up bottom navigation
-    fun setupBottomNav(navController: NavController, bottomNavigationView: BottomNavigationView)
+    private fun setupBottomNav(navController: NavController, bottomNavigationView: BottomNavigationView)
     {
 
         bottomNavigationView.apply {
@@ -101,10 +101,10 @@ class MainActivity : AppCompatActivity() {
                         MaterialAlertDialogBuilder(context,R.style.AlertDialogTheme)
                             .setTitle("Confirm")
                             .setMessage("Are you sure you want to exit?")
-                            .setNegativeButton("No") { dialog, which ->
+                            .setNegativeButton("No") { dialog, _ ->
                                 dialog.dismiss()
                             }
-                            .setPositiveButton("Yes") { dialog, which ->
+                            .setPositiveButton("Yes") { _, _ ->
                                 finishAndRemoveTask()
                                 exitProcess(0)
                             }
@@ -116,22 +116,13 @@ class MainActivity : AppCompatActivity() {
                 setOnItemReselectedListener {
                     if (it.itemId == R.id.exitapp)
                     {
-                        /*AlertDialog.Builder(this@MainActivity,R.style.AlertDialogTheme)
-                            .setTitle("Warning")
-                            .setMessage("You sure you want to exist?")
-                            .setPositiveButton("Yes") { _, _ ->
-                                finishAffinity()
-                                exitProcess(0)
-                            }
-                            .setNegativeButton("No") { dialog, _ -> dialog.dismiss()}
-                            .show()*/
                         MaterialAlertDialogBuilder(context,R.style.AlertDialogTheme)
                             .setTitle("Confirm")
                             .setMessage("Are you sure you want to exist?")
-                            .setNegativeButton("No") { dialog, which ->
+                            .setNegativeButton("No") { dialog, _ ->
                                 dialog.dismiss()
                             }
-                            .setPositiveButton("Yes") { dialog, which ->
+                            .setPositiveButton("Yes") { _, _ ->
                                 finishAndRemoveTask()
                                 exitProcess(0)
                             }

@@ -25,8 +25,8 @@
 
 ## Setup
 - Launch XAMPP and start Apache and MySQL servers
-- In PHPMyAdmin, create a new database called movieapp.
-- Import the movieapp.sql file.
+- In PHPMyAdmin, create a new database called moonvie.
+- Import the moonvie.sql file.
 - Open the project in Android Studio.
 - Clone the repository:
 ```
