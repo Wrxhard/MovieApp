@@ -1,6 +1,5 @@
 package tdtu.movieapp.app.ui.View
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -25,20 +24,20 @@ class DetailScreen : Fragment() {
     private val binding: DetailscreenBinding
         get() = _binding!!
     //get data from main screen
-    val args: DetailScreenArgs by navArgs()
+    private val args: DetailScreenArgs by navArgs()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
 
-    @SuppressLint("NotifyDataSetChanged")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         // bind view
         _binding= DataBindingUtil.inflate(inflater,R.layout.detailscreen,container,false)
-        //set poster and title
+        //set poster and titless
+
         setPosterTitleOverview(binding.imageView,binding.detailTitle,binding.detaildesc)
         //set back btn behavior
         setBackBtn(binding.backtomain)
@@ -65,7 +64,6 @@ class DetailScreen : Fragment() {
             findNavController().popBackStack()
         }
     }
-    @SuppressLint("NotifyDataSetChanged")
     private fun setupDetailCategory(detailcategory:RecyclerView)
     {
         val categoryList = mutableListOf<Category>()
@@ -75,6 +73,6 @@ class DetailScreen : Fragment() {
         val DetailCategoryAdapter= DetailCategoryAdapter(categoryList)
         detailcategory.layoutManager= LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL,false)
         detailcategory.adapter=DetailCategoryAdapter
-        DetailCategoryAdapter.notifyDataSetChanged()
     }
+
 }

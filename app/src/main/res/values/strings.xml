@@ -16,4 +16,6 @@
     <string name="view_all">View all</string>
     <string name="category">Category</string>
     <string name="textview">TextView</string>
+    <string name="detail_back_btn">detail_back_btn</string>
+    <string name="bookmark_btn">bookmark_btn</string>
 </resources>

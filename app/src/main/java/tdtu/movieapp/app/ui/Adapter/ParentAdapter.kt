@@ -21,9 +21,7 @@ class ParentAdapter(val listSection:List<SectionModel>, val onClick:(Movie)->Uni
             val childAdapter= Section.childlist?.let { ChildAdapter(it,onClick) }
             section.adapter=childAdapter
             section.layoutManager= LinearLayoutManager(view.context, LinearLayoutManager.HORIZONTAL,false)
-            if (childAdapter != null) {
-                childAdapter.notifyDataSetChanged()
-            }
+            childAdapter?.notifyDataSetChanged()
 
         }
     }

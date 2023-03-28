@@ -1,11 +1,11 @@
 package tdtu.movieapp.app.ui.View
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
@@ -21,7 +21,6 @@ import tdtu.movieapp.app.databinding.HomescreenBinding
 import tdtu.movieapp.app.ui.Adapter.CategoryAdapter
 import tdtu.movieapp.app.ui.Adapter.ParentAdapter
 import tdtu.movieapp.app.ui.Model.Category
-import tdtu.movieapp.app.ui.Model.*
 import tdtu.movieapp.app.ui.ViewModel.MainActivityViewModel
 import tdtu.movieapp.app.ui.ViewModel.SectionModel
 
@@ -37,7 +36,6 @@ class HomeScreen : Fragment() {
         super.onCreate(savedInstanceState)
     }
 
-    @SuppressLint("NotifyDataSetChanged")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -67,11 +65,20 @@ class HomeScreen : Fragment() {
         })*/
         return binding.root
     }
-    @SuppressLint("NotifyDataSetChanged")
+
     private fun setupSection(filmSection:RecyclerView)
     {
+        val detail=mutableListOf<String>()
+        detail.add("Action")
+        detail.add("Adventure")
+
         val sectionlist = mutableListOf<SectionModel>()
         filmSection.layoutManager=LinearLayoutManager(requireContext(),LinearLayoutManager.VERTICAL,false)
+        val parentAdapter = ParentAdapter(sectionlist) {
+            val action=HomeScreenDirections.actionHomescreenToDetailScreen(it.poster_path,detail.toTypedArray(),it.title,it.overview)
+            findNavController().navigate(action)
+        }
+        filmSection.adapter = parentAdapter
         lifecycleScope.launchWhenStarted {
             val jobs= listOf(
                 async {
@@ -80,19 +87,18 @@ class HomeScreen : Fragment() {
                     {
                         is MainActivityViewModel.Event.Success ->
                         {
-                            val detail=mutableListOf<String>()
-                            detail.add("Action")
-                            detail.add("Adventure")
                             sectionlist.add(SectionModel("Popular",event.result))
-                            val parentAdapter = ParentAdapter(sectionlist) {
-                                val action=HomeScreenDirections.actionHomescreenToDetailScreen(it.poster_path,detail.toTypedArray(),it.title,it.overview)
-                                findNavController().navigate(action)
+                            if (sectionlist.size>=1)
+                            {
+                                parentAdapter.notifyItemInserted(sectionlist.size-1)
                             }
-                            filmSection.adapter = parentAdapter
-                            parentAdapter.notifyDataSetChanged()
+                            else{
+                                parentAdapter.notifyItemInserted(0)
+                            }
                         }
                         is MainActivityViewModel.Event.Failure ->
                         {
+                            Toast.makeText(requireContext(),"Cannot get data check your internet connection",Toast.LENGTH_SHORT).show()
                         }
                         else -> Unit
                     }
@@ -103,22 +109,21 @@ class HomeScreen : Fragment() {
                     {
                         is MainActivityViewModel.Event.Success ->
                         {
-                            val detail=mutableListOf<String>()
-                            detail.add("Action")
-                            detail.add("Adventure")
                             /*Because two function run and also update the list at the same time so the order of item
                               may not be correct so we need to delay it */
                             delay(10)
                             sectionlist.add(SectionModel("Trending",event.result))
-                            val parentAdapter = ParentAdapter(sectionlist) {
-                                val action=HomeScreenDirections.actionHomescreenToDetailScreen(it.poster_path,detail.toTypedArray(),it.title,it.overview)
-                                findNavController().navigate(action)
+                            if (sectionlist.size>=1)
+                            {
+                                parentAdapter.notifyItemInserted(sectionlist.size-1)
                             }
-                            filmSection.adapter = parentAdapter
-                            parentAdapter.notifyDataSetChanged()
+                            else{
+                                parentAdapter.notifyItemInserted(0)
+                            }
                         }
                         is MainActivityViewModel.Event.Failure ->
                         {
+                            Toast.makeText(requireContext(),"Cannot get data check your internet connection",Toast.LENGTH_SHORT).show()
                         }
                         else -> Unit
                     }
@@ -129,7 +134,6 @@ class HomeScreen : Fragment() {
 
 
     }
-    @SuppressLint("NotifyDataSetChanged")
     private fun setupCategory(category: RecyclerView)
     {
         category.layoutManager=LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
@@ -141,7 +145,6 @@ class HomeScreen : Fragment() {
         categoryList.add(Category("Gameshow"))
         val categoryAdapter= CategoryAdapter(categoryList)
         category.adapter=categoryAdapter
-        categoryAdapter.notifyDataSetChanged()
 
     }
 }
