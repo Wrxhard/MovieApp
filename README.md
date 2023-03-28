@@ -36,7 +36,9 @@
   
 ```
   const val BASE_URL="http://19*.1**.**.*0:80/" (Laptop)
-  const val BASE_URL="http://19*.1**.**.*0:8080/" (Pc)
+```
+```
+  const val BASE_URL="http://19*.1**.**.*0:8080/" (PC)
 ```
     
 - Build and run the app on an emulator or physical device
