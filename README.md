@@ -32,6 +32,7 @@
 ```
   git clone https://github.com/Wrxhard/MovieApp.git
 ```
+- Copy all the files in Server folder into C:\xampp\htdocs
 - Change the base URL to the IP address your device in the AppModule.kt file located in app/src/main/java/tdtu/movieapp/app/di :
   
 ```
