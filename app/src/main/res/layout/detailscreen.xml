@@ -8,6 +8,7 @@
     tools:context=".ui.View.Frag3">
     <androidx.core.widget.NestedScrollView
         android:overScrollMode="never"
+        android:layout_marginBottom="@dimen/_64sdp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -148,7 +149,7 @@
             android:layout_height="wrap_content"
             android:textColor="@color/white"
             android:text=""
-            android:maxLines="3"
+            android:maxLines="2"
             android:ellipsize="end"
             android:textSize="@dimen/_20ssp"
             android:lineHeight="@dimen/_28ssp"
