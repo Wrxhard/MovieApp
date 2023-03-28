@@ -35,10 +35,10 @@
 - Change the base URL to the IP address of the current device (laptop or PC) in the AppModule.kt file located in app/src/main/java/tdtu/movieapp/app/di
   
 ```
-  const val BASE_URL="http://19*.1**.**.*0:80/" (Laptop)
+  const val BASE_URL="http://your_device_ip_address:80/" (Laptop)
 ```
 ```
-  const val BASE_URL="http://19*.1**.**.*0:8080/" (PC)
+  const val BASE_URL="http://your_device_ip_address:8080/" (PC)
 ```
     
 - Build and run the app on an emulator or physical device
