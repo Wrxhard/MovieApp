@@ -47,8 +47,6 @@ android {
 }
 
 dependencies {
-    //prpgress bard
-    implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
     //navigation
     def nav_version = "2.5.3"
     implementation("androidx.navigation:navigation-fragment-ktx:$nav_version")
@@ -93,6 +91,8 @@ dependencies {
     kapt("com.google.dagger:hilt-android-compiler:2.44")
     //Splash Screen
     implementation 'androidx.core:core-splashscreen:1.0.0-beta02'
+    //Shimmer
+    implementation 'com.facebook.shimmer:shimmer:0.5.0'
 
 
     implementation 'androidx.core:core-ktx:1.9.0'

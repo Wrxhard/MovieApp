@@ -13,7 +13,6 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.NavGraph
 import androidx.navigation.fragment.NavHostFragment
@@ -21,8 +20,6 @@ import androidx.navigation.ui.NavigationUI
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.async
-import kotlinx.coroutines.awaitAll
 import tdtu.movieapp.app.R
 import tdtu.movieapp.app.databinding.ActivityMainBinding
 import tdtu.movieapp.app.ui.ViewModel.MainActivityViewModel
@@ -37,17 +34,12 @@ class MainActivity : AppCompatActivity() {
 
     @RequiresApi(Build.VERSION_CODES.R)
     override fun onCreate(savedInstanceState: Bundle?) {
-        val splashScreen = installSplashScreen()
-
         super.onCreate(savedInstanceState)
         requestWindowFeature(Window.FEATURE_NO_TITLE)
         //bindingview
         binding= DataBindingUtil.setContentView(this,R.layout.activity_main)
         //bind viewmodel
         mViewModel=ViewModelProvider(this)[MainActivityViewModel::class.java]
-        splashScreen.setKeepOnScreenCondition {
-            mViewModel.loading.value
-        }
         //hide systembar
         hideSystem()
         //Find and set Navigation controller
@@ -58,19 +50,8 @@ class MainActivity : AppCompatActivity() {
             //setup bottom nav
             setupBottomNav(navController,  binding.bottomNav)
         }
+
         //Process call api
-        lifecycleScope.launchWhenStarted {
-            val jobs= listOf(
-                async {
-                    mViewModel.getPopular(1)
-                },
-                async {
-                    mViewModel.getTrending(2)
-                },
-            )
-            jobs.awaitAll()
-            mViewModel.cancel()
-        }
     }
 
     //hide systembar

@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_marginTop="@dimen/_18sdp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <androidx.cardview.widget.CardView
+        app:cardCornerRadius="@dimen/_4sdp"
+        android:id="@+id/shimmer_Title"
+        android:backgroundTint="#CCC"
+        android:layout_width="@dimen/_80sdp"
+        android:layout_height="@dimen/_20sdp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.cardview.widget.CardView
+        app:cardCornerRadius="@dimen/_4sdp"
+        android:id="@+id/shimmer_viewall"
+        android:backgroundTint="#CCC"
+        android:layout_width="@dimen/_60sdp"
+        android:layout_height="@dimen/_14sdp"
+        android:layout_marginTop="@dimen/_8sdp"
+        app:layout_constraintBottom_toTopOf="@id/shimmer_MovieList"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@id/shimmer_Title"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/shimmer_MovieList"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/shimmer_Title"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <androidx.cardview.widget.CardView
+            app:cardCornerRadius="@dimen/_8sdp"
+            android:layout_marginTop="@dimen/_18sdp"
+            android:backgroundTint="#CCC"
+            android:id="@+id/cardView"
+            android:layout_width="@dimen/_80sdp"
+            android:layout_height="@dimen/_120sdp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:cardPreventCornerOverlap="false"
+            app:layout_constraintTop_toTopOf="parent" >
+
+        </androidx.cardview.widget.CardView>
+        <androidx.cardview.widget.CardView
+            app:cardCornerRadius="@dimen/_8sdp"
+            android:layout_marginTop="@dimen/_18sdp"
+            android:backgroundTint="#CCC"
+            android:id="@+id/cardView2"
+            android:layout_width="@dimen/_80sdp"
+            android:layout_height="@dimen/_120sdp"
+            app:layout_constraintStart_toEndOf="@id/cardView"
+            app:layout_constraintEnd_toStartOf="@id/cardView3"
+            app:cardPreventCornerOverlap="false"
+            app:layout_constraintTop_toTopOf="parent" >
+
+        </androidx.cardview.widget.CardView>
+        <androidx.cardview.widget.CardView
+            app:cardCornerRadius="@dimen/_8sdp"
+            android:layout_marginTop="@dimen/_18sdp"
+            android:backgroundTint="#CCC"
+            android:id="@+id/cardView3"
+            android:layout_width="@dimen/_80sdp"
+            android:layout_height="@dimen/_120sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:cardPreventCornerOverlap="false"
+            app:layout_constraintTop_toTopOf="parent" >
+
+        </androidx.cardview.widget.CardView>
+        <androidx.cardview.widget.CardView
+            app:cardCornerRadius="@dimen/_4sdp"
+            android:id="@+id/titlecard1"
+            android:backgroundTint="#CCC"
+            android:layout_marginTop="@dimen/_10sdp"
+            app:layout_constraintTop_toBottomOf="@id/cardView"
+            app:layout_constraintStart_toStartOf="@id/cardView"
+            android:layout_width="@dimen/_80sdp"
+            android:layout_height="@dimen/_20sdp"/>
+        <androidx.cardview.widget.CardView
+            app:cardCornerRadius="@dimen/_4sdp"
+            android:id="@+id/titlecard2"
+            android:backgroundTint="#CCC"
+            android:layout_marginTop="@dimen/_10sdp"
+            app:layout_constraintTop_toBottomOf="@id/cardView2"
+            app:layout_constraintStart_toStartOf="@id/cardView2"
+            android:layout_width="@dimen/_80sdp"
+            android:layout_height="@dimen/_20sdp"/>
+        <androidx.cardview.widget.CardView
+            app:cardCornerRadius="@dimen/_4sdp"
+            android:id="@+id/titlecard3"
+            android:backgroundTint="#CCC"
+            android:layout_marginTop="@dimen/_10sdp"
+            app:layout_constraintTop_toBottomOf="@id/cardView3"
+            app:layout_constraintStart_toStartOf="@id/cardView3"
+            android:layout_width="@dimen/_80sdp"
+            android:layout_height="@dimen/_20sdp"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

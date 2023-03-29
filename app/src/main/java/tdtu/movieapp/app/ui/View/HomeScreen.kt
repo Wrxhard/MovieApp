@@ -5,17 +5,17 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.facebook.shimmer.ShimmerFrameLayout
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
+import kotlinx.coroutines.cancel
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.collectLatest
 import tdtu.movieapp.app.R
 import tdtu.movieapp.app.databinding.HomescreenBinding
 import tdtu.movieapp.app.ui.Adapter.CategoryAdapter
@@ -44,8 +44,9 @@ class HomeScreen : Fragment() {
         _binding=DataBindingUtil.inflate(inflater,R.layout.homescreen,container,false)
         //Bind ViewModel
         mViewModel=activity?.let { ViewModelProvider(it)[MainActivityViewModel::class.java] }!!
+        getData(mViewModel)
         //Set up Section
-        setupSection(binding.FilmSection)
+        setupSection(mViewModel,binding.FilmSection,binding.Shimmer)
         //Set up category
         setupCategory(binding.categoryList)
         /*binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
@@ -66,7 +67,22 @@ class HomeScreen : Fragment() {
         return binding.root
     }
 
-    private fun setupSection(filmSection:RecyclerView)
+    private fun getData(mViewModel: MainActivityViewModel){
+        lifecycleScope.launchWhenStarted {
+            val jobs= listOf(
+                async {
+                    mViewModel.getPopular(1)
+                },
+                async {
+                    mViewModel.getTrending(2)
+                },
+            )
+            jobs.awaitAll()
+            mViewModel.cancel()
+            this.cancel()
+        }
+    }
+    private fun setupSection(mViewModel: MainActivityViewModel,filmSection:RecyclerView,shimmerFrameLayout: ShimmerFrameLayout)
     {
         val detail=mutableListOf<String>()
         detail.add("Action")
@@ -82,11 +98,14 @@ class HomeScreen : Fragment() {
         lifecycleScope.launchWhenStarted {
             val jobs= listOf(
                 async {
-                    mViewModel.movies.collectLatest{ event ->
+                    mViewModel.movies.collect{ event ->
                     when(event)
                     {
                         is MainActivityViewModel.Event.Success ->
                         {
+                            shimmerFrameLayout.stopShimmer()
+                            shimmerFrameLayout.hideShimmer()
+                            shimmerFrameLayout.visibility=View.GONE
                             sectionlist.add(SectionModel("Popular",event.result))
                             if (sectionlist.size>=1)
                             {
@@ -98,13 +117,15 @@ class HomeScreen : Fragment() {
                         }
                         is MainActivityViewModel.Event.Failure ->
                         {
-                            Toast.makeText(requireContext(),event.error,Toast.LENGTH_SHORT).show()
+                            async {
+                                mViewModel.getPopular(1)
+                            }.await()
                         }
                         else -> Unit
                     }
                 }},
                 async {
-                    mViewModel.movies2.collectLatest{ event ->
+                    mViewModel.movies2.collect{ event ->
                     when(event)
                     {
                         is MainActivityViewModel.Event.Success ->
@@ -123,7 +144,11 @@ class HomeScreen : Fragment() {
                         }
                         is MainActivityViewModel.Event.Failure ->
                         {
-                            Toast.makeText(requireContext(), event.error,Toast.LENGTH_SHORT).show()
+                            async {
+                                    mViewModel.getTrending(2)
+                            }.await()
+
+                            mViewModel.cancel()
                         }
                         else -> Unit
                     }
