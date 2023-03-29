@@ -18,7 +18,7 @@
         app:cardCornerRadius="@dimen/_4sdp"
         android:id="@+id/shimmer_viewall"
         android:backgroundTint="#CCC"
-        android:layout_width="@dimen/_60sdp"
+        android:layout_width="@dimen/_56sdp"
         android:layout_height="@dimen/_14sdp"
         android:layout_marginTop="@dimen/_8sdp"
         app:layout_constraintBottom_toTopOf="@id/shimmer_MovieList"

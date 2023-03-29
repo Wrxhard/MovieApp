@@ -1,7 +1,7 @@
 package tdtu.movieapp.app.ui.View
 
+import android.graphics.Color
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -14,6 +14,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.facebook.shimmer.Shimmer
 import com.facebook.shimmer.ShimmerFrameLayout
 import kotlinx.coroutines.*
 import tdtu.movieapp.app.R
@@ -44,6 +45,16 @@ class HomeScreen : Fragment() {
         _binding=DataBindingUtil.inflate(inflater,R.layout.homescreen,container,false)
         //Bind ViewModel
         mViewModel=activity?.let { ViewModelProvider(it)[MainActivityViewModel::class.java] }!!
+
+        val shimmer = Shimmer.ColorHighlightBuilder()
+            .setDropoff(1f)
+            .setBaseColor(Color.parseColor("#9E9E9E"))
+            .setHighlightColor(Color.GRAY)
+            .setDirection(Shimmer.Direction.LEFT_TO_RIGHT)
+            .build()
+
+        binding.Shimmer.setShimmer(shimmer)
+        binding.Shimmer.startShimmer()
         getData(mViewModel)
         //Set up Section
         setupSection(mViewModel,binding.FilmSection,binding.Shimmer)
@@ -104,7 +115,6 @@ class HomeScreen : Fragment() {
                 val jobs = listOf(
                     async {
                         mViewModel.movies.collect { event ->
-                            Log.d("Td", "$event")
                             when (event) {
                                 is MainActivityViewModel.Event.Success -> {
                                     shimmerFrameLayout.stopShimmer()
