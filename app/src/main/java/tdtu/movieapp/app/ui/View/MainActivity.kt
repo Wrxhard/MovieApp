@@ -1,5 +1,6 @@
 package tdtu.movieapp.app.ui.View
 
+import android.Manifest.permission.*
 import android.os.Build
 import android.os.Bundle
 import android.view.Window
@@ -32,6 +33,7 @@ import kotlin.system.exitProcess
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var mViewModel: MainActivityViewModel
+
 
     @RequiresApi(Build.VERSION_CODES.R)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -67,8 +69,10 @@ class MainActivity : AppCompatActivity() {
                 },
             )
             jobs.awaitAll()
+            mViewModel.cancel()
         }
     }
+
     //hide systembar
     @RequiresApi(Build.VERSION_CODES.R)
     private fun hideSystem(){
@@ -86,6 +90,7 @@ class MainActivity : AppCompatActivity() {
         windowInsetsController.hide(WindowInsetsCompat.Type.systemBars())
 
     }
+
     //Set up bottom navigation
     private fun setupBottomNav(navController: NavController, bottomNavigationView: BottomNavigationView)
     {
@@ -118,7 +123,7 @@ class MainActivity : AppCompatActivity() {
                     {
                         MaterialAlertDialogBuilder(context,R.style.AlertDialogTheme)
                             .setTitle("Confirm")
-                            .setMessage("Are you sure you want to exist?")
+                            .setMessage("Are you sure you want to exit?")
                             .setNegativeButton("No") { dialog, _ ->
                                 dialog.dismiss()
                             }
@@ -140,4 +145,5 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
+
 }

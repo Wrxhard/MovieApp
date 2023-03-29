@@ -98,7 +98,7 @@ class HomeScreen : Fragment() {
                         }
                         is MainActivityViewModel.Event.Failure ->
                         {
-                            Toast.makeText(requireContext(),"Cannot get data check your internet connection",Toast.LENGTH_SHORT).show()
+                            Toast.makeText(requireContext(),event.error,Toast.LENGTH_SHORT).show()
                         }
                         else -> Unit
                     }
@@ -123,7 +123,7 @@ class HomeScreen : Fragment() {
                         }
                         is MainActivityViewModel.Event.Failure ->
                         {
-                            Toast.makeText(requireContext(),"Cannot get data check your internet connection",Toast.LENGTH_SHORT).show()
+                            Toast.makeText(requireContext(), event.error,Toast.LENGTH_SHORT).show()
                         }
                         else -> Unit
                     }

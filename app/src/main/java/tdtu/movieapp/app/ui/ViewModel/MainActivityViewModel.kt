@@ -3,6 +3,7 @@ package tdtu.movieapp.app. ui.ViewModel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
@@ -19,6 +20,7 @@ class MainActivityViewModel @Inject constructor(
     private val respository: MainRepository,
     private val dispatcher: DispatcherProvider
 ): ViewModel(){
+    private var jobs: Job? =null
     //Check state of action
     sealed class Event {
         class Success(val result: List<Movie>): Event()
@@ -36,7 +38,7 @@ class MainActivityViewModel @Inject constructor(
     //Perform call api and get movies
     private suspend fun getMovies(page:Int): Event {
         return suspendCancellableCoroutine {  continues ->
-            viewModelScope.launch(dispatcher.io){
+            jobs=viewModelScope.launch(dispatcher.io){
                 val res=respository.getMovies(page)
                 _movies.value= Event.Loading
                 when(res){
@@ -55,11 +57,18 @@ class MainActivityViewModel @Inject constructor(
                     is Resource.Error ->
                     {
                         _loading.value=false
-                        continues.resume(Event.Failure("Connect Failure"))
+                        continues.resume(Event.Failure("Connect Failure Check Your Internet Connection"))
                     }
+                }
+                continues.invokeOnCancellation {
+                        jobs=null
                 }
             }
         }
+    }
+    fun cancel()
+    {
+        jobs?.cancel()
     }
     suspend fun getPopular(page: Int){
         _movies.value=getMovies(page)
