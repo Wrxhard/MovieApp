@@ -120,6 +120,7 @@ class HomeScreen : Fragment() {
                             async {
                                 mViewModel.getPopular(1)
                             }.await()
+
                         }
                         else -> Unit
                     }

@@ -5,7 +5,6 @@ import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.suspendCancellableCoroutine
@@ -30,9 +29,9 @@ class MainActivityViewModel @Inject constructor(
         object Empty : Event()
     }
     private val _movies = MutableStateFlow<Event>(Event.Empty)
-    val movies=_movies.asSharedFlow()
+    val movies=_movies.asStateFlow()
     private val _movies2 = MutableStateFlow<Event>(Event.Empty)
-    val movies2=_movies2.asSharedFlow()
+    val movies2=_movies2.asStateFlow()
     private val _loading = MutableStateFlow<Boolean>(true)
     val loading=_loading.asStateFlow()
 
