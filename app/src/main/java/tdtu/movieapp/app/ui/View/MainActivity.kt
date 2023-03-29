@@ -7,7 +7,6 @@ import android.view.Window
 import android.view.WindowManager
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
@@ -37,23 +36,23 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         requestWindowFeature(Window.FEATURE_NO_TITLE)
         //bindingview
-        binding= DataBindingUtil.setContentView(this,R.layout.activity_main)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         //bind viewmodel
-        mViewModel=ViewModelProvider(this)[MainActivityViewModel::class.java]
+        mViewModel = ViewModelProvider(this)[MainActivityViewModel::class.java]
         //hide systembar
         hideSystem()
         //Find and set Navigation controller
-        val navHostFragment=supportFragmentManager.findFragmentById(R.id.Screen) as NavHostFragment?
-        val navController=navHostFragment?.navController
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.Screen) as NavHostFragment?
+        val navController = navHostFragment?.navController
         if (navController != null) {
-            binding.bottomNav.selectedItemId=R.id.homescreen_nav_graph
+            binding.bottomNav.selectedItemId = R.id.homescreen_nav_graph
             //setup bottom nav
-            setupBottomNav(navController,  binding.bottomNav)
+            setupBottomNav(navController, binding.bottomNav)
         }
 
         //Process call api
     }
-
     //hide systembar
     @RequiresApi(Build.VERSION_CODES.R)
     private fun hideSystem(){
@@ -126,5 +125,6 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
+
 
 }
