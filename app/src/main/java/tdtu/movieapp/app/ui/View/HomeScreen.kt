@@ -46,15 +46,7 @@ class HomeScreen : Fragment() {
         //Bind ViewModel
         mViewModel=activity?.let { ViewModelProvider(it)[MainActivityViewModel::class.java] }!!
 
-        val shimmer = Shimmer.ColorHighlightBuilder()
-            .setDropoff(1f)
-            .setBaseColor(Color.parseColor("#9E9E9E"))
-            .setHighlightColor(Color.GRAY)
-            .setDirection(Shimmer.Direction.LEFT_TO_RIGHT)
-            .build()
-
-        binding.Shimmer.setShimmer(shimmer)
-        binding.Shimmer.startShimmer()
+        startshimmer(binding.Shimmer)
         getData(mViewModel)
         //Set up Section
         setupSection(mViewModel,binding.FilmSection,binding.Shimmer)
@@ -97,6 +89,18 @@ class HomeScreen : Fragment() {
                 }
         }
     }
+    private fun startshimmer(shimmerFrameLayout: ShimmerFrameLayout){
+        val shimmer = Shimmer.ColorHighlightBuilder()
+            .setDropoff(1f)
+            .setDuration(1500L)
+            .setBaseColor(Color.parseColor("#9E9E9E"))
+            .setHighlightColor(Color.GRAY)
+            .setDirection(Shimmer.Direction.LEFT_TO_RIGHT)
+            .build()
+        shimmerFrameLayout.setShimmer(shimmer)
+        shimmerFrameLayout.startShimmer()
+
+    }
     private fun setupSection(mViewModel: MainActivityViewModel,filmSection:RecyclerView,shimmerFrameLayout: ShimmerFrameLayout)
     {
         val detail=mutableListOf<String>()
@@ -118,21 +122,23 @@ class HomeScreen : Fragment() {
                             when (event) {
                                 is MainActivityViewModel.Event.Success -> {
                                     shimmerFrameLayout.stopShimmer()
-                                    shimmerFrameLayout.hideShimmer()
-                                    shimmerFrameLayout.visibility = View.GONE
+                                    shimmerFrameLayout.visibility=View.GONE
                                     sectionlist.add(SectionModel("Popular", event.result))
                                     if (sectionlist.size >= 1) {
                                         parentAdapter.notifyItemInserted(sectionlist.size - 1)
                                     } else {
                                         parentAdapter.notifyItemInserted(0)
                                     }
-                                    mViewModel.cancel()
                                 }
                                 is MainActivityViewModel.Event.Failure -> {
                                     async {
                                         mViewModel.getPopular(1)
                                     }.await()
 
+                                }
+                                is MainActivityViewModel.Event.Loading -> {
+                                    shimmerFrameLayout.startShimmer()
+                                    shimmerFrameLayout.visibility = View.VISIBLE
                                 }
                                 else -> Unit
                             }
@@ -144,6 +150,7 @@ class HomeScreen : Fragment() {
                                 is MainActivityViewModel.Event.Success -> {
                                     /*Because two function run and also update the list at the same time so the order of item
                                   may not be correct so we need to delay it */
+
                                     delay(100)
                                     sectionlist.add(SectionModel("Trending", event.result))
                                     if (sectionlist.size >= 1) {
@@ -158,6 +165,10 @@ class HomeScreen : Fragment() {
                                         mViewModel.getTrending(2)
                                     }.await()
                                     mViewModel.cancel()
+                                }
+                                is MainActivityViewModel.Event.Loading -> {
+                                    shimmerFrameLayout.startShimmer()
+                                    shimmerFrameLayout.visibility = View.VISIBLE
                                 }
                                 else -> Unit
                             }

@@ -7,6 +7,7 @@ import android.view.Window
 import android.view.WindowManager
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
@@ -34,6 +35,8 @@ class MainActivity : AppCompatActivity() {
     @RequiresApi(Build.VERSION_CODES.R)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val slash=installSplashScreen()
+
         requestWindowFeature(Window.FEATURE_NO_TITLE)
         //bindingview
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
@@ -95,7 +98,9 @@ class MainActivity : AppCompatActivity() {
                             }
                             .show()
                     }
-                    NavigationUI.onNavDestinationSelected(item, navController)
+                    else{
+                        NavigationUI.onNavDestinationSelected(item, navController)
+                    }
                     true
                 }
                 setOnItemReselectedListener {

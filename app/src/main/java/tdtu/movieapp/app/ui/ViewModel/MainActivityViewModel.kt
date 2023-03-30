@@ -36,11 +36,17 @@ class MainActivityViewModel @Inject constructor(
     val loading=_loading.asStateFlow()
 
     //Perform call api and get movies
-    private suspend fun getMovies(page:Int): Event {
+    private suspend fun getMovies(page:Int,option:String): Event {
         return suspendCancellableCoroutine {  continues ->
             jobs=viewModelScope.launch(dispatcher.io){
                 val res=respository.getMovies(page)
-                _movies.value= Event.Loading
+                if (option=="Popular")
+                {
+                    _movies.value= Event.Loading
+                }
+                else{
+                    _movies2.value= Event.Loading
+                }
                 when(res){
                     is Resource.Success ->  {
                         if (res.data!=null)
@@ -71,10 +77,10 @@ class MainActivityViewModel @Inject constructor(
         jobs?.cancel()
     }
     suspend fun getPopular(page: Int){
-        _movies.value=getMovies(page)
+        _movies.value=getMovies(page,"Popular")
     }
     suspend fun getTrending(page: Int)
     {
-        _movies2.value=getMovies(page)
+        _movies2.value=getMovies(page,"")
     }
 }
