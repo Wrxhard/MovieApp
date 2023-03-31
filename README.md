@@ -30,7 +30,7 @@
 - Import the moonvie.sql file from Server folder.
 - Open the project in Android Studio.
 - Clone the repository:
-- 
+
 ```
 git clone https://github.com/Wrxhard/MovieApp.git
 ```
