@@ -28,10 +28,6 @@
 - Coroutine
 - Glide
 - Retrofit
-- Splash Screen
-- Shimmer
-- Youtube-video-Player
-- Navigation
 
 ## Setup
 - Launch XAMPP and start Apache and MySQL servers
