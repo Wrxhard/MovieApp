@@ -5,7 +5,7 @@
 * [General info](#General-info)
 * [Technologies](#Technologies)
 * [Prerequisites](#Prerequisites)
-* [Library](#Library)
+* [Support Library](#Support Library)
 * [Setup](#Setup)
 * [Author](#Author)
 * [Acknowledgments](#Acknowledgments)
@@ -24,7 +24,7 @@
 - XAMPP (Apache server and MySQL)
 - PHPMyAdmin
 
-## Library
+## Support Library
 - Dagger Hilt
 - Coroutine
 - Glide
