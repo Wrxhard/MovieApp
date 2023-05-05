@@ -23,10 +23,19 @@
 - XAMPP (Apache server and MySQL)
 - PHPMyAdmin
 
+## Library
+- Dagger Hilt
+- Coroutine
+- Glide
+- Retrofit
+- Splash Screen
+- Shimmer
+- Youtube-video-Player
+- Navigation
+
 ## Setup
 - Launch XAMPP and start Apache and MySQL servers
-- In PHPMyAdmin, create a new database called moonvie.
-- Import the database.sql file from Server folder.
+- In PHPMyAdmin, import the database.sql file from Server folder.
 - Open the project in Android Studio.
 - Clone the repository:
 
