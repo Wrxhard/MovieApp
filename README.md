@@ -39,7 +39,7 @@ git clone https://github.com/Wrxhard/MovieApp.git
 using one of these two:
 
 ```
-const val BASE_URL="http://10.0.2.2:/"
+const val BASE_URL="http://10.0.2.2/"
 ```
 
     
