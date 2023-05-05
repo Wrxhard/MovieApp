@@ -29,6 +29,7 @@
 - Coroutine
 - Glide
 - Retrofit
+- Okhttp
 
 ## Setup
 - Open the project in Android Studio.
