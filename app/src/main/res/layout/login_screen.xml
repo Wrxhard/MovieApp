@@ -5,12 +5,14 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".ui.View.LoginScreen">
     <TextView
         android:id="@+id/tv_login_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/login_title"
+        android:textColor="@color/black"
         android:layout_marginTop="@dimen/_100sdp"
         style="@style/TitleLogin"
         app:layout_constraintEnd_toEndOf="parent"
@@ -20,6 +22,7 @@
     <TextView
         android:id="@+id/tv_login_sub_title"
         style="@style/SubTitle"
+        android:textColor="@color/black"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_40sdp"
@@ -42,6 +45,8 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/edt_email"
+            android:textColorHint="#212121"
+            android:textColor="@color/black"
             android:layout_width="match_parent"
             android:inputType="text"
             style="@style/TextInputEditText"
@@ -63,6 +68,8 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/edt_password"
+            android:textColorHint="#212121"
+            android:textColor="@color/black"
             android:layout_width="match_parent"
             android:inputType="textPassword"
             style="@style/TextInputEditText"
@@ -88,6 +95,7 @@
     <TextView
         android:id="@+id/not_have_account"
         style="@style/SubTitle"
+        android:textColor="@color/black"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_20sdp"
