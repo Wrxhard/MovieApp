@@ -31,7 +31,7 @@
                     android:text="Username"
                     android:textStyle="bold"
                     android:textSize="@dimen/_28ssp"
-                    android:layout_marginTop="@dimen/_48sdp"
+                    android:layout_marginTop="@dimen/_30sdp"
                     android:layout_marginStart="@dimen/_30sdp"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintStart_toEndOf="@id/cardView" />
@@ -52,7 +52,7 @@
                     android:layout_width="@dimen/_60sdp"
                     android:layout_height="@dimen/_60sdp"
                     android:layout_marginStart="@dimen/_40sdp"
-                    android:layout_marginTop="@dimen/_50sdp"
+                    android:layout_marginTop="@dimen/_30sdp"
                     app:cardCornerRadius="@dimen/_60sdp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
