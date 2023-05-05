@@ -10,8 +10,7 @@
 * [Acknowledgments](#Acknowledgments)
 
 ## General info
-### These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
-
+### These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 ## Technologies
 - PHP
 - Kotlin
@@ -30,17 +29,21 @@
 - Import the moonvie.sql file from Server folder.
 - Open the project in Android Studio.
 - Clone the repository:
+
 ```
-  git clone https://github.com/Wrxhard/MovieApp.git
+git clone https://github.com/Wrxhard/MovieApp.git
 ```
+
 - Copy all the files in Server folder into C:\xampp\htdocs
-- Change the base URL to the IP address of your device in the AppModule.kt file located in app/src/main/java/tdtu/movieapp/app/di :
-  
+- Change the base URL to the IP address of your device in the AppModule.kt file located in app/src/main/java/tdtu/movieapp/app/di 
+using one of these two:
+
 ```
-  const val BASE_URL="http://your_device_ip_address:80/" (Laptop)
+const val BASE_URL="http://your_device_ip_address:80/" #Laptop
 ```
+
 ```
-  const val BASE_URL="http://your_device_ip_address:8080/" (PC)
+const val BASE_URL="http://your_device_ip_address:8080/" #PC
 ```
     
 - Build and run the app on an emulator or physical device

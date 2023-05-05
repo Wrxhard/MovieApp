@@ -119,7 +119,7 @@
             android:id="@+id/Shimmer"
             app:layout_constraintTop_toBottomOf="@id/Category"
             app:layout_constraintStart_toStartOf="parent"
-            app:shimmer_auto_start="true"
+            app:shimmer_auto_start="false"
             android:layout_width="match_parent"
             android:orientation="vertical"
             android:layout_height="wrap_content">

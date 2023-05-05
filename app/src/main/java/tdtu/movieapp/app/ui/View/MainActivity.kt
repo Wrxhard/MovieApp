@@ -40,12 +40,14 @@ class MainActivity : AppCompatActivity() {
     @RequiresApi(Build.VERSION_CODES.R)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val slash=installSplashScreen()
+
         requestWindowFeature(Window.FEATURE_NO_TITLE)
 
         //bindingview
-        binding= DataBindingUtil.setContentView(this,R.layout.activity_main)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         //bind viewmodel
-        mViewModel=ViewModelProvider(this)[MainActivityViewModel::class.java]
+        mViewModel = ViewModelProvider(this)[MainActivityViewModel::class.java]
         //hide systembar
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED){
@@ -63,17 +65,17 @@ class MainActivity : AppCompatActivity() {
         }
         hideSystem()
         //Find and set Navigation controller
-        val navHostFragment=supportFragmentManager.findFragmentById(R.id.Screen) as NavHostFragment?
-        val navController=navHostFragment?.navController
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.Screen) as NavHostFragment?
+        val navController = navHostFragment?.navController
         if (navController != null) {
-            binding.bottomNav.selectedItemId=R.id.homescreen_nav_graph
+            binding.bottomNav.selectedItemId = R.id.homescreen_nav_graph
             //setup bottom nav
-            setupBottomNav(navController,  binding.bottomNav)
+            setupBottomNav(navController, binding.bottomNav)
         }
 
         //Process call api
     }
-
     //hide systembar
     @RequiresApi(Build.VERSION_CODES.R)
     private fun hideSystem(){
@@ -120,7 +122,9 @@ class MainActivity : AppCompatActivity() {
                             }
                             .show()
                     }
-                    NavigationUI.onNavDestinationSelected(item, navController)
+                    else{
+                        NavigationUI.onNavDestinationSelected(item, navController)
+                    }
                     true
                 }
                 setOnItemReselectedListener {
@@ -153,5 +157,6 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
+
 
 }
