@@ -41,7 +41,8 @@
 - Copy all the files in Server folder into C:\xampp\htdocs
 - Launch XAMPP and start Apache and MySQL servers
 - In PHPMyAdmin, import the database.sql file from Server folder.
-- Change the base url to match the ip address of the host server device (using ipconfig)
+- Change the BASE_URL in MooviApp\app\src\main\java\tdtu\movieapp\app\di\AppModule.kt 
+to match the ip address of the host device (using ipconfig)
 
     ```
     const val BASE_URL="http://your_device_ip_address:80/" #Laptop
