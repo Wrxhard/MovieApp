@@ -34,18 +34,18 @@
 - Open the project in Android Studio.
 - Clone the repository:
 
-```
-git clone https://github.com/Wrxhard/MovieApp.git
-```
+    ```
+    git clone https://github.com/Wrxhard/MovieApp.git
+    ```
 
 - Copy all the files in Server folder into C:\xampp\htdocs
 - Launch XAMPP and start Apache and MySQL servers
 - In PHPMyAdmin, import the database.sql file from Server folder.
 - Change the base URL
 
-```
-const val BASE_URL="http://10.0.2.2/"
-```
+    ```
+    const val BASE_URL="http://10.0.2.2/"
+    ```
 
     
 - Build and run the app on an emulator or physical device
