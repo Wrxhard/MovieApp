@@ -15,7 +15,7 @@ import tdtu.movieapp.app.data.remote.service.network.NetworkService
 import tdtu.movieapp.app.utils.DispatcherProvider
 import javax.inject.Singleton
 
-const val BASE_URL="http://192.168.21.220:80/"
+const val BASE_URL="http://192.168.31.220:80/"
 
 @Module
 @InstallIn(SingletonComponent::class)

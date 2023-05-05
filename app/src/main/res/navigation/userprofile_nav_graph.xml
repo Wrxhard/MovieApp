@@ -9,4 +9,7 @@
         android:name="tdtu.movieapp.app.ui.View.UserProfileScreen"
         android:label="fragment_user_profile_screen"
         tools:layout="@layout/user_profile_screen" />
+    <action
+        android:id="@+id/action_user_to_detail_screen"
+        app:destination="@id/detailscreen" />
 </navigation>

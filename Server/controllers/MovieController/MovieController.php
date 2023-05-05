@@ -5,10 +5,10 @@
         {  
             include_once('views/Movie/index.php');
         }
-        public function showmovie($quantity){
+        public function showmovie($page){
             require_once "./models/Movies/Movie.php";
             $movies=new Movie();
-            $movies ->__getMovies($quantity);
+            $movies ->__getMovies($page);
 
         }
 

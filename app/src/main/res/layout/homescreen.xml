@@ -6,6 +6,7 @@
 <FrameLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingBottom="@dimen/_60sdp"
     android:background="#212121"
     tools:context=".ui.View.HomeScreen">
     <androidx.core.widget.NestedScrollView
@@ -53,17 +54,17 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
-                android:contentDescription="@string/user_profile_picture"
                 android:id="@+id/ProfileImage"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                tools:src="@tools:sample/avatars" />
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:contentDescription="@string/user_profile_picture"
+                android:src="@drawable/avatar"/>
         </androidx.cardview.widget.CardView>
 
         <android.widget.SearchView
             android:id="@+id/searchView"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_40sdp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_20sdp"
             android:background="@drawable/searchbarshape"
             android:iconifiedByDefault="false"
@@ -99,19 +100,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@id/Category" />
 
-            <TextView
-                android:id="@+id/viewall1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/view_all"
-                android:textColor="#FBB500"
-                android:textSize="@dimen/_10ssp"
-                android:textStyle="normal"
-                app:layout_constraintBottom_toTopOf="@id/categoryList"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toEndOf="@id/categoryHeader"
-                app:layout_constraintTop_toTopOf="@id/Category" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/categoryList"

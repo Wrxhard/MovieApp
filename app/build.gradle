@@ -44,8 +44,8 @@ android {
     kapt {
         correctErrorTypes = true
     }
-}
 
+}
 dependencies {
     //navigation
     def nav_version = "2.5.3"
@@ -93,6 +93,10 @@ dependencies {
     implementation 'androidx.core:core-splashscreen:1.0.0-beta02'
     //Shimmer
     implementation 'com.facebook.shimmer:shimmer:0.5.0'
+    //Youtube-video-Player
+    implementation 'com.pierfrancescosoffritti.androidyoutubeplayer:core:12.0.0'
+
+
 
 
     implementation 'androidx.core:core-ktx:1.9.0'

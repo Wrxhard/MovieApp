@@ -1,5 +1,138 @@
 body {
-    background-color: #141414;
-    font-family: Arial, sans-serif;
-    /* color: #fff; */
+  background-color: #141414;
+  font-family: Arial, sans-serif;
+  /* padding-top: px; */
+  /* color: #fff; */
 }
+
+.fastInf {
+  background-image: url("/assets/img/The_Last_Us.jpg");
+}
+
+.backdrop {
+  height: 50vh;
+}
+main {
+    margin: 40px;
+    padding-top: 40px;
+    padding-left: 15%;
+}
+label{
+    color: #fff;
+}
+input{
+    max-width: 90%;
+}
+p {
+    font-size: 50%;
+    color: #f3f7f290;
+}
+a  {
+    color:#f3f7f2;
+    text-decoration: none;
+    padding-bottom: 15%;
+    padding-left: 5%;
+    padding-top: 5%;
+}
+.left_size{
+    float:left;
+}
+.right_size{
+    float:right;
+    width: 65%;
+}
+.right_size_btn{
+    float:right;
+}
+.card {
+    margin-bottom: 2%;
+    padding-top: 20px;
+    padding-left: 10%;
+    padding-right: 20%;
+    background-color: #383636;
+    border-radius:6%;
+}
+.color-card{
+    background-color: #383636;
+    padding-bottom: 15%;
+}
+
+.color-card :hover{
+    color: #00CC21;
+}
+.card-body{
+    background-color: #383636;
+    padding-bottom: 6%;
+    padding-left: 5%;
+}  
+.card-header {
+    background-color: #383636;
+    color: #00CC21;
+}
+.color-button{
+    background-color: #00CC21 !important;
+}
+
+/* Style the tab */
+.tab {
+    float: left;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+    width: 60%;
+    height: 20%;
+  }
+  
+  /* Style the buttons inside the tab */
+  .tab a {
+    display: block;
+    background-color: inherit;
+    color: black;
+    padding: 22px 16px;
+    width: 100%;
+    border: none;
+    outline: none;
+    text-align: left;
+    cursor: pointer;
+    transition: 0.3s;
+    font-size: 17px;
+  }
+  
+  /* Change background color of buttons on hover */
+  .tab a:hover {
+    background-color: #ddd;
+  }
+  
+  /* Create an active/current "tab button" class */
+  .tab a.active {
+    background-color: #ccc;
+  }
+  
+  /* Style the tab content */
+  .tabcontent {
+    float: left;
+    padding: 10px 0px;
+    width: 120%;
+    height: 100%;
+    border-radius:6%;
+  }
+  .fb {
+    background-color: #3B5998;
+    color: white;
+  }
+  .bottom-container {
+    text-align: center;
+    background-color: #666;
+    border-radius: 0px 0px 4px 4px;
+  }
+  .twitter {
+    background-color: #55ACEE;
+    color: white;
+  }
+  .hide-md-lg {
+    display: block;
+    text-align: center;
+  }
+  .col {
+    width: 100%;
+    margin-top: 0;
+  }

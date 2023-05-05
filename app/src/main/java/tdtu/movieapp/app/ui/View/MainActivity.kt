@@ -1,18 +1,21 @@
 package tdtu.movieapp.app.ui.View
 
 import android.Manifest.permission.*
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.view.Window
 import android.view.WindowManager
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.NavController
 import androidx.navigation.NavGraph
 import androidx.navigation.fragment.NavHostFragment
@@ -20,10 +23,12 @@ import androidx.navigation.ui.NavigationUI
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.async
+import kotlinx.coroutines.awaitAll
+import kotlinx.coroutines.launch
 import tdtu.movieapp.app.R
 import tdtu.movieapp.app.databinding.ActivityMainBinding
 import tdtu.movieapp.app.ui.ViewModel.MainActivityViewModel
-import kotlin.system.exitProcess
 
 
 @AndroidEntryPoint
@@ -36,11 +41,26 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         requestWindowFeature(Window.FEATURE_NO_TITLE)
+
         //bindingview
         binding= DataBindingUtil.setContentView(this,R.layout.activity_main)
         //bind viewmodel
         mViewModel=ViewModelProvider(this)[MainActivityViewModel::class.java]
         //hide systembar
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED){
+                val jobs = listOf(
+                    async {
+                        mViewModel.getPopular(1)
+                    },
+                    async {
+                        mViewModel.getTrending(2)
+                    },
+                )
+                jobs.awaitAll()
+                mViewModel.cancel()
+            }
+        }
         hideSystem()
         //Find and set Navigation controller
         val navHostFragment=supportFragmentManager.findFragmentById(R.id.Screen) as NavHostFragment?
@@ -91,8 +111,12 @@ class MainActivity : AppCompatActivity() {
                                 dialog.dismiss()
                             }
                             .setPositiveButton("Yes") { _, _ ->
-                                finishAndRemoveTask()
-                                exitProcess(0)
+                                val intent = Intent(Intent.ACTION_MAIN)
+                                intent.addCategory(Intent.CATEGORY_HOME)
+                                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+                                startActivity(intent)
+                                finishAffinity()
+
                             }
                             .show()
                     }
@@ -109,8 +133,11 @@ class MainActivity : AppCompatActivity() {
                                 dialog.dismiss()
                             }
                             .setPositiveButton("Yes") { _, _ ->
-                                finishAndRemoveTask()
-                                exitProcess(0)
+                                val intent = Intent(Intent.ACTION_MAIN)
+                                intent.addCategory(Intent.CATEGORY_HOME)
+                                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+                                startActivity(intent)
+                                finishAffinity()
                             }
                             .show()
                     }

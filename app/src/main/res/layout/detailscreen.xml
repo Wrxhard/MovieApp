@@ -5,10 +5,10 @@
 <FrameLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingBottom="@dimen/_60sdp"
     tools:context=".ui.View.Frag3">
     <androidx.core.widget.NestedScrollView
         android:overScrollMode="never"
-        android:layout_marginBottom="@dimen/_64sdp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -53,6 +53,19 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck"
             android:contentDescription="@string/bookmark_btn" />
+        <ImageButton
+            android:id="@+id/playbtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="?android:selectableItemBackgroundBorderless"
+            android:src="@drawable/play_circle_fill0_wght400_grad0_opsz48"
+            android:textSize="@dimen/_40sdp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/imageView"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck"
+            android:contentDescription="play button" />
         <androidx.cardview.widget.CardView
             android:id="@+id/score"
             android:layout_marginStart="@dimen/_17sdp"
@@ -64,6 +77,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
             <TextView
+                android:id="@+id/imdbscore"
                 android:layout_width="@dimen/_86sdp"
                 android:layout_height="@dimen/_30sdp"
                 android:textAlignment="center"
@@ -75,43 +89,6 @@
                 />
 
         </androidx.cardview.widget.CardView>
-        <ImageView
-            android:id="@+id/star"
-            android:layout_marginTop="@dimen/_20sdp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:contentDescription="@string/star"
-            app:layout_constraintTop_toBottomOf="@id/imageView"
-            app:layout_constraintStart_toEndOf="@id/score"
-            android:layout_marginStart="@dimen/_12sdp"
-            android:src="@drawable/grade">
-        </ImageView>
-        <TextView
-            android:id="@+id/ViewerScore"
-            app:layout_constraintTop_toBottomOf="@id/imageView"
-            android:layout_marginTop="@dimen/_18sdp"
-            android:layout_marginStart="@dimen/_6sdp"
-            app:layout_constraintStart_toEndOf="@id/star"
-            android:textAlignment="center"
-            android:text="4.8"
-            android:textColor="#F9CD33"
-            android:textSize="@dimen/_18ssp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-        </TextView>
-        <TextView
-            android:id="@+id/numberVoted"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_6sdp"
-            android:layout_marginTop="@dimen/_4sdp"
-            android:text="(110k reviews)"
-            android:textColor="@color/white"
-            android:textSize="@dimen/_10ssp"
-            app:layout_constraintTop_toTopOf="@id/ViewerScore"
-            app:layout_constraintStart_toEndOf="@id/ViewerScore">
-
-        </TextView>
         <TextView
             android:id="@+id/detailTitle"
             android:paddingLeft="@dimen/_18sdp"

@@ -14,18 +14,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.cardview.widget.CardView
-        app:cardCornerRadius="@dimen/_4sdp"
-        android:id="@+id/shimmer_viewall"
-        android:backgroundTint="#CCC"
-        android:layout_width="@dimen/_60sdp"
-        android:layout_height="@dimen/_14sdp"
-        android:layout_marginTop="@dimen/_8sdp"
-        app:layout_constraintBottom_toTopOf="@id/shimmer_MovieList"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@id/shimmer_Title"
-        app:layout_constraintTop_toTopOf="parent" />
+
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/shimmer_MovieList"

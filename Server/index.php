@@ -21,6 +21,14 @@ switch ($request_parts[1]) {
             $homeController->getUserInf();
         }else if(isset($_GET['logOut'])){
             $homeController->logOut();
+        }else if(isset($_GET['getNewestMovie'])){
+            $homeController->getNewestMovie();
+        }else if(isset($_GET['getPopularMovie'])){
+            $homeController->getPopularMonthMovie();
+        }else if(isset($_GET['getGenres'])){
+            $homeController->getGenres();
+        }else if(isset($_GET['getSpecialMovie'])){
+            $homeController->getSpecialMovies();
         }
         else{
             $homeController->showHome();
@@ -47,14 +55,12 @@ switch ($request_parts[1]) {
     }
     case "register":{
         $signUpController = new SignUpController();
-        if(isset($_POST['submit2'])){
-            $user2 = $_POST['username2'];
-            $password2 = $_POST['password2'];
-            $email=$_POST['email'];
-            $id="3";
-            $role=1;
-            $signUpController->signUp(false,$id,$user2, $password2,$email,$role);
-
+        if(isset($_POST['submit'])){
+            $signUpController->register(false);
+        }
+        else if(isset($request_parts[2])){
+            if($request_parts[2] == "notification")
+            $signUpController->notification();
         }
         else{
             $signUpController->showSignUpPage();
@@ -87,5 +93,3 @@ switch ($request_parts[1]) {
     }
     default: require __DIR__ . '/views/404.php';
 }
-
-?>

@@ -27,7 +27,7 @@
             android:id="@+id/bottomNav"
             android:background="@drawable/bottom_nav_bg"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_52sdp"
+            android:layout_height="wrap_content"
             android:padding="@dimen/_2sdp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

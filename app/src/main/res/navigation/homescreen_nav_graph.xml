@@ -15,12 +15,8 @@
             android:id="@+id/action_homescreen_to_detail_screen"
             app:destination="@id/detailscreen" />
         <action
-            android:id="@+id/action_homescreen_to_search_screen"
-            app:destination="@id/searchscreen_nav_graph">
-            <argument
-                android:name="search_txt"
-                app:argType="string" />
-        </action>
+            android:id="@+id/action_homescreen_to_searchScreen"
+            app:destination="@id/searchScreen" />
     </fragment>
     <fragment
         android:id="@+id/detailscreen"
@@ -44,5 +40,23 @@
         <argument
             android:name="overview"
             app:argType="string" />
+        <argument
+            android:name="score"
+            app:argType="float" />
+        <argument
+            android:name="video_url"
+            app:argType="string" />
     </fragment>
+    <fragment
+        android:id="@+id/searchScreen"
+        android:name="tdtu.movieapp.app.ui.View.SearchScreen"
+        android:label="SearchScreen" >
+        <argument
+            android:name="query"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_searchScreen_to_detailscreen"
+            app:destination="@id/detailscreen" />
+    </fragment>
+
 </navigation>

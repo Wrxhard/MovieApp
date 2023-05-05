@@ -11,9 +11,6 @@
         app:graph="@navigation/homescreen_nav_graph"
         />
     <include
-        app:graph="@navigation/searchscreen_nav_graph"
-        />
-    <include
         app:graph="@navigation/userprofile_nav_graph"
         />
 </navigation>

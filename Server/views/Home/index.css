@@ -26,7 +26,7 @@ body {
 }
 
 .carousel-caption {
-    bottom: 15%;
+    bottom: 5%;
     left: 10%;
     right: 10%;
 }
@@ -179,7 +179,7 @@ body {
     font-size: 15px;
     padding: unset;
     white-space: normal !important;
-    width: 25% !important;
+    width: 40% !important;
     cursor: pointer;
     opacity: 0;
 }
@@ -191,6 +191,12 @@ body {
 
 .watchLink:hover h3 {
     opacity: 1;
+}
+
+.linkToDetail{
+    height: 4rem;
+    font-weight: 600;
+    font-size: 15px;
 }
 
 .linkToDetail:hover {

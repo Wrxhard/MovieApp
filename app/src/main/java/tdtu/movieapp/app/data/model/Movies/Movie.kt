@@ -13,8 +13,14 @@ data class Movie(
     val overview: String,
     @SerializedName("tagline")
     val tagline: String,
+    @SerializedName("release_date")
+    val release_date:String,
     @SerializedName("director_id")
     val director_id: String,
-    @SerializedName("yearProduce")
-    val yearProduce: Int
+    @SerializedName("imdb_id")
+    val imdb_id:String,
+    @SerializedName("score")
+    val score:Float,
+    @SerializedName("trailer")
+    val trailer:String
 )

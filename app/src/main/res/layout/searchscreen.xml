@@ -5,14 +5,70 @@
 <FrameLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingBottom="@dimen/_60sdp"
     tools:context=".ui.View.SearchScreen">
 
-    <TextView
-        android:layout_marginTop="@dimen/_180sdp"
-        android:id="@+id/textView"
-        android:textSize="@dimen/_20sdp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/textview" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageButton
+            android:id="@+id/backtomain"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_20sdp"
+            android:layout_marginEnd="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_46sdp"
+            android:background="?android:selectableItemBackgroundBorderless"
+            android:src="@drawable/ic_baseline_arrow_back_ios_24"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck"
+            android:contentDescription="@string/detail_back_btn" />
+        <android.widget.SearchView
+            android:id="@+id/searchView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_44sdp"
+            android:background="@drawable/searchbarshape"
+            android:iconifiedByDefault="false"
+            android:inputType="text"
+            android:queryHint="Search movie..."
+            android:searchIcon="@drawable/ic_baseline_search_24"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="@id/backtomain"
+
+            app:queryBackground="@null"
+            app:submitBackground="@null" />
+        <TextView
+            android:id="@+id/Resuls"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_20ssp"
+            android:layout_marginTop="@dimen/_16sdp"
+            app:layout_constraintTop_toBottomOf="@id/searchView"
+            app:layout_constraintStart_toStartOf="parent"
+            android:textColor="@color/white"
+            android:text="Top Searches"
+            android:textSize="@dimen/_20ssp"
+            android:textStyle="bold"
+            />
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/search_list"
+            android:layout_marginTop="@dimen/_16sdp"
+            app:layout_constraintTop_toBottomOf="@id/Resuls"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_16sdp"
+            android:layout_marginEnd="@dimen/_16sdp"
+            tools:listitem="@layout/search_item"
+            android:overScrollMode="never"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 </FrameLayout>
 </layout>
