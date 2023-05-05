@@ -155,8 +155,6 @@ class HomeScreen : Fragment() {
         category.layoutManager=LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
         val categoryList = mutableListOf<Category>()
         categoryList.add(Category("Action"))
-        categoryList.add(Category("Action"))
-        categoryList.add(Category("Action"))
         categoryList.add(Category("Adventure"))
         categoryList.add(Category("Gameshow"))
         val categoryAdapter= CategoryAdapter(categoryList)
