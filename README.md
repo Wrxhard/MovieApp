@@ -5,6 +5,7 @@
 * [General info](#General-info)
 * [Technologies](#Technologies)
 * [Prerequisites](#Prerequisites)
+* [Library](#Library)
 * [Setup](#Setup)
 * [Author](#Author)
 * [Acknowledgments](#Acknowledgments)
