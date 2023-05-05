@@ -35,8 +35,7 @@ git clone https://github.com/Wrxhard/MovieApp.git
 ```
 
 - Copy all the files in Server folder into C:\xampp\htdocs
-- Change the base URL to the IP address of your device in the AppModule.kt file located in app/src/main/java/tdtu/movieapp/app/di 
-using one of these two:
+- Change the base URL
 
 ```
 const val BASE_URL="http://10.0.2.2/"
