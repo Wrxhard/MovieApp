@@ -56,7 +56,7 @@ to match the ip address of the host device (using ipconfig)
 - Build and run the app on an emulator or physical device
 
 ## Author
-- NguyenTrongPhuc - Wrxhard
+- NguyenTrongPhuc
 
 ## Acknowledgments
 - API used : [https://www.themoviedb.org](#Tmdb)
