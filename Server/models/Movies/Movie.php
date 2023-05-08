@@ -244,7 +244,16 @@ class Movie
         if ($result->num_rows() > 0) {
             $result->bind_result($id, $title, $overview, $poster_path, $backdrop_path, $tagline, $release_date, $country, $duration, $director_id, $movieimdbid, $score, $idmonvid, $key_vd, $site, $official);
             while ($result->fetch()) {
-
+                $genres=array();
+                $stm=$this->getMovieGenres($id);
+                if ($stm->num_rows() > 0){
+                    $stm->bind_result($genre,$genre_id);
+                    while ($stm->fetch()) {
+                        array_push($genres,array(
+                            "genre"=>$genre
+                        ));
+                    }
+                }
                 $movie["id"] = $id;
                 $movie["title"] = $title;
                 $movie["overview"] = $overview;
@@ -258,6 +267,7 @@ class Movie
                 $movie["imdb_id"] = $movieimdbid;
                 $movie["score"] = $score;
                 $movie["trailer"] = $key_vd;
+                $movie["movie_genres"]=$genres;
                 array_push($data, $movie);
             }
             header('Content-Type: application/json');
