@@ -22,5 +22,7 @@ data class Movie(
     @SerializedName("score")
     val score:Float,
     @SerializedName("trailer")
-    val trailer:String
+    val trailer:String,
+    @SerializedName("movie_genres")
+    val movie_genres:List<Category>
 )

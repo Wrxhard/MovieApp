@@ -5,14 +5,17 @@ import android.view.ViewGroup
 import android.widget.Button
 import androidx.recyclerview.widget.RecyclerView
 import tdtu.movieapp.app.R
-import tdtu.movieapp.app.ui.Model.Category
+import tdtu.movieapp.app.data.model.Movies.Category
 
-class CategoryAdapter(val listCategory: List<Category>): RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder>(){
+class CategoryAdapter(val listCategory: List<Category>,val onClick:(Category)->Unit): RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder>(){
     inner class CategoryViewHolder(val view: View): RecyclerView.ViewHolder(view){
-        fun bind(Category:Category)
+        fun bind(Category: Category, onClick:(Category)->Unit)
         {
             val myCategoryBtn=view.findViewById<Button>(R.id.CategoryBtn)
-            myCategoryBtn.text=Category.title
+            myCategoryBtn.text=Category.genre
+            myCategoryBtn.setOnClickListener {
+                onClick(Category)
+            }
         }
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoryViewHolder {
@@ -28,6 +31,6 @@ class CategoryAdapter(val listCategory: List<Category>): RecyclerView.Adapter<Ca
 
     override fun onBindViewHolder(holder: CategoryViewHolder, position: Int) {
         val category=listCategory[position]
-        holder.bind(category)
+        holder.bind(category,onClick)
     }
 }

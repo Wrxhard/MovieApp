@@ -46,6 +46,9 @@
         <argument
             android:name="video_url"
             app:argType="string" />
+        <action
+            android:id="@+id/action_detailscreen_to_searchScreen"
+            app:destination="@id/searchScreen" />
     </fragment>
     <fragment
         android:id="@+id/searchScreen"
@@ -53,6 +56,9 @@
         android:label="SearchScreen" >
         <argument
             android:name="query"
+            app:argType="string" />
+        <argument
+            android:name="type"
             app:argType="string" />
         <action
             android:id="@+id/action_searchScreen_to_detailscreen"

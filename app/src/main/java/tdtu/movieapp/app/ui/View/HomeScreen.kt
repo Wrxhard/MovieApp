@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.SearchView
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
@@ -20,10 +21,10 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.collectLatest
 import tdtu.movieapp.app.R
+import tdtu.movieapp.app.data.model.Movies.Category
 import tdtu.movieapp.app.databinding.HomescreenBinding
 import tdtu.movieapp.app.ui.Adapter.CategoryAdapter
 import tdtu.movieapp.app.ui.Adapter.ParentAdapter
-import tdtu.movieapp.app.ui.Model.Category
 import tdtu.movieapp.app.ui.ViewModel.MainActivityViewModel
 import tdtu.movieapp.app.ui.ViewModel.SectionModel
 
@@ -59,7 +60,7 @@ class HomeScreen : Fragment() {
                 {
                        mViewModel.clearSearch()
                        mViewModel.filterSearch(txt)
-                       val action=HomeScreenDirections.actionHomescreenToSearchScreen(txt)
+                       val action=HomeScreenDirections.actionHomescreenToSearchScreen(txt,"userinput")
                        findNavController().navigate(action)
                 }
                 binding.searchView.setQuery("", false)
@@ -78,13 +79,13 @@ class HomeScreen : Fragment() {
     private fun setupSection(mViewModel: MainActivityViewModel,filmSection:RecyclerView,shimmerFrameLayout: ShimmerFrameLayout)
     {
         val detail=mutableListOf<String>()
-        detail.add("Action")
-        detail.add("Adventure")
-
         val sectionlist = mutableListOf<SectionModel>()
         filmSection.layoutManager=LinearLayoutManager(requireContext(),LinearLayoutManager.VERTICAL,false)
-        val parentAdapter = ParentAdapter(sectionlist) {
-            val action=HomeScreenDirections.actionHomescreenToDetailScreen(it.poster_path,detail.toTypedArray(),it.title,it.overview,it.score,it.trailer)
+        val parentAdapter = ParentAdapter(sectionlist) { movie ->
+            movie.movie_genres.forEach {
+                detail.add(it.genre)
+            }
+            val action=HomeScreenDirections.actionHomescreenToDetailScreen(movie.poster_path,detail.toTypedArray(),movie.title,movie.overview,movie.score,movie.trailer)
             findNavController().navigate(action)
         }
         filmSection.adapter = parentAdapter
@@ -153,11 +154,39 @@ class HomeScreen : Fragment() {
     private fun setupCategory(category: RecyclerView)
     {
         category.layoutManager=LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
-        val categoryList = mutableListOf<Category>()
-        categoryList.add(Category("Action"))
-        categoryList.add(Category("Adventure"))
-        categoryList.add(Category("Gameshow"))
-        val categoryAdapter= CategoryAdapter(categoryList)
+        val categoryList = listOf(
+            Category("Phim Nhạc"),
+            Category("Phim Lãng Mạn"),
+            Category("Phim Gia Đình"),
+            Category("Phim Chiến Tranh"),
+            Category("phiêu lưu"),
+            Category("Kids"),
+            Category("News"),
+            Category("Reality"),
+            Category("Sci-Fi & Fantasy"),
+            Category("Soap"),
+            Category("Talk"),
+            Category("War & Politics"),
+            Category("Truyền Hình"),
+            Category("Phim Phiêu Lưu"),
+            Category("Phim Giả Tưởng"),
+            Category("Phim Hoạt Hình"),
+            Category("Phim Chính Kịch"),
+            Category("Phim Kinh Dị"),
+            Category("Phim Hành Động"),
+            Category("Phim Hài"),
+            Category("Phim Lịch Sử"),
+            Category("Phim Miền Tây"),
+            Category("Phim Gây Cấn"),
+            Category("Phim Hình Sự"),
+            Category("Phim Viễn Tưởng"),
+        )
+        val categoryAdapter= CategoryAdapter(categoryList){
+            mViewModel.clearSearch()
+            mViewModel.filterSearch(it.genre)
+            val action=HomeScreenDirections.actionHomescreenToSearchScreen(it.genre,"category")
+            findNavController().navigate(action)
+        }
         category.adapter=categoryAdapter
 
     }

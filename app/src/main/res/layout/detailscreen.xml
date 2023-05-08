@@ -5,7 +5,6 @@
 <FrameLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/_60sdp"
     tools:context=".ui.View.Frag3">
     <androidx.core.widget.NestedScrollView
         android:overScrollMode="never"
@@ -118,6 +117,7 @@
             tools:layout_editor_absoluteX="0dp" />
 
         <TextView
+            android:paddingBottom="@dimen/_60sdp"
             android:paddingLeft="@dimen/_18sdp"
             android:paddingRight="@dimen/_18sdp"
             android:id="@+id/detaildesc"

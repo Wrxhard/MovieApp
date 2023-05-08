@@ -6,7 +6,6 @@
 <FrameLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/_60sdp"
     android:background="#212121"
     tools:context=".ui.View.HomeScreen">
     <androidx.core.widget.NestedScrollView
@@ -109,6 +108,7 @@
                 app:layout_constraintTop_toBottomOf="@id/categoryHeader"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintBottom_toTopOf="@id/FilmSection"
+                android:overScrollMode="never"
                 tools:listitem="@layout/category"
                 tools:ignore="NotSibling">
 

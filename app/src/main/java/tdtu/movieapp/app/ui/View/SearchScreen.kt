@@ -74,13 +74,14 @@ class SearchScreen : Fragment() {
     fun setUpRecyclerView()
     {
         val detail=mutableListOf<String>()
-        detail.add("Action")
-        detail.add("Adventure")
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED){
                 mViewModel.searchList.collectLatest { list ->
-                    val adapter=SearchAdapter(list){
-                        val action=SearchScreenDirections.actionSearchScreenToDetailscreen(it.poster_path,detail.toTypedArray(),it.title,it.overview,it.score,it.trailer)
+                    val adapter=SearchAdapter(list){ movie ->
+                        movie.movie_genres.forEach {
+                            detail.add(it.genre)
+                        }
+                        val action=SearchScreenDirections.actionSearchScreenToDetailscreen(movie.poster_path,detail.toTypedArray(),movie.title,movie.overview,movie.score,movie.trailer)
                         findNavController().navigate(action)
                     }
                     binding.searchList.layoutManager= LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL,false)

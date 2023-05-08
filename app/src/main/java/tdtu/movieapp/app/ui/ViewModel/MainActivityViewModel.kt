@@ -14,6 +14,7 @@ import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.http.Body
 import tdtu.movieapp.app.data.MainRepository
+import tdtu.movieapp.app.data.model.Movies.Category
 import tdtu.movieapp.app.data.model.Movies.Movie
 import tdtu.movieapp.app.data.model.Movies.UserAuth
 import tdtu.movieapp.app.utils.DispatcherProvider
@@ -86,7 +87,9 @@ class MainActivityViewModel @Inject constructor(
     fun filterSearch(query:String)
     {
         _searchList.value=_moviesall.value.filter {
-            it.title.contains(query)
+            it.title.contains(query) || it.movie_genres.contains(Category(
+                query
+            ))
         }
         _searchList.value=_searchList.value.toSet().toList()
     }
