@@ -58,6 +58,7 @@ class DetailScreen : Fragment() {
         setBackBtn(binding.backtomain)
         //set up catefory of film
         setupDetailCategory(binding.MovieCategory)
+        //show full desc
         binding.detaildesc.setOnClickListener {
             detailScreenViewModel.setShowTxt()
         }

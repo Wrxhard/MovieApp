@@ -1,12 +1,12 @@
 package tdtu.movieapp.app.ui.View
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.SearchView
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
@@ -14,11 +14,9 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.room.util.query
-import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
-import tdtu.movieapp.app.data.model.Movies.Movie
+import tdtu.movieapp.app.R
 import tdtu.movieapp.app.databinding.SearchscreenBinding
 import tdtu.movieapp.app.ui.Adapter.SearchAdapter
 import tdtu.movieapp.app.ui.ViewModel.MainActivityViewModel
@@ -35,7 +33,6 @@ class SearchScreen : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -48,7 +45,7 @@ class SearchScreen : Fragment() {
 
         return binding.root
     }
-    fun setOnClick()
+    private fun setOnClick()
     {
         binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
             override fun onQueryTextSubmit(txt: String?): Boolean {
@@ -68,10 +65,10 @@ class SearchScreen : Fragment() {
 
         })
         binding.backtomain.setOnClickListener {
-            findNavController().popBackStack()
+            findNavController().popBackStack(R.id.homescreen,false)
         }
     }
-    fun setUpRecyclerView()
+    private fun setUpRecyclerView()
     {
         val detail=mutableListOf<String>()
         lifecycleScope.launch {

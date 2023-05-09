@@ -25,9 +25,12 @@ class PlayMovieScreen : AppCompatActivity() {
     @RequiresApi(Build.VERSION_CODES.R)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        //Bind view
         binding= DataBindingUtil.setContentView(this,R.layout.playscreen)
+        //Force Landscape Mode
         requestedOrientation= ActivityInfo.SCREEN_ORIENTATION_USER_LANDSCAPE
         youTubePlayerView=binding.youtubePlayerView
+        //Get video from youtube url
         val url = intent.getStringExtra("video_url")
         youTubePlayerView.addYouTubePlayerListener(object : AbstractYouTubePlayerListener() {
             override fun onReady(youTubePlayer: YouTubePlayer) {

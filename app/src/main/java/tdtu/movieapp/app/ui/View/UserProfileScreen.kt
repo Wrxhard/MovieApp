@@ -37,13 +37,16 @@ class UserProfileScreen : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         _binding= DataBindingUtil.inflate(inflater,R.layout.user_profile_screen,container,false)
+        //bind view model
         mViewModel=activity?.let { ViewModelProvider(it)[MainActivityViewModel::class.java] }!!
+        //Set up section
+        setUpSection()
 
+        return binding.root
+    }
+    private fun setUpSection()
+    {
         val sectionlist = mutableListOf<SectionModel>()
-        val detail=mutableListOf<String>()
-        detail.add("Action")
-        detail.add("Adventure")
-
         binding.profileusername.text= requireActivity().intent.getStringExtra("name")
         binding.profileid.text="Id: #"+requireActivity().intent.getStringExtra("id")
         if (mViewModel.getRecentlyWatch().isNotEmpty())
@@ -61,6 +64,5 @@ class UserProfileScreen : Fragment() {
         }
         binding.FilmSection.adapter=adapter
         binding.FilmSection.layoutManager=LinearLayoutManager(requireContext(),LinearLayoutManager.VERTICAL,false)
-        return binding.root
     }
 }

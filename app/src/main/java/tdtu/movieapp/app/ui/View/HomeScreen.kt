@@ -54,6 +54,7 @@ class HomeScreen : Fragment() {
         setupSection(mViewModel,binding.FilmSection,binding.Shimmer)
         //Set up category
         setupCategory(binding.categoryList)
+        //Search Function
         binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
             override fun onQueryTextSubmit(txt: String?): Boolean {
                 if (txt!=null)
