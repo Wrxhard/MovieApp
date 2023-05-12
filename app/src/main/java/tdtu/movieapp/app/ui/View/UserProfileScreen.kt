@@ -9,9 +9,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 import tdtu.movieapp.app.R
 import tdtu.movieapp.app.databinding.UserProfileScreenBinding
 import tdtu.movieapp.app.ui.Adapter.ParentAdapter
@@ -39,6 +44,7 @@ class UserProfileScreen : Fragment() {
         _binding= DataBindingUtil.inflate(inflater,R.layout.user_profile_screen,container,false)
         //bind view model
         mViewModel=activity?.let { ViewModelProvider(it)[MainActivityViewModel::class.java] }!!
+
         //Set up section
         setUpSection()
 
@@ -49,9 +55,18 @@ class UserProfileScreen : Fragment() {
         val sectionlist = mutableListOf<SectionModel>()
         binding.profileusername.text= requireActivity().intent.getStringExtra("name")
         binding.profileid.text="Id: #"+requireActivity().intent.getStringExtra("id")
-        if (mViewModel.getRecentlyWatch().isNotEmpty())
-        {
-            sectionlist.add(SectionModel("Recently Watch",mViewModel.getRecentlyWatch()))
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED)
+            {
+                mViewModel.recentlyWatch.collectLatest { event ->
+                    when(event){
+                        is MainActivityViewModel.Event.Success -> {
+                            sectionlist.add(SectionModel("Recently Watch",event.result))
+                        }
+                        else -> Unit
+                    }
+                }
+            }
         }
         if (mViewModel.getFavourite().isNotEmpty())
         {

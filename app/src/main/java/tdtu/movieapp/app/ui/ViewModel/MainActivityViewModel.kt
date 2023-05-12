@@ -1,19 +1,18 @@
 package tdtu.movieapp.app. ui.ViewModel
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Job
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asSharedFlow
-import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.suspendCancellableCoroutine
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.http.Body
 import tdtu.movieapp.app.data.MainRepository
+import tdtu.movieapp.app.data.local.service.LocalRepo
 import tdtu.movieapp.app.data.model.Movies.Category
 import tdtu.movieapp.app.data.model.Movies.Movie
 import tdtu.movieapp.app.data.model.Movies.UserAuth
@@ -24,10 +23,12 @@ import kotlin.coroutines.resume
 
 @HiltViewModel
 class MainActivityViewModel @Inject constructor(
+    private val localRepo: LocalRepo,
     private val respository: MainRepository,
     private val dispatcher: DispatcherProvider
 ): ViewModel(){
     private var jobs: Job? =null
+    private var RewatchJob :Job? = null
     //Check state of action
 
     sealed class Event<out T> {
@@ -55,18 +56,33 @@ class MainActivityViewModel @Inject constructor(
     private val _searchList = MutableStateFlow<List<Movie>>(mutableListOf())
     val searchList=_searchList.asStateFlow()
 
-    private val _recentlyWatch= mutableListOf<Movie>()
     private val _favourite= mutableListOf<Movie>()
+    private val _recentlyWatch= MutableStateFlow<Event<List<Movie>>>(Event.Empty)
+    val recentlyWatch=_recentlyWatch.asStateFlow()
 
     private val _loading = MutableStateFlow<Boolean>(true)
     val loading=_loading.asStateFlow()
 
     fun addRecentlyWatch(movie: Movie)
     {
-        _recentlyWatch.add(movie)
+        viewModelScope.launch{
+            localRepo.insertMovie(movie)
+        }
     }
-    fun getRecentlyWatch(): List<Movie>{
-        return _recentlyWatch.toSet().toList()
+    fun clearRecenlyWatch()
+    {
+        viewModelScope.launch {
+            localRepo.deleteAll()
+        }
+        getRecentlyWatch()
+    }
+    fun getRecentlyWatch() {
+        RewatchJob?.cancel()
+        RewatchJob=localRepo.getLocalMovies()
+            .onEach {
+                _recentlyWatch.value=Event.Success(it)
+            }
+            .launchIn(viewModelScope)
     }
     fun addFavourite(movie: Movie)
     {

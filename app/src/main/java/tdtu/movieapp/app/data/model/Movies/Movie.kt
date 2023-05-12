@@ -1,8 +1,14 @@
 package tdtu.movieapp.app.data.model.Movies
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 
+@Entity(
+    "movie_table"
+)
 data class Movie(
+    @PrimaryKey
     @SerializedName("id")
     val id: String,
     @SerializedName("poster_path")

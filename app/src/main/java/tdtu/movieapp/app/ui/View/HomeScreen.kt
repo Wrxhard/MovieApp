@@ -86,7 +86,7 @@ class HomeScreen : Fragment() {
             movie.movie_genres.forEach {
                 detail.add(it.genre)
             }
-            val action=HomeScreenDirections.actionHomescreenToDetailScreen(movie.poster_path,detail.toTypedArray(),movie.title,movie.overview,movie.score,movie.trailer)
+            val action=HomeScreenDirections.actionHomescreenToDetailScreen(movie.id,movie.poster_path,detail.toTypedArray(),movie.title,movie.overview,movie.score,movie.trailer)
             findNavController().navigate(action)
         }
         filmSection.adapter = parentAdapter

@@ -24,6 +24,10 @@
         android:label="detail_screen"
         tools:layout="@layout/detailscreen" >
         <argument
+            android:name="id"
+            app:argType="string"
+            />
+        <argument
             android:name="Poster"
             app:argType="string" />
         <action

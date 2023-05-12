@@ -78,7 +78,7 @@ class SearchScreen : Fragment() {
                         movie.movie_genres.forEach {
                             detail.add(it.genre)
                         }
-                        val action=SearchScreenDirections.actionSearchScreenToDetailscreen(movie.poster_path,detail.toTypedArray(),movie.title,movie.overview,movie.score,movie.trailer)
+                        val action=SearchScreenDirections.actionSearchScreenToDetailscreen(movie.id,movie.poster_path,detail.toTypedArray(),movie.title,movie.overview,movie.score,movie.trailer)
                         findNavController().navigate(action)
                     }
                     binding.searchList.layoutManager= LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL,false)

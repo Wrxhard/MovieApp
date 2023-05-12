@@ -23,6 +23,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import kotlinx.coroutines.launch
 import tdtu.movieapp.app.R
+import tdtu.movieapp.app.data.local.Converter
 import tdtu.movieapp.app.data.model.Movies.Category
 import tdtu.movieapp.app.data.model.Movies.Movie
 import tdtu.movieapp.app.databinding.DetailscreenBinding
@@ -102,9 +103,9 @@ class DetailScreen : Fragment() {
             startActivity(intent)
             mViewModel.addRecentlyWatch(
                 Movie(
-                "", args.poster,args.title,args.overview,
-                "","","","",
-                args.score,args.videoUrl,emptyList()
+                    args.id, args.poster,args.title,args.overview,
+                    "","","","",
+                    args.score,args.videoUrl, emptyList()
                 )
             )
 
@@ -115,10 +116,9 @@ class DetailScreen : Fragment() {
             startActivity(intent)
             mViewModel.addRecentlyWatch(
                 Movie(
-                "",
-                args.poster,args.title,args.overview,
-                "","","","",
-                args.score,args.videoUrl, emptyList()
+                    args.id, args.poster,args.title,args.overview,
+                    "","","","",
+                    args.score,args.videoUrl, emptyList()
                 )
             )
 

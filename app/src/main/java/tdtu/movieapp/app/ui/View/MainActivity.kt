@@ -49,21 +49,7 @@ class MainActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         //bind viewmodel
         mViewModel = ViewModelProvider(this)[MainActivityViewModel::class.java]
-        //hide systembar
-        lifecycleScope.launch {
-            repeatOnLifecycle(Lifecycle.State.STARTED){
-                val jobs = listOf(
-                    async {
-                        mViewModel.getPopular(1)
-                    },
-                    async {
-                        mViewModel.getTrending(2)
-                    },
-                )
-                jobs.awaitAll()
-                mViewModel.cancel()
-            }
-        }
+        //hideSystemBar
         hideSystem()
         //Find and set Navigation controller
         val navHostFragment =
@@ -74,9 +60,12 @@ class MainActivity : AppCompatActivity() {
             //setup bottom nav
             setupBottomNav(navController, binding.bottomNav)
         }
+        //getData
+        getData()
 
-        //Process call api
+
     }
+
     //hide systembar
     @RequiresApi(Build.VERSION_CODES.R)
     private fun hideSystem(){
@@ -157,6 +146,24 @@ class MainActivity : AppCompatActivity() {
 
             }
         }
+    }
+    private fun getData(){
+        //getData
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED){
+                val jobs = listOf(
+                    async {
+                        mViewModel.getPopular(1)
+                    },
+                    async {
+                        mViewModel.getTrending(2)
+                    },
+                )
+                jobs.awaitAll()
+                mViewModel.cancel()
+            }
+        }
+        mViewModel.getRecentlyWatch()
     }
 
 
