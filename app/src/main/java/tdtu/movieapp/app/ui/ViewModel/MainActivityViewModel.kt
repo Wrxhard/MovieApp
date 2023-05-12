@@ -30,7 +30,6 @@ class MainActivityViewModel @Inject constructor(
     private var jobs: Job? =null
     private var RewatchJob :Job? = null
     //Check state of action
-
     sealed class Event<out T> {
         class Success<T>(val result: T): Event<T>()
         class Failure(val error: String): Event<Nothing>()
@@ -138,7 +137,7 @@ class MainActivityViewModel @Inject constructor(
                         _login.value = Event.Failure("Incorrect Username Or Password")
                     }
                 }
-                is Resource.Error -> _login.value = Event.Failure("Connect Failure")
+                is Resource.Error -> _login.value = Event.Failure("Connect To Server Failure")
             }
         }
     }
