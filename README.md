@@ -30,6 +30,7 @@
 - Glide
 - Retrofit
 - Okhttp
+- Room
 
 ## Setup
 - Open the project in Android Studio.
