@@ -68,10 +68,6 @@ class UserProfileScreen : Fragment() {
                 }
             }
         }
-        if (mViewModel.getFavourite().isNotEmpty())
-        {
-            sectionlist.add(SectionModel("Favourites",mViewModel.getFavourite()))
-        }
         val adapter=ParentAdapter(sectionlist){
             val intent= Intent(requireActivity(),PlayMovieScreen::class.java)
             intent.putExtra("video_url",it.trailer)
