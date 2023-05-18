@@ -44,7 +44,7 @@ class MainActivity : AppCompatActivity() {
         installSplashScreen()
 
         requestWindowFeature(Window.FEATURE_NO_TITLE)
-
+        mViewModel = ViewModelProvider(this)[MainActivityViewModel::class.java]
         //bindingview
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         //bind viewmodel

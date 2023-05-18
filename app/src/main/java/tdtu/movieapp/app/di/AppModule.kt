@@ -52,7 +52,7 @@ object AppModule {
     @Singleton
     @Provides
     fun provideDatabaseIns(application: Application):DatabaseIns{
-        return Room.databaseBuilder(application,DatabaseIns::class.java,"local_db")
+        return Room.databaseBuilder(application,DatabaseIns::class.java,"local_db_recent")
             .fallbackToDestructiveMigration()
             .build()
     }

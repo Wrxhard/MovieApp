@@ -4,9 +4,10 @@ import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import tdtu.movieapp.app.data.model.Movies.Movie
+import tdtu.movieapp.app.data.model.Movies.RecentlyMovie
 
 @Database(
-    entities = [Movie::class],
+    entities = [RecentlyMovie::class],
     version = 1,
     exportSchema = false
 )

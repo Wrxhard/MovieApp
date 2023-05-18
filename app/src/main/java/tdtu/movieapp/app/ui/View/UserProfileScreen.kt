@@ -18,6 +18,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import tdtu.movieapp.app.R
+import tdtu.movieapp.app.data.model.Movies.Movie
+import tdtu.movieapp.app.data.model.Movies.RecentlyMovie
 import tdtu.movieapp.app.databinding.UserProfileScreenBinding
 import tdtu.movieapp.app.ui.Adapter.ParentAdapter
 import tdtu.movieapp.app.ui.ViewModel.MainActivityViewModel
@@ -52,6 +54,7 @@ class UserProfileScreen : Fragment() {
     }
     private fun setUpSection()
     {
+        var recentList= mutableListOf<RecentlyMovie>()
         val sectionlist = mutableListOf<SectionModel>()
         binding.profileusername.text= requireActivity().intent.getStringExtra("name")
         binding.profileid.text="Id: #"+requireActivity().intent.getStringExtra("id")
@@ -61,7 +64,16 @@ class UserProfileScreen : Fragment() {
                 mViewModel.recentlyWatch.collectLatest { event ->
                     when(event){
                         is MainActivityViewModel.Event.Success -> {
-                            sectionlist.add(SectionModel("Recently Watch",event.result))
+                            recentList= event.result as MutableList<RecentlyMovie>
+                            val list= mutableListOf<Movie>()
+                            event.result.forEach {
+                                list.add(
+                                    Movie(it.id,it.poster_path,it.title,"","","","","",0f,it.trailer,
+                                        emptyList()
+                                    )
+                                )
+                            }
+                            sectionlist.add(SectionModel("Recently Watch",list))
                         }
                         else -> Unit
                     }
@@ -72,9 +84,16 @@ class UserProfileScreen : Fragment() {
         {
             sectionlist.add(SectionModel("Favourites",mViewModel.getFavourite()))
         }
-        val adapter=ParentAdapter(sectionlist){
+        val adapter=ParentAdapter(sectionlist){ movie->
             val intent= Intent(requireActivity(),PlayMovieScreen::class.java)
-            intent.putExtra("video_url",it.trailer)
+            val recent=recentList.find {
+                (it.id==movie.id)
+            }
+            intent.putExtra("view_time",recent!!.view_time)
+            intent.putExtra("id",movie.id)
+            intent.putExtra("title",movie.title)
+            intent.putExtra("poster",movie.poster_path)
+            intent.putExtra("video_url",movie.trailer)
             startActivity(intent)
         }
         binding.FilmSection.adapter=adapter

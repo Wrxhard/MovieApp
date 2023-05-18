@@ -59,6 +59,22 @@ class DetailScreen : Fragment() {
         setBackBtn(binding.backtomain)
         //set up catefory of film
         setupDetailCategory(binding.MovieCategory)
+        binding.playbtn.setOnClickListener {
+            val intent=Intent(requireActivity(),PlayMovieScreen::class.java)
+            intent.putExtra("id",args.id)
+            intent.putExtra("title",args.title)
+            intent.putExtra("poster",args.poster)
+            intent.putExtra("video_url",args.videoUrl)
+            startActivity(intent)
+        }
+        binding.imageView.setOnClickListener {
+            val intent=Intent(requireActivity(),PlayMovieScreen::class.java)
+            intent.putExtra("id",args.id)
+            intent.putExtra("title",args.title)
+            intent.putExtra("poster",args.poster)
+            intent.putExtra("video_url",args.videoUrl)
+            startActivity(intent)
+        }
         //show full desc
         binding.detaildesc.setOnClickListener {
             detailScreenViewModel.setShowTxt()
@@ -97,32 +113,6 @@ class DetailScreen : Fragment() {
             .placeholder(R.drawable.placeholder)
             .fitCenter()
             .into(poster)
-        poster.setOnClickListener {
-            val intent=Intent(requireActivity(),PlayMovieScreen::class.java)
-            intent.putExtra("video_url",args.videoUrl)
-            startActivity(intent)
-            mViewModel.addRecentlyWatch(
-                Movie(
-                    args.id, args.poster,args.title,args.overview,
-                    "","","","",
-                    args.score,args.videoUrl, emptyList()
-                )
-            )
-
-        }
-        playbtn.setOnClickListener {
-            val intent=Intent(requireActivity(),PlayMovieScreen::class.java)
-            intent.putExtra("video_url",args.videoUrl)
-            startActivity(intent)
-            mViewModel.addRecentlyWatch(
-                Movie(
-                    args.id, args.poster,args.title,args.overview,
-                    "","","","",
-                    args.score,args.videoUrl, emptyList()
-                )
-            )
-
-        }
         binding.favourite.setOnClickListener {
             mViewModel.addFavourite(
                 Movie(

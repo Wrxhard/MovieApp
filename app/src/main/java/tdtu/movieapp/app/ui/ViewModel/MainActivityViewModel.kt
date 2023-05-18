@@ -15,6 +15,7 @@ import tdtu.movieapp.app.data.MainRepository
 import tdtu.movieapp.app.data.local.service.LocalRepo
 import tdtu.movieapp.app.data.model.Movies.Category
 import tdtu.movieapp.app.data.model.Movies.Movie
+import tdtu.movieapp.app.data.model.Movies.RecentlyMovie
 import tdtu.movieapp.app.data.model.Movies.UserAuth
 import tdtu.movieapp.app.utils.DispatcherProvider
 import tdtu.movieapp.app.utils.Resource
@@ -56,13 +57,13 @@ class MainActivityViewModel @Inject constructor(
     val searchList=_searchList.asStateFlow()
 
     private val _favourite= mutableListOf<Movie>()
-    private val _recentlyWatch= MutableStateFlow<Event<List<Movie>>>(Event.Empty)
+    private val _recentlyWatch= MutableStateFlow<Event<List<RecentlyMovie>>>(Event.Empty)
     val recentlyWatch=_recentlyWatch.asStateFlow()
 
     private val _loading = MutableStateFlow<Boolean>(true)
     val loading=_loading.asStateFlow()
 
-    fun addRecentlyWatch(movie: Movie)
+    fun addRecentlyWatch(movie: RecentlyMovie)
     {
         viewModelScope.launch{
             localRepo.insertMovie(movie)
