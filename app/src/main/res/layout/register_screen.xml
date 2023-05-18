@@ -23,12 +23,11 @@
     <TextView
         android:id="@+id/tv_login_sub_title"
         style="@style/SubTitle"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_15sdp"
         android:textColor="@color/black"
         android:text="@string/register_sub_title"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_login_title" />
 
@@ -186,17 +185,27 @@
 
 
     <TextView
+        android:id="@+id/subtitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:textColor="@color/black"
+        android:layout_marginStart="@dimen/_20sdp"
+        style="@style/SubTitle"
+        android:text="Đã có tài khoản? "
+        app:layout_constraintTop_toBottomOf="@id/btn_register"
+        app:layout_constraintStart_toStartOf="parent"></TextView>
+    <TextView
         android:id="@+id/have_account"
         style="@style/SubTitle"
-        android:layout_width="match_parent"
+        android:textColor="#EF6C00"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/have_account"
-        android:textColor="@color/black"
-        android:textAlignment="center"
         android:layout_marginTop="@dimen/_10sdp"
+        android:text="@string/have_account"
         app:layout_constraintTop_toBottomOf="@id/btn_register"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toEndOf="@id/subtitle" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

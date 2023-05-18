@@ -23,16 +23,12 @@
     <string name="btn_login">Đăng nhập</string>
     <string name="btn_register">Đăng ký</string>
     <string name="login_title">Đăng nhập vào ứng dụng</string>
-    <string name="login_sub_title">
-        <font color="#EF6C00"><b>Đăng nhập </b></font> nếu bạn đã có tài khoản.
-    </string>
+    <string name="login_sub_title">Đăng nhập</string>
     <string name="login_email">Nhập tên tài khoản của bạn</string>
     <string name="title_password">Nhập mật khẩu</string>
     <string name="forgot_password">Quên mật khẩu</string>
     <string name="btn_login_form">Đăng nhập</string>
-    <string name="have_not_account">
-        Bạn không có tài khoản? <font color="#EF6C00"><b>Đăng kí</b></font>
-    </string>
+    <string name="have_not_account"> Đăng kí</string>
     <string name="register_title">Đăng ký tài khoản</string>
     <string name="register_sub_title">
         <font color="#EF6C00"><b>Đăng ký</b></font> để có thể sử dụng ứng dụng.
@@ -43,7 +39,5 @@
     <string name="register_password">Nhập mật khẩu</string>
     <string name="register_confirm_password">Xác nhận mật khẩu</string>
     <string name="btn_register_form">Đăng ký</string>
-    <string name="have_account">
-        Bạn đã có tài khoản? <font color="#EF6C00"><b>Đăng nhập</b></font>
-    </string>
+    <string name="have_account"> Đăng nhập</string>
 </resources>
