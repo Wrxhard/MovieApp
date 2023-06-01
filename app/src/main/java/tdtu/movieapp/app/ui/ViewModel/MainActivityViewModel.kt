@@ -1,6 +1,5 @@
 package tdtu.movieapp.app. ui.ViewModel
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -10,8 +9,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.suspendCancellableCoroutine
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
-import retrofit2.http.Body
-import tdtu.movieapp.app.data.MainRepository
+import tdtu.movieapp.app.data.remote.service.network.MainRepository
 import tdtu.movieapp.app.data.local.service.LocalRepo
 import tdtu.movieapp.app.data.model.Movies.Category
 import tdtu.movieapp.app.data.model.Movies.Movie

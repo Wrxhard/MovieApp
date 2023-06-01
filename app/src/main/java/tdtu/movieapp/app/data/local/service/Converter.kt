@@ -1,4 +1,4 @@
-package tdtu.movieapp.app.data.local
+package tdtu.movieapp.app.data.local.service
 
 import androidx.room.TypeConverter
 import tdtu.movieapp.app.data.model.Movies.Category

@@ -1,9 +1,7 @@
-package tdtu.movieapp.app.data
+package tdtu.movieapp.app.data.remote.service.network
 
 import okhttp3.RequestBody
-import retrofit2.Response
 import retrofit2.http.Body
-import retrofit2.http.POST
 import retrofit2.http.Query
 import tdtu.movieapp.app.data.model.Movies.Movies
 import tdtu.movieapp.app.data.model.Movies.UserAuth

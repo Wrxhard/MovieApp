@@ -1,10 +1,7 @@
 package tdtu.movieapp.app.data.local.service
 
 import kotlinx.coroutines.flow.Flow
-import tdtu.movieapp.app.data.local.MovieDAO
-import tdtu.movieapp.app.data.model.Movies.Movie
 import tdtu.movieapp.app.data.model.Movies.RecentlyMovie
-import javax.inject.Inject
 
 class LocalRepoImp(
     private val dao: MovieDAO

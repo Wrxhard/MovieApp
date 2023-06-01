@@ -12,16 +12,12 @@ import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.utils.YouTubePlayerTracker
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.launch
 import tdtu.movieapp.app.R
 import tdtu.movieapp.app.data.model.Movies.RecentlyMovie
 import tdtu.movieapp.app.databinding.PlayscreenBinding
@@ -31,7 +27,6 @@ import tdtu.movieapp.app.ui.ViewModel.MainActivityViewModel
 class PlayMovieScreen : AppCompatActivity() {
     private lateinit var binding: PlayscreenBinding
     private lateinit var youTubePlayerView: YouTubePlayerView
-    private lateinit var youTubePlayer: YouTubePlayer
     private val tracker: YouTubePlayerTracker = YouTubePlayerTracker()
     private lateinit var mViewModel: MainActivityViewModel
     private var currentSecond:Float=0f
@@ -66,7 +61,7 @@ class PlayMovieScreen : AppCompatActivity() {
         //hide system bar
         hideSystem()
         //observe lifecycle
-        lifecycle.addObserver(youTubePlayerView);
+        lifecycle.addObserver(youTubePlayerView)
 
     }
 

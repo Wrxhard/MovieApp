@@ -1,9 +1,8 @@
-package tdtu.movieapp.app.data.local
+package tdtu.movieapp.app.data.local.service
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
-import tdtu.movieapp.app.data.model.Movies.Movie
 import tdtu.movieapp.app.data.model.Movies.RecentlyMovie
 
 @Database(
@@ -13,5 +12,5 @@ import tdtu.movieapp.app.data.model.Movies.RecentlyMovie
 )
 @TypeConverters(Converter::class)
 abstract class DatabaseIns:RoomDatabase() {
-    abstract fun getDatabaseDAO():MovieDAO
+    abstract fun getDatabaseDAO(): MovieDAO
 }

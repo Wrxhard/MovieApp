@@ -42,8 +42,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         installSplashScreen()
-
-        requestWindowFeature(Window.FEATURE_NO_TITLE)
+        supportRequestWindowFeature(Window.FEATURE_NO_TITLE)
         mViewModel = ViewModelProvider(this)[MainActivityViewModel::class.java]
         //bindingview
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
@@ -55,10 +54,10 @@ class MainActivity : AppCompatActivity() {
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.Screen) as NavHostFragment?
         val navController = navHostFragment?.navController
-        if (navController != null) {
+        navController?.let {
             binding.bottomNav.selectedItemId = R.id.homescreen_nav_graph
             //setup bottom nav
-            setupBottomNav(navController, binding.bottomNav)
+            setupBottomNav(it, binding.bottomNav)
         }
         //getData
         getData()

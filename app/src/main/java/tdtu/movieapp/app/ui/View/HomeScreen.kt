@@ -7,7 +7,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.SearchView
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
@@ -17,7 +16,6 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.facebook.shimmer.ShimmerFrameLayout
-import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.collectLatest
 import tdtu.movieapp.app.R
@@ -54,15 +52,19 @@ class HomeScreen : Fragment() {
         setupSection(mViewModel,binding.FilmSection,binding.Shimmer)
         //Set up category
         setupCategory(binding.categoryList)
+        setupSearch()
+        return binding.root
+    }
+    private fun setupSearch()
+    {
         //Search Function
         binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
             override fun onQueryTextSubmit(txt: String?): Boolean {
-                if (txt!=null)
-                {
-                       mViewModel.clearSearch()
-                       mViewModel.filterSearch(txt)
-                       val action=HomeScreenDirections.actionHomescreenToSearchScreen(txt,"userinput")
-                       findNavController().navigate(action)
+                txt?.let {
+                    mViewModel.clearSearch()
+                    mViewModel.filterSearch(txt)
+                    val action=HomeScreenDirections.actionHomescreenToSearchScreen(it,"userinput")
+                    findNavController().navigate(action)
                 }
                 binding.searchView.setQuery("", false)
                 binding.searchView.clearFocus()
@@ -74,7 +76,6 @@ class HomeScreen : Fragment() {
             }
 
         })
-        return binding.root
     }
 
     private fun setupSection(mViewModel: MainActivityViewModel,filmSection:RecyclerView,shimmerFrameLayout: ShimmerFrameLayout)

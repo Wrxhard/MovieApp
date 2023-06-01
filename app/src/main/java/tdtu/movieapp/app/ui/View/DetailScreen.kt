@@ -23,7 +23,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import kotlinx.coroutines.launch
 import tdtu.movieapp.app.R
-import tdtu.movieapp.app.data.local.Converter
 import tdtu.movieapp.app.data.model.Movies.Category
 import tdtu.movieapp.app.data.model.Movies.Movie
 import tdtu.movieapp.app.databinding.DetailscreenBinding
@@ -40,10 +39,6 @@ class DetailScreen : Fragment() {
     //get data from main screen
     private val args: DetailScreenArgs by navArgs()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -53,32 +48,13 @@ class DetailScreen : Fragment() {
         _binding= DataBindingUtil.inflate(inflater,R.layout.detailscreen,container,false)
         mViewModel=activity?.let { ViewModelProvider(it)[MainActivityViewModel::class.java] }!!
         //set poster and titless
-        setInfo(binding.imageView,binding.detailTitle,binding.detaildesc,binding.imdbscore,binding.playbtn)
+        setInfo(binding.imageView,binding.detailTitle,binding.detaildesc,binding.imdbscore,binding.playbtn,binding.detaildesc)
         showtxt()
         //set back btn behavior
         setBackBtn(binding.backtomain)
         //set up catefory of film
         setupDetailCategory(binding.MovieCategory)
-        binding.playbtn.setOnClickListener {
-            val intent=Intent(requireActivity(),PlayMovieScreen::class.java)
-            intent.putExtra("id",args.id)
-            intent.putExtra("title",args.title)
-            intent.putExtra("poster",args.poster)
-            intent.putExtra("video_url",args.videoUrl)
-            startActivity(intent)
-        }
-        binding.imageView.setOnClickListener {
-            val intent=Intent(requireActivity(),PlayMovieScreen::class.java)
-            intent.putExtra("id",args.id)
-            intent.putExtra("title",args.title)
-            intent.putExtra("poster",args.poster)
-            intent.putExtra("video_url",args.videoUrl)
-            startActivity(intent)
-        }
-        //show full desc
-        binding.detaildesc.setOnClickListener {
-            detailScreenViewModel.setShowTxt()
-        }
+
         return binding.root
     }
 
@@ -101,7 +77,7 @@ class DetailScreen : Fragment() {
             }
         }
     }
-    private fun setInfo(poster:ImageView,title:TextView,overview:TextView,IMDBScore: TextView,playbtn:ImageButton)
+    private fun setInfo(poster:ImageView,title:TextView,overview:TextView,IMDBScore: TextView,playbtn:ImageButton, detaildesc:TextView)
     {
         title.text=args.title
         overview.text=args.overview
@@ -113,6 +89,28 @@ class DetailScreen : Fragment() {
             .placeholder(R.drawable.placeholder)
             .fitCenter()
             .into(poster)
+        playbtn.setOnClickListener {
+            val intent=Intent(requireActivity(),PlayMovieScreen::class.java).also { intent->
+                intent.putExtra("id",args.id)
+                intent.putExtra("title",args.title)
+                intent.putExtra("poster",args.poster)
+                intent.putExtra("video_url",args.videoUrl)
+            }
+            startActivity(intent)
+        }
+        poster.setOnClickListener {
+            val intent=Intent(requireActivity(),PlayMovieScreen::class.java).also { intent->
+                intent.putExtra("id",args.id)
+                intent.putExtra("title",args.title)
+                intent.putExtra("poster",args.poster)
+                intent.putExtra("video_url",args.videoUrl)
+            }
+            startActivity(intent)
+        }
+        //show full desc
+        detaildesc.setOnClickListener {
+            detailScreenViewModel.setShowTxt()
+        }
         binding.favourite.setOnClickListener {
             mViewModel.addFavourite(
                 Movie(

@@ -1,7 +1,6 @@
 package tdtu.movieapp.app.ui.View
 
 import android.os.Bundle
-import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,7 +11,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -26,13 +24,8 @@ class SearchScreen : Fragment() {
     private val binding: SearchscreenBinding
         get() = _binding!!
     private  lateinit var mViewModel:MainActivityViewModel
-    private val args: SearchScreenArgs by navArgs()
 
 
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -49,10 +42,9 @@ class SearchScreen : Fragment() {
     {
         binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
             override fun onQueryTextSubmit(txt: String?): Boolean {
-                if (txt!=null)
-                {
+                txt?.let {
                     mViewModel.clearSearch()
-                    mViewModel.filterSearch(txt)
+                    mViewModel.filterSearch(it)
                 }
                 binding.searchView.setQuery("", false)
                 binding.searchView.clearFocus()

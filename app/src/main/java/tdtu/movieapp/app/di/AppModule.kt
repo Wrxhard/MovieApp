@@ -11,9 +11,8 @@ import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import tdtu.movieapp.app.data.MainRepository
-import tdtu.movieapp.app.data.local.DatabaseIns
-import tdtu.movieapp.app.data.local.MovieDAO
+import tdtu.movieapp.app.data.remote.service.network.MainRepository
+import tdtu.movieapp.app.data.local.service.DatabaseIns
 import tdtu.movieapp.app.data.local.service.LocalRepo
 import tdtu.movieapp.app.data.local.service.LocalRepoImp
 import tdtu.movieapp.app.data.remote.service.network.NetworkRepository
@@ -51,15 +50,15 @@ object AppModule {
     }
     @Singleton
     @Provides
-    fun provideDatabaseIns(application: Application):DatabaseIns{
-        return Room.databaseBuilder(application,DatabaseIns::class.java,"local_db_recent")
+    fun provideDatabaseIns(application: Application): DatabaseIns {
+        return Room.databaseBuilder(application, DatabaseIns::class.java,"local_db_recent")
             .fallbackToDestructiveMigration()
             .build()
     }
 
     @Provides
     @Singleton
-    fun provideLocalRepo(db:DatabaseIns):LocalRepo {
+    fun provideLocalRepo(db: DatabaseIns):LocalRepo {
         return LocalRepoImp(db.getDatabaseDAO())
     }
 

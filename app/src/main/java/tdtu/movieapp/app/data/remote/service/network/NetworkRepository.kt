@@ -1,7 +1,6 @@
 package tdtu.movieapp.app.data.remote.service.network
 import okhttp3.RequestBody
 import retrofit2.http.Body
-import tdtu.movieapp.app.data.MainRepository
 import tdtu.movieapp.app.data.model.Movies.Movies
 import tdtu.movieapp.app.data.model.Movies.UserAuth
 import tdtu.movieapp.app.utils.Resource
@@ -9,7 +8,7 @@ import javax.inject.Inject
 
 class NetworkRepository @Inject constructor(
     private val api:NetworkService
-):MainRepository {
+): MainRepository {
     override suspend fun getMovies(page:Int): Resource<Movies> {
         return try {
             val respone=api.getMovies(page)

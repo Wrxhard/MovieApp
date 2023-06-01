@@ -1,12 +1,9 @@
-package tdtu.movieapp.app.data.local
+package tdtu.movieapp.app.data.local.service
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import dagger.Provides
 import kotlinx.coroutines.flow.Flow
-import retrofit2.http.DELETE
-import tdtu.movieapp.app.data.model.Movies.Movie
 import tdtu.movieapp.app.data.model.Movies.RecentlyMovie
 
 @Dao

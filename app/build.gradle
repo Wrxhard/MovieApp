@@ -95,6 +95,9 @@ dependencies {
     implementation 'com.facebook.shimmer:shimmer:0.5.0'
     //Youtube-video-Player
     implementation 'com.pierfrancescosoffritti.androidyoutubeplayer:core:12.0.0'
+    //debug tool
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.11'
+
 
 
 
