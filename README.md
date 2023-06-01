@@ -1,5 +1,5 @@
 # MovieApp
-### This is an Android application that allows users to view and search for movies. Users can also save their favorite movies and view details about them.
+### This is an Android application that implement MVVM architecture. This App allows users to view and search for movies. Users can view detail about movies, watch trailer and rewatch recently movie.
 
 ## Table of contents
 * [General info](#General-info)
