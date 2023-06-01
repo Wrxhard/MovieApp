@@ -59,7 +59,11 @@ to match the ip address of the host device (using ipconfig)
 - Build and run the app on an emulator or physical device
 
 ## Demo
-https://github.com/Wrxhard/MovieApp/assets/91369021/f188c30a-868c-4661-889f-02fa399456e9
+
+
+https://github.com/Wrxhard/MovieApp/assets/91369021/51442b85-607b-463f-8873-55bcca2cf4a9
+
+
 
 ## Author
 - NguyenTrongPhuc
