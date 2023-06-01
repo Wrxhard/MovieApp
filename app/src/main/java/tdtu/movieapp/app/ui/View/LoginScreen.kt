@@ -75,9 +75,11 @@ class LoginScreen : AppCompatActivity() {
                             binding.edtEmail.setText("")
                             binding.edtPassword.setText("")
 
-                            val intent= Intent(this@LoginScreen,MainActivity::class.java)
-                            intent.putExtra("id",event.result.id)
-                            intent.putExtra("name",event.result.name)
+                            val intent= Intent(this@LoginScreen,MainActivity::class.java).apply {
+                                putExtra("id",event.result.id)
+                                putExtra("name",event.result.name)
+                            }
+
                             startActivity(intent)
                         }
                         is MainActivityViewModel.Event.Failure ->

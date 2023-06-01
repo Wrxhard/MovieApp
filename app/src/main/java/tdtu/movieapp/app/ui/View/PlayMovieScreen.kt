@@ -42,22 +42,7 @@ class PlayMovieScreen : AppCompatActivity() {
         requestedOrientation= ActivityInfo.SCREEN_ORIENTATION_USER_LANDSCAPE
         youTubePlayerView=binding.youtubePlayerView
         //Get video from youtube url
-        val url = intent.getStringExtra("video_url")
-        youTubePlayerView.addYouTubePlayerListener(object : AbstractYouTubePlayerListener() {
-            override fun onReady(youTubePlayer: YouTubePlayer) {
-                Toast.makeText(this@PlayMovieScreen,"Press Back Button Or Swipe Right To Exit",Toast.LENGTH_LONG).show()
-                val videoId = url
-                val startSecond=intent.getFloatExtra("view_time",0f)
-                if (videoId != null) {
-                    youTubePlayer.loadVideo(videoId, startSecond)
-                    youTubePlayer.addListener(tracker)
-
-                }
-            }
-
-        })
-
-
+        getVideo()
         //hide system bar
         hideSystem()
         //observe lifecycle
@@ -80,6 +65,20 @@ class PlayMovieScreen : AppCompatActivity() {
             WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
         windowInsetsController.hide(WindowInsetsCompat.Type.systemBars())
 
+    }
+    private fun getVideo()
+    {
+        val url = intent.getStringExtra("video_url")
+        youTubePlayerView.addYouTubePlayerListener(object : AbstractYouTubePlayerListener() {
+            override fun onReady(youTubePlayer: YouTubePlayer) {
+                Toast.makeText(this@PlayMovieScreen,"Press Back Button Or Swipe Right To Exit",Toast.LENGTH_LONG).show()
+                val startSecond=intent.getFloatExtra("view_time",0f)
+                url?.let {url ->
+                    youTubePlayer.loadVideo(url, startSecond)
+                    youTubePlayer.addListener(tracker)
+                }
+            }
+        })
     }
 
     @RequiresApi(Build.VERSION_CODES.N)

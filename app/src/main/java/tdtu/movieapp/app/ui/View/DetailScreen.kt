@@ -90,20 +90,20 @@ class DetailScreen : Fragment() {
             .fitCenter()
             .into(poster)
         playbtn.setOnClickListener {
-            val intent=Intent(requireActivity(),PlayMovieScreen::class.java).also { intent->
-                intent.putExtra("id",args.id)
-                intent.putExtra("title",args.title)
-                intent.putExtra("poster",args.poster)
-                intent.putExtra("video_url",args.videoUrl)
+            val intent=Intent(requireActivity(),PlayMovieScreen::class.java).apply {
+                putExtra("id",args.id)
+                putExtra("title",args.title)
+                putExtra("poster",args.poster)
+                putExtra("video_url",args.videoUrl)
             }
             startActivity(intent)
         }
         poster.setOnClickListener {
-            val intent=Intent(requireActivity(),PlayMovieScreen::class.java).also { intent->
-                intent.putExtra("id",args.id)
-                intent.putExtra("title",args.title)
-                intent.putExtra("poster",args.poster)
-                intent.putExtra("video_url",args.videoUrl)
+            val intent=Intent(requireActivity(),PlayMovieScreen::class.java).apply {
+                putExtra("id",args.id)
+                putExtra("title",args.title)
+                putExtra("poster",args.poster)
+                putExtra("video_url",args.videoUrl)
             }
             startActivity(intent)
         }

@@ -102,9 +102,10 @@ class MainActivity : AppCompatActivity() {
                                 dialog.dismiss()
                             }
                             .setPositiveButton("Yes") { _, _ ->
-                                val intent = Intent(Intent.ACTION_MAIN)
-                                intent.addCategory(Intent.CATEGORY_HOME)
-                                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+                                val intent = Intent(Intent.ACTION_MAIN).apply {
+                                    addCategory(Intent.CATEGORY_HOME)
+                                    flags=Intent.FLAG_ACTIVITY_NEW_TASK
+                                }
                                 startActivity(intent)
                                 finishAffinity()
 
@@ -126,9 +127,10 @@ class MainActivity : AppCompatActivity() {
                                 dialog.dismiss()
                             }
                             .setPositiveButton("Yes") { _, _ ->
-                                val intent = Intent(Intent.ACTION_MAIN)
-                                intent.addCategory(Intent.CATEGORY_HOME)
-                                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+                                val intent = Intent(Intent.ACTION_MAIN).apply {
+                                    addCategory(Intent.CATEGORY_HOME)
+                                    flags = Intent.FLAG_ACTIVITY_NEW_TASK
+                                }
                                 startActivity(intent)
                                 finishAffinity()
                             }

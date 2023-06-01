@@ -86,13 +86,12 @@ class UserProfileScreen : Fragment() {
             val recent=recentList.find {
                 (it.id==movie.id)
             }
-            val intent= Intent(requireActivity(),PlayMovieScreen::class.java).also {
-                intent ->
-                intent.putExtra("view_time",recent!!.view_time)
-                intent.putExtra("id",movie.id)
-                intent.putExtra("title",movie.title)
-                intent.putExtra("poster",movie.poster_path)
-                intent.putExtra("video_url",movie.trailer)
+            val intent= Intent(requireActivity(),PlayMovieScreen::class.java).apply {
+                putExtra("view_time",recent!!.view_time)
+                putExtra("id",movie.id)
+                putExtra("title",movie.title)
+                putExtra("poster",movie.poster_path)
+                putExtra("video_url",movie.trailer)
             }
             startActivity(intent)
         }
