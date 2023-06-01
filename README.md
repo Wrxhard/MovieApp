@@ -7,6 +7,7 @@
 * [Prerequisites](#Prerequisites)
 * [Library](#Library)
 * [Setup](#Setup)
+* [Demo](#Demo)
 * [Author](#Author)
 * [Acknowledgments](#Acknowledgments)
 
@@ -57,8 +58,13 @@ to match the ip address of the host device (using ipconfig)
     
 - Build and run the app on an emulator or physical device
 
+## Demo
+https://github.com/Wrxhard/MovieApp/assets/91369021/f188c30a-868c-4661-889f-02fa399456e9
+
 ## Author
 - NguyenTrongPhuc
 
 ## Acknowledgments
 - API used : [https://www.themoviedb.org](#Tmdb)
+
+
