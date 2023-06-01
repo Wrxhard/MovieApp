@@ -111,16 +111,6 @@ class DetailScreen : Fragment() {
         detaildesc.setOnClickListener {
             detailScreenViewModel.setShowTxt()
         }
-        binding.favourite.setOnClickListener {
-            mViewModel.addFavourite(
-                Movie(
-                 "", args.poster,args.title,args.overview,
-                    "","","","",
-                    args.score,args.videoUrl, emptyList()
-                )
-            )
-            Toast.makeText(requireContext(),"Added To Favourites",Toast.LENGTH_SHORT).show()
-        }
 
     }
     private fun setBackBtn(backBtn: ImageButton)

@@ -40,19 +40,6 @@
             android:contentDescription="@string/detail_back_btn" />
 
         <ImageButton
-            android:id="@+id/favourite"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_32sdp"
-            android:layout_marginEnd="@dimen/_18sdp"
-            android:background="?android:selectableItemBackgroundBorderless"
-            android:src="@drawable/bookmarks_white_24dp"
-            android:textSize="@dimen/_40sdp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck"
-            android:contentDescription="@string/bookmark_btn" />
-        <ImageButton
             android:id="@+id/playbtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

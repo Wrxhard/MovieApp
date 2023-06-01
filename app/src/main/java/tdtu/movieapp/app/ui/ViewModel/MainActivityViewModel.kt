@@ -54,7 +54,6 @@ class MainActivityViewModel @Inject constructor(
     private val _searchList = MutableStateFlow<List<Movie>>(mutableListOf())
     val searchList=_searchList.asStateFlow()
 
-    private val _favourite= mutableListOf<Movie>()
     private val _recentlyWatch= MutableStateFlow<Event<List<RecentlyMovie>>>(Event.Empty)
     val recentlyWatch=_recentlyWatch.asStateFlow()
 
@@ -81,13 +80,6 @@ class MainActivityViewModel @Inject constructor(
                 _recentlyWatch.value=Event.Success(it)
             }
             .launchIn(viewModelScope)
-    }
-    fun addFavourite(movie: Movie)
-    {
-        _favourite.add(movie)
-    }
-    fun getFavourite(): List<Movie>{
-        return _favourite.toSet().toList()
     }
 
     fun addFullList(list:List<Movie>)

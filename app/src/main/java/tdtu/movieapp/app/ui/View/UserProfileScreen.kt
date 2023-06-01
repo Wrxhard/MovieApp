@@ -27,7 +27,8 @@ class UserProfileScreen : Fragment() {
     private var _binding: UserProfileScreenBinding? = null
     private val binding: UserProfileScreenBinding
         get() = _binding!!
-    private  lateinit var mViewModel: MainActivityViewModel
+    private lateinit var mViewModel: MainActivityViewModel
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -77,10 +78,6 @@ class UserProfileScreen : Fragment() {
                     }
                 }
             }
-        }
-        if (mViewModel.getFavourite().isNotEmpty())
-        {
-            sectionlist.add(SectionModel("Favourites",mViewModel.getFavourite()))
         }
         val adapter=ParentAdapter(sectionlist){ movie->
             val recent=recentList.find {
