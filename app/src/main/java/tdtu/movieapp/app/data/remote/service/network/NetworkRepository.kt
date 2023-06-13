@@ -64,4 +64,23 @@ class NetworkRepository @Inject constructor(
             Resource.Error(e.message ?: "An error occured")
         }
     }
+
+    override suspend fun loginGoogle(@Body body: RequestBody): Resource<UserAuth> {
+        return try {
+            val respone=api.loginGoogle(body)
+            val res=respone.body()
+            if (respone.isSuccessful && res!=null)
+            {
+                Resource.Success(res)
+            }
+            else
+            {
+                Resource.Error(respone.message())
+            }
+
+        }catch (e:Exception)
+        {
+            Resource.Error(e.message ?: "An error occured")
+        }
+    }
 }

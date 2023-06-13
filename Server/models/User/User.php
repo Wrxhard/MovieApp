@@ -23,6 +23,19 @@
                 return $statement;
             }
         }
+        public function signInGoogle($username,$password){
+            require_once "./models/Database/Database.php";
+            $databaseIns=new Database();
+            $database=$databaseIns->connect(false);
+            //Prepare sql query to prevent SQL injection and for better performance
+            if ($statement = $database->prepare('SELECT id, username, password, role FROM user WHERE username = ?')) {
+                //Pass parameters and store results
+                $statement->bind_param('s', $username);
+                $statement->execute();
+                $statement->store_result();
+                return $statement;
+            }
+        }
 
         public function getUserInfo($id, $type){
             require_once "./models/Database/Database.php";

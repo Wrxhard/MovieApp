@@ -6,6 +6,29 @@ class SignInController
     {  
         include_once('views/SignIn/index.php');
     }
+    public function signInGoogle($username, $password)
+    {
+        require_once "./models/User/User.php";
+        require_once "./controllers/SignUpController/SignUpController.php";
+        $user = new User();
+        $stm=$user->signInGoogle($username, $password);
+        if ($stm->num_rows > 0) {
+            $stm->bind_result($id, $usernameDB, $passwordDB, $role);
+            $stm->fetch();
+            $client_password = $password;
+            if (password_verify($client_password, $passwordDB)) {
+                //send json data to client
+                $data=array("title" => "login","id" => $id,"username" => $usernameDB, "role" => $role, "status" => true);
+                exit(json_encode($data));
+            } else {
+                $data=array("title" => "login","message" => "Incorrect username and/or password!","status" => false);
+                exit(json_encode($data));
+            }
+        }else{
+            $signUpController = new SignUpController();
+            $signUpController->register(false);
+        }
+    }
 
     public function userAuth($web, $username, $password)
     {               

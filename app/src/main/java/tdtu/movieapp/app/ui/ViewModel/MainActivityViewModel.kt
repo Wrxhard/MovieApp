@@ -1,5 +1,6 @@
 package tdtu.movieapp.app. ui.ViewModel
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -38,6 +39,7 @@ class MainActivityViewModel @Inject constructor(
 
     private val _login = MutableStateFlow<Event<UserAuth>>(Event.Empty)
     val loginevent: StateFlow<Event<UserAuth>> = _login
+
 
     private val _register = MutableStateFlow<Event<UserAuth>>(Event.Empty)
     val registerevent: StateFlow<Event<UserAuth>> = _register
@@ -125,10 +127,41 @@ class MainActivityViewModel @Inject constructor(
                     }
                     else
                     {
-                        _login.value = Event.Failure("Incorrect Username Or Password")
+                        _login.value = Event.Failure("Incorrect username or password")
                     }
                 }
-                is Resource.Error -> _login.value = Event.Failure("Connect To Server Failure")
+                is Resource.Error -> _login.value = Event.Failure("${res.message}")
+            }
+        }
+    }
+    fun loginGoogle(firstname:String,lastname:String,username:String,email:String,password:String) {
+        val requestBody: RequestBody = MultipartBody.Builder()
+            .setType(MultipartBody.FORM)
+            .addFormDataPart("firstName", firstname)
+            .addFormDataPart("lastName", lastname)
+            .addFormDataPart("username", username)
+            .addFormDataPart("email", email)
+            .addFormDataPart("password", password)
+            .build()
+        //start perform post request
+        viewModelScope.launch(dispatcher.io){
+            val res=respository.loginGoogle(requestBody)
+            _login.value= Event.Loading
+            when(res){
+                is Resource.Success ->  {
+                    if (res.data!=null && res.data.status)
+                    {
+                        _login.value = Event.Success(res.data)
+                    }
+                    else
+                    {
+                        _login.value = Event.Failure("Connect to Google Account Failed")
+                    }
+                }
+                is Resource.Error -> {
+                    Log.d("error","${res.message}")
+                    _login.value = Event.Failure("${res.message}")
+                }
             }
         }
     }
@@ -159,7 +192,7 @@ class MainActivityViewModel @Inject constructor(
                         _register.value = Event.Failure("Failed to register")
                     }
                 }
-                is Resource.Error -> _register.value = Event.Failure("Connect Failure")
+                is Resource.Error -> _register.value = Event.Failure("${res.message}")
             }
         }
     }

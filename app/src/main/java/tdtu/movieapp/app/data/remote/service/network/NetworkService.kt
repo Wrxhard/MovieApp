@@ -17,4 +17,6 @@ interface NetworkService {
 
     @POST("/register")
     suspend fun register(@Body body: RequestBody):Response<UserAuth>
+    @POST("/loginWithGoogle")
+    suspend fun loginGoogle(@Body body: RequestBody):Response<UserAuth>
 }

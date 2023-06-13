@@ -15,6 +15,8 @@ require_once './controllers/MovieController/MovieController.php';
 
 
 
+
+
 $request = $_SERVER['REQUEST_URI'];
 $split_request = explode("?", $request);
 $request_parts = explode('/', $split_request[0]);
@@ -59,11 +61,21 @@ switch ($request_parts[1]) {
         }
         break;
     }
+    case "loginWithGoogle":{
+        $signInController = new SignInController();
+        if (isset($_POST['username']) && isset($_POST['password'])) {
+            $username=$_POST['username'];
+            $password=$_POST['password'];
+            $signInController ->signInGoogle($username,$password);
+        }
+    }
     case "loginonmobile":{
         $signInController = new SignInController();
-        $user = $_POST['username'];
-        $password = $_POST['password'];
-        $signInController->userAuth(false, $user, $password);
+        if(isset($_POST['username']) && isset($_POST['password']))
+        {
+            $signInController->userAuth(false, $user, $password);
+
+        }
         break;
     }
     case "register":{

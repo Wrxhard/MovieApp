@@ -1,4 +1,4 @@
-package tdtu.movieapp.app.di
+package tdtu.movieapp.app
 
 import android.app.Application
 import dagger.hilt.android.HiltAndroidApp

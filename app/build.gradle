@@ -96,12 +96,12 @@ dependencies {
     //Youtube-video-Player
     implementation 'com.pierfrancescosoffritti.androidyoutubeplayer:core:12.0.0'
     //debug tool
-    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.11'
 
 
 
 
 
+    implementation 'com.google.android.gms:play-services-auth:20.5.0'
     implementation 'androidx.core:core-ktx:1.9.0'
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.8.0'
