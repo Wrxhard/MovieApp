@@ -1,5 +1,5 @@
 # MovieApp
-### This is an Android application that allows users to view and search for movies. Users can also save their favorite movies and view details about them.
+### This is an Android application that implement MVVM architecture. This App allows users to view and search for movies. Users can view detail about movies, watch trailer and rewatch recently movie.
 
 ## Table of contents
 * [General info](#General-info)
@@ -7,6 +7,7 @@
 * [Prerequisites](#Prerequisites)
 * [Library](#Library)
 * [Setup](#Setup)
+* [Demo](#Demo)
 * [Author](#Author)
 * [Acknowledgments](#Acknowledgments)
 
@@ -57,8 +58,17 @@ to match the ip address of the host device (using ipconfig)
     
 - Build and run the app on an emulator or physical device
 
+## Demo
+
+
+https://github.com/Wrxhard/MovieApp/assets/91369021/51442b85-607b-463f-8873-55bcca2cf4a9
+
+
+
 ## Author
 - NguyenTrongPhuc
 
 ## Acknowledgments
 - API used : [https://www.themoviedb.org](#Tmdb)
+
+
