@@ -1,4 +1,4 @@
-package tdtu.movieapp.app. ui.ViewModel
+package tdtu.movieapp.app.ui.viewModel
 
 import android.util.Log
 import androidx.lifecycle.ViewModel
@@ -16,8 +16,8 @@ import tdtu.movieapp.app.data.model.Movies.Category
 import tdtu.movieapp.app.data.model.Movies.Movie
 import tdtu.movieapp.app.data.model.Movies.RecentlyMovie
 import tdtu.movieapp.app.data.model.Movies.UserAuth
-import tdtu.movieapp.app.utils.DispatcherProvider
-import tdtu.movieapp.app.utils.Resource
+import tdtu.movieapp.app.utils.helper.DispatcherProvider
+import tdtu.movieapp.app.utils.helper.Resource
 import javax.inject.Inject
 import kotlin.coroutines.resume
 

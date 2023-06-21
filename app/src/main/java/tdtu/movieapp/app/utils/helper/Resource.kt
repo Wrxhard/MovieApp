@@ -1,4 +1,4 @@
-package tdtu.movieapp.app.utils
+package tdtu.movieapp.app.utils.helper
 
 sealed class Resource<T>(val data: T?, val message: String?) {
     class Success<T>(data: T) : Resource<T>(data, null)

@@ -1,4 +1,4 @@
-package tdtu.movieapp.app.ui.ViewModel
+package tdtu.movieapp.app.ui.viewModel
 
 import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.flow.MutableStateFlow

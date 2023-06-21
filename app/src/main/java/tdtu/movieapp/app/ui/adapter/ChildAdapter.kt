@@ -1,4 +1,4 @@
-package tdtu.movieapp.app.ui.Adapter
+package tdtu.movieapp.app.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.View

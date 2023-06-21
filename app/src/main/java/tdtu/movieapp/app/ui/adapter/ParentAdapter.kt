@@ -1,4 +1,4 @@
-package tdtu.movieapp.app.ui.Adapter
+package tdtu.movieapp.app.ui.adapter
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import tdtu.movieapp.app.R
 import tdtu.movieapp.app.data.model.Movies.Movie
-import tdtu.movieapp.app.ui.ViewModel.SectionModel
+import tdtu.movieapp.app.ui.viewModel.SectionModel
 
 class ParentAdapter(val listSection:List<SectionModel>, val onClick:(Movie)->Unit):RecyclerView.Adapter<ParentAdapter.ParentMyViewHolder>() {
     inner class ParentMyViewHolder(val view:View):RecyclerView.ViewHolder(view){

@@ -1,4 +1,4 @@
-package tdtu.movieapp.app.ui.View
+package tdtu.movieapp.app.ui.view
 
 import android.content.pm.ActivityInfo
 import android.os.Bundle
@@ -21,10 +21,10 @@ import kotlinx.coroutines.flow.collectLatest
 import tdtu.movieapp.app.R
 import tdtu.movieapp.app.data.model.Movies.Category
 import tdtu.movieapp.app.databinding.HomescreenBinding
-import tdtu.movieapp.app.ui.Adapter.CategoryAdapter
-import tdtu.movieapp.app.ui.Adapter.ParentAdapter
-import tdtu.movieapp.app.ui.ViewModel.MainActivityViewModel
-import tdtu.movieapp.app.ui.ViewModel.SectionModel
+import tdtu.movieapp.app.ui.adapter.CategoryAdapter
+import tdtu.movieapp.app.ui.adapter.ParentAdapter
+import tdtu.movieapp.app.ui.viewModel.MainActivityViewModel
+import tdtu.movieapp.app.ui.viewModel.SectionModel
 
 class HomeScreen : Fragment() {
     private var _binding: HomescreenBinding? = null

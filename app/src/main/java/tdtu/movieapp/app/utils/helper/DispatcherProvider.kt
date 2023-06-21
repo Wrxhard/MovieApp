@@ -1,4 +1,4 @@
-package tdtu.movieapp.app.utils
+package tdtu.movieapp.app.utils.helper
 
 import kotlinx.coroutines.CoroutineDispatcher
 

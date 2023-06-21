@@ -6,7 +6,7 @@
     app:startDestination="@id/userProfileScreen">
     <fragment
         android:id="@+id/userProfileScreen"
-        android:name="tdtu.movieapp.app.ui.View.UserProfileScreen"
+        android:name="tdtu.movieapp.app.ui.view.UserProfileScreen"
         android:label="fragment_user_profile_screen"
         tools:layout="@layout/user_profile_screen" />
     <action

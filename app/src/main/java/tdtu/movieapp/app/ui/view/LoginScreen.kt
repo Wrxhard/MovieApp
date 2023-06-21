@@ -1,4 +1,4 @@
-package tdtu.movieapp.app.ui.View
+package tdtu.movieapp.app.ui.view
 
 import android.app.PendingIntent
 import android.content.Intent
@@ -28,7 +28,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import tdtu.movieapp.app.databinding.LoginScreenBinding
-import tdtu.movieapp.app.ui.ViewModel.MainActivityViewModel
+import tdtu.movieapp.app.ui.viewModel.MainActivityViewModel
 
 
 @AndroidEntryPoint

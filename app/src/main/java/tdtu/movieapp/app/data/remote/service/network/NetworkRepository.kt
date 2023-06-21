@@ -3,7 +3,7 @@ import okhttp3.RequestBody
 import retrofit2.http.Body
 import tdtu.movieapp.app.data.model.Movies.Movies
 import tdtu.movieapp.app.data.model.Movies.UserAuth
-import tdtu.movieapp.app.utils.Resource
+import tdtu.movieapp.app.utils.helper.Resource
 import javax.inject.Inject
 
 class NetworkRepository @Inject constructor(

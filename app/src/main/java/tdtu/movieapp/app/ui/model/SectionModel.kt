@@ -1,4 +1,4 @@
-package tdtu.movieapp.app.ui.ViewModel
+package tdtu.movieapp.app.ui.viewModel
 
 import tdtu.movieapp.app.data.model.Movies.Movie
 

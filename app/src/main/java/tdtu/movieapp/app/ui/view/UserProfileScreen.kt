@@ -1,4 +1,4 @@
-package tdtu.movieapp.app.ui.View
+package tdtu.movieapp.app.ui.view
 
 import android.content.Intent
 import android.content.pm.ActivityInfo
@@ -19,9 +19,9 @@ import tdtu.movieapp.app.R
 import tdtu.movieapp.app.data.model.Movies.Movie
 import tdtu.movieapp.app.data.model.Movies.RecentlyMovie
 import tdtu.movieapp.app.databinding.UserProfileScreenBinding
-import tdtu.movieapp.app.ui.Adapter.ParentAdapter
-import tdtu.movieapp.app.ui.ViewModel.MainActivityViewModel
-import tdtu.movieapp.app.ui.ViewModel.SectionModel
+import tdtu.movieapp.app.ui.adapter.ParentAdapter
+import tdtu.movieapp.app.ui.viewModel.MainActivityViewModel
+import tdtu.movieapp.app.ui.viewModel.SectionModel
 
 class UserProfileScreen : Fragment() {
     private var _binding: UserProfileScreenBinding? = null

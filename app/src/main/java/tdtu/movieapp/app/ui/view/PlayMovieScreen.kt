@@ -1,4 +1,4 @@
-package tdtu.movieapp.app.ui.View
+package tdtu.movieapp.app.ui.view
 
 import android.content.pm.ActivityInfo
 import android.os.Build
@@ -21,7 +21,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import tdtu.movieapp.app.R
 import tdtu.movieapp.app.data.model.Movies.RecentlyMovie
 import tdtu.movieapp.app.databinding.PlayscreenBinding
-import tdtu.movieapp.app.ui.ViewModel.MainActivityViewModel
+import tdtu.movieapp.app.ui.viewModel.MainActivityViewModel
 
 @AndroidEntryPoint
 class PlayMovieScreen : AppCompatActivity() {

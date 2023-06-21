@@ -1,4 +1,4 @@
-package tdtu.movieapp.app.ui.View
+package tdtu.movieapp.app.ui.view
 
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
@@ -19,7 +19,7 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import tdtu.movieapp.app.R
 import tdtu.movieapp.app.databinding.RegisterScreenBinding
-import tdtu.movieapp.app.ui.ViewModel.MainActivityViewModel
+import tdtu.movieapp.app.ui.viewModel.MainActivityViewModel
 
 @AndroidEntryPoint
 class RegisterScreen : AppCompatActivity() {

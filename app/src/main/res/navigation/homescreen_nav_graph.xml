@@ -8,7 +8,7 @@
 
     <fragment
         android:id="@+id/homescreen"
-        android:name="tdtu.movieapp.app.ui.View.HomeScreen"
+        android:name="tdtu.movieapp.app.ui.view.HomeScreen"
         android:label="homescreen"
         tools:layout="@layout/homescreen">
         <action
@@ -20,7 +20,7 @@
     </fragment>
     <fragment
         android:id="@+id/detailscreen"
-        android:name="tdtu.movieapp.app.ui.View.DetailScreen"
+        android:name="tdtu.movieapp.app.ui.view.DetailScreen"
         android:label="detail_screen"
         tools:layout="@layout/detailscreen" >
         <argument
@@ -56,7 +56,7 @@
     </fragment>
     <fragment
         android:id="@+id/searchScreen"
-        android:name="tdtu.movieapp.app.ui.View.SearchScreen"
+        android:name="tdtu.movieapp.app.ui.view.SearchScreen"
         android:label="SearchScreen" >
         <argument
             android:name="query"

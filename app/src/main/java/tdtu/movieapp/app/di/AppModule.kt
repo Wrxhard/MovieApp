@@ -17,7 +17,7 @@ import tdtu.movieapp.app.data.local.service.LocalRepo
 import tdtu.movieapp.app.data.local.service.LocalRepoImp
 import tdtu.movieapp.app.data.remote.service.network.NetworkRepository
 import tdtu.movieapp.app.data.remote.service.network.NetworkService
-import tdtu.movieapp.app.utils.DispatcherProvider
+import tdtu.movieapp.app.utils.helper.DispatcherProvider
 import javax.inject.Singleton
 
 const val BASE_URL="http://10.0.2.2/"

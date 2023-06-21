@@ -1,4 +1,4 @@
-package tdtu.movieapp.app.ui.View
+package tdtu.movieapp.app.ui.view
 
 import android.content.Intent
 import android.os.Bundle
@@ -10,7 +10,6 @@ import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
@@ -24,11 +23,10 @@ import com.bumptech.glide.Glide
 import kotlinx.coroutines.launch
 import tdtu.movieapp.app.R
 import tdtu.movieapp.app.data.model.Movies.Category
-import tdtu.movieapp.app.data.model.Movies.Movie
 import tdtu.movieapp.app.databinding.DetailscreenBinding
-import tdtu.movieapp.app.ui.Adapter.CategoryAdapter
-import tdtu.movieapp.app.ui.ViewModel.DetailScreenViewModel
-import tdtu.movieapp.app.ui.ViewModel.MainActivityViewModel
+import tdtu.movieapp.app.ui.adapter.CategoryAdapter
+import tdtu.movieapp.app.ui.viewModel.DetailScreenViewModel
+import tdtu.movieapp.app.ui.viewModel.MainActivityViewModel
 
 class DetailScreen : Fragment() {
     private lateinit var detailScreenViewModel: DetailScreenViewModel

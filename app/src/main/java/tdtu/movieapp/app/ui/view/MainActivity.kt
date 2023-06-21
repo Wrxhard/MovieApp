@@ -1,4 +1,4 @@
-package tdtu.movieapp.app.ui.View
+package tdtu.movieapp.app.ui.view
 
 import android.Manifest.permission.*
 import android.content.Intent
@@ -29,7 +29,7 @@ import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.launch
 import tdtu.movieapp.app.R
 import tdtu.movieapp.app.databinding.ActivityMainBinding
-import tdtu.movieapp.app.ui.ViewModel.MainActivityViewModel
+import tdtu.movieapp.app.ui.viewModel.MainActivityViewModel
 
 
 @AndroidEntryPoint
