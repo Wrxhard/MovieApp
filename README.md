@@ -42,7 +42,7 @@
 
 - Copy all the files in Server folder into C:\xampp\htdocs
 - Launch XAMPP and start Apache and MySQL servers
-- In PHPMyAdmin, import the database.sql file from Server folder.
+- In PHPMyAdmin, import the database.sql file from C:\xampp\htdocs folder.
 - Change the BASE_URL in MooviApp\app\src\main\java\tdtu\movieapp\app\di\AppModule.kt 
 to match the ip address of the host device (using ipconfig)
 
